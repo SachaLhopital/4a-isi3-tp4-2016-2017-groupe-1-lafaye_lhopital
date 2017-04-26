@@ -247,6 +247,7 @@ public class SimpleLogo extends JFrame implements ActionListener {
 		JButton b;
 		if ((imageName == null) || (imageName.equals(""))) {
 			b = (JButton)p.add(new JButton(name));
+			//TODO REFACT_LAFAYE_LHOPITAL
 		}
 		else {
 			java.net.URL u = this.getClass().getResource(imageName);
