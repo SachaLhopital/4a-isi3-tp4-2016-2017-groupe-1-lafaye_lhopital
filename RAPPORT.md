@@ -68,6 +68,8 @@ public void poly(int n, int a){[...]}
 
 - Certains calculs sont obsoletes et peuvent être remplacés en utilisant des librairies (Math par exemple).
 
+- Il y a aussi des problèmes d'indentations du code.
+
 ## Question 2
 *Rien à rédiger*
 
@@ -81,16 +83,4 @@ public void poly(int n, int a){[...]}
 *Expliquer le code ajouté et représenter le patron de conception*
 
 ## Question 6
-*Rien à rédiger*
-
-## Question 7
-*Rien à rédiger*
-
-## Question 8
-*Expliquer l'intérêt du mock*
-
-## Question 9
-*Montrer les résultats de vos rapports d'analyse*
-
-## Question 10
 *Rien à rédiger*
