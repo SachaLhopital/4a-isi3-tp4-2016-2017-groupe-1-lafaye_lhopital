@@ -5,7 +5,13 @@ package Metier;
  */
 public class TournerGauche implements IAction {
 
-    public void resolution(ITortue tortue) {
+    int angle;
+
+    public TournerGauche(int angle){
+        this.angle = angle;
+    }
+
+    public void resolution(ModeleTortue tortue) {
 
     }
 }

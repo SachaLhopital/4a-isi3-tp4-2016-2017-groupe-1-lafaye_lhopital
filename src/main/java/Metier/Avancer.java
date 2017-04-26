@@ -13,7 +13,7 @@ public class Avancer implements IAction {
     }
 
 
-    public void resolution(ITortue tortue) {
+    public void resolution(ModeleTortue tortue) {
 
     }
 }

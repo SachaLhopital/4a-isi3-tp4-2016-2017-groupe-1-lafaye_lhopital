@@ -5,7 +5,15 @@ package Metier;
  */
 public class Reculer implements IAction {
 
-    public void resolution(ITortue tortue) {
+    int distance;
+    IFormeDeplacement formeDeplacement;
+
+    public Reculer(int distance, IFormeDeplacement formeDeplacement){
+        this.distance = distance;
+        this.formeDeplacement = formeDeplacement;
+    }
+
+    public void resolution(ModeleTortue tortue) {
 
     }
 }
