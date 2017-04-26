@@ -15,19 +15,19 @@ Liste de problèmes à résoudre :
 - Certains nom de variables et de méthodes ne sont pas très clairs :
 ```java
 private Tortue courante;
-```java
+```
 
 - Le code est à la fois écrit en Anglais et en Français :
 ```java
 public void addTortue(Tortue o) {
     tortues.add(o);
 }
-```java
+```
 
 - Certains commentaires ne sont pas pertinents :
 ```java
 /** quelques classiques */
-```java
+```
 
 - Certains commentaires ou morceaux de code ont été copier coller
 
@@ -57,12 +57,12 @@ else if (c.equals("Effacer"))
     effacer();
 else if (c.equals("Quitter"))
     quitter();
-```java
+```
 
 - Certains nom de paramètres de méthodes ne sont pas pertinants :
 ```java
 public void poly(int n, int a){[...]}
-```java
+```
 
 - Les getters et setters ne sont pas assez utilisés
 
