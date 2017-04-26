@@ -1,7 +1,6 @@
 package Controleur;
 
 import Metier.ModeleTortue;
-import Vue.FeuilleDessin;
 import Vue.VueManipTortue;
 
 import java.awt.*;
@@ -16,11 +15,8 @@ public class CtrlManipTortue implements ActionListener{
     ModeleTortue tortueCourante;
     VueManipTortue vueManipTortue;
 
-    FeuilleDessin feuille;
-
-    public CtrlManipTortue(VueManipTortue vueManipTortue){
+        public CtrlManipTortue(VueManipTortue vueManipTortue){
         this.vueManipTortue = vueManipTortue;
-        feuille = new FeuilleDessin();
 
     }
 
@@ -71,7 +67,7 @@ public class CtrlManipTortue implements ActionListener{
         else if (c.equals("Quitter"))
             quitter();
 
-        feuille.repaint();
+        vueManipTortue.repaint();
     }
 
     /** les procedures Logo qui combine plusieurs commandes..*/
@@ -89,12 +85,12 @@ public class CtrlManipTortue implements ActionListener{
 
     // efface tout et reinitialise la feuille
     public void effacer() {
-        feuille.reset();
+        /*feuille.reset();
         feuille.repaint();
 
         // Replace la tortue au centre
         Dimension size = feuille.getSize();
-        tortueCourante.setPosition(size.width/2, size.height/2);
+        tortueCourante.setPosition(size.width/2, size.height/2);*/
     }
 
     public void quitter(){

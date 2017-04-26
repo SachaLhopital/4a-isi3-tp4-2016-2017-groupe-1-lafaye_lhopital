@@ -17,6 +17,7 @@ public class VueFeuilleDessin extends JPanel {
         VueTortue vueTortue = new VueTortue(tortue,this);
         tortue.addObserver(vueTortue);
         vuesTortue.add(vueTortue);
+        dessiner(this.getGraphics());
     }
 
     public void dessiner(Graphics graph){
@@ -24,4 +25,5 @@ public class VueFeuilleDessin extends JPanel {
             v.dessiner(graph);
         }
     }
+
 }
