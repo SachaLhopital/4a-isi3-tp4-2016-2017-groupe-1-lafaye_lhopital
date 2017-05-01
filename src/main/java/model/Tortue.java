@@ -6,6 +6,13 @@ import java.util.Observable;
  * Created by lafay on 27/04/2017.
  */
 public class Tortue extends Observable {
+
+    //Static values
+    public static final int HEIGHT = 400;
+    public static final int WIDTH = 500;
+
+
+
     int posX,posY;
     int dir;
 
@@ -38,8 +45,8 @@ public class Tortue extends Observable {
     }
 
     public void reset(){
-        posX =0;
-        posY =0;
+        posX =HEIGHT/2;
+        posY =WIDTH/2;
         dir =0;
 
         setChanged();

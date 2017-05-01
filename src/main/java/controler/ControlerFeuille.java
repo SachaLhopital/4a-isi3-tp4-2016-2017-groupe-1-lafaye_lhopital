@@ -22,9 +22,14 @@ public class ControlerFeuille extends JPanel implements Observer{
     }
 
     public ControlerFeuille(Tortue tortue){
+        this.addTortue(tortue);
+
+        this.setPreferredSize(new Dimension(Tortue.WIDTH,Tortue.HEIGHT));
+    }
+
+    public void addTortue(Tortue tortue){
         this.tortues.add(tortue);
         tortue.addObserver(this);
-        tortue.setPos(this.getHeight()/2, this.getWidth()/2);
     }
 
     public void paintComponent(Graphics graphics){
@@ -34,12 +39,10 @@ public class ControlerFeuille extends JPanel implements Observer{
 
     public void drawTortues(Graphics graph){
 
-        System.out.print("impression");
         if(graph == null){
             return;
         }
-
-        System.out.print("netoyage");
+;
 
         //nétoyage du graphique
         Color c = graph.getColor();
@@ -58,9 +61,6 @@ public class ControlerFeuille extends JPanel implements Observer{
     }
 
     public void update(Observable o, Object arg) {
-        System.out.println("Draw turtle");
         this.repaint();
-        //drawTortues(this.getGraphics());
-
     }
 }

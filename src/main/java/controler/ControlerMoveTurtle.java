@@ -3,6 +3,7 @@ package controler;
 import model.Tortue;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ContainerAdapter;
@@ -21,10 +22,14 @@ public class ControlerMoveTurtle {
     private JButton btnAvancer;
     private JButton btnLever;
     private JButton btnBaisser;
+    private JButton btnAjouterTortue;
 
     public Tortue tortueCourante;
 
     public ControlerMoveTurtle(){
+
+
+
         this.tortueCourante = new Tortue();
 
         ControlerFeuille controlleurFeuille = new ControlerFeuille(this.tortueCourante);
@@ -33,7 +38,6 @@ public class ControlerMoveTurtle {
         btnAvancer.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 avancer(getParametter());
-                System.out.print("avancer");
             }
         });
 
@@ -41,14 +45,12 @@ public class ControlerMoveTurtle {
         btnGauche.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 gauche(getParametter());
-                System.out.print("gauche");
             }
         });
 
         btnDroite.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 droite(getParametter());
-                System.out.print("droite");
             }
         });
     }
@@ -63,20 +65,16 @@ public class ControlerMoveTurtle {
     }
 
     public void avancer(int dist) {
-        int newX = (int) Math.round(tortueCourante.getPosX()+dist*Math.cos(Math.toRadians(tortueCourante.getDir())));
-        int newY = (int) Math.round(tortueCourante.getPosY()+dist*Math.sin(Math.toRadians(tortueCourante.getDir())));
+        int newX = ((int) Math.round(tortueCourante.getPosX()+dist*Math.cos(Math.toRadians(tortueCourante.getDir()))))%Tortue.WIDTH;
+        int newY = ((int) Math.round(tortueCourante.getPosY()+dist*Math.sin(Math.toRadians(tortueCourante.getDir()))))%Tortue.HEIGHT;
 
-        /*if (crayon==true) {
-            oldSrc.Tortue.Segment seg = new oldSrc.Tortue.Segment();
+        if(newX<0){
+            newX = Tortue.HEIGHT + newX;
+        }
+        if(newY<0){
+            newY = Tortue.WIDTH + newY;
+        }
 
-            seg.ptStart.x = x;
-            seg.ptStart.y = y;
-            seg.ptEnd.x = newX;
-            seg.ptEnd.y = newY;
-            seg.color = decodeColor(coul);
-
-            listSegments.add(seg);
-        }*/
         tortueCourante.setPos(newX, newY);
     }
 
@@ -93,6 +91,7 @@ public class ControlerMoveTurtle {
         JFrame frame = new JFrame("ControlerMoveTurtle");
         frame.setContentPane(new ControlerMoveTurtle().panPrincipal);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(new Dimension(Tortue.WIDTH,Tortue.HEIGHT+67));
         frame.pack();
         frame.setVisible(true);
     }
