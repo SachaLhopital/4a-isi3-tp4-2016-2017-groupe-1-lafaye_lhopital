@@ -1,4 +1,4 @@
-// package logo;
+package oldSrc;// package logo;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,7 +7,7 @@ import java.util.Iterator;
 
 /**
  * Titre :        Logo
- * Description :  Un exemple de programme graphique utilisant la celebre Tortue Logo
+ * Description :  Un exemple de programme graphique utilisant la celebre oldSrc.Tortue Logo
  * Copyright :    Copyright (c) 2000
  * Societe :      LIRMM
  * @author J. Ferber

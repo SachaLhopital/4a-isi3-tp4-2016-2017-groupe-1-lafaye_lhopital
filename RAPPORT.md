@@ -14,12 +14,12 @@ Liste de problèmes à résoudre :
 
 - Certains nom de variables et de méthodes ne sont pas très clairs :
 ```java
-private Tortue courante;
+private oldSrc.Tortue courante;
 ```
 
 - Le code est à la fois écrit en Anglais et en Français :
 ```java
-public void addTortue(Tortue o) {
+public void addTortue(oldSrc.Tortue o) {
     tortues.add(o);
 }
 ```
