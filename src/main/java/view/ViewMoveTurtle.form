@@ -51,17 +51,9 @@
                   <text value="Droite"/>
                 </properties>
               </component>
-              <component id="c17bf" class="javax.swing.JButton" binding="btnLever">
+              <component id="56994" class="javax.swing.JComboBox" binding="cbColorSelector">
                 <constraints/>
-                <properties>
-                  <text value="Lever"/>
-                </properties>
-              </component>
-              <component id="81c5c" class="javax.swing.JButton" binding="btnBaisser">
-                <constraints/>
-                <properties>
-                  <text value="Baisser"/>
-                </properties>
+                <properties/>
               </component>
               <component id="80e10" class="javax.swing.JButton" binding="btnAjouterTortue">
                 <constraints/>

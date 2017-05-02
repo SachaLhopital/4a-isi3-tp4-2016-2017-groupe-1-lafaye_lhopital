@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.*;
 import java.util.Observable;
 
 /**
@@ -11,10 +12,17 @@ public class Tortue extends Observable {
     public static final int HEIGHT = 400;
     public static final int WIDTH = 500;
 
+    public enum Colors{
+        VERT,
+        ROUGE,
+        NOIR
+    }
+
 
 
     int posX,posY;
     int dir;
+    Colors color = Colors.VERT;
 
     public static int RB =10,RP =10;
 
@@ -44,6 +52,8 @@ public class Tortue extends Observable {
         return dir;
     }
 
+    public Color getColor(){return this.bindColor();}
+
     public void reset(){
         posX =HEIGHT/2;
         posY =WIDTH/2;
@@ -68,6 +78,28 @@ public class Tortue extends Observable {
         notifyObservers();
     }
 
+    public void setColor(Colors color){
+        this.color = color;
+
+        setChanged();
+        notifyObservers();
+    }
+
+    private Color bindColor(){
+        switch (color){
+            case VERT:
+                return Color.green;
+
+            case NOIR:
+                return Color.BLACK;
+
+            case ROUGE:
+                return Color.RED;
+            default:
+                return Color.green;
+
+        }
+    }
 
 
 }

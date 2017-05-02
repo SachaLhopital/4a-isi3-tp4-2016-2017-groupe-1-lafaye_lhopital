@@ -35,7 +35,7 @@ public class ViewTortue {
                 (int) Math.round( pointe.y+rayon*Math.sin(theta - alpha) ));
 
         arrow.addPoint(pointe.x,pointe.y);
-        graph.setColor(Color.green);
+        graph.setColor(tortue.getColor());
         graph.fillPolygon(arrow);
 
 

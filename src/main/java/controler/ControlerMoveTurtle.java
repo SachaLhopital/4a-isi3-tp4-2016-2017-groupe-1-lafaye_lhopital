@@ -3,6 +3,7 @@ package controler;
 import model.Tortue;
 
 import javax.swing.*;
+import javax.swing.event.ListDataListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,9 +21,8 @@ public class ControlerMoveTurtle {
     private JButton btnGauche;
     private JButton btnDroite;
     private JButton btnAvancer;
-    private JButton btnLever;
-    private JButton btnBaisser;
     private JButton btnAjouterTortue;
+    private JComboBox cbColorSelector;
 
     public Tortue tortueCourante;
 
@@ -51,6 +51,23 @@ public class ControlerMoveTurtle {
         btnDroite.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 droite(getParametter());
+            }
+        });
+
+        btnAjouterTortue.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+
+        //add cb values
+        for(Tortue.Colors c : Tortue.Colors.values()){
+            cbColorSelector.addItem(c);
+        }
+        cbColorSelector.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                tortueCourante.setColor((Tortue.Colors)cbColorSelector.getSelectedItem());
             }
         });
     }
