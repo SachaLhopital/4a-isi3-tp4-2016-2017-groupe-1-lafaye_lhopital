@@ -1,5 +1,8 @@
 package controler;
 
+import model.ActionCarre;
+import model.ActionPolygone;
+import model.ActionSpiral;
 import model.Tortue;
 
 import javax.swing.*;
@@ -23,6 +26,9 @@ public class ControlerMoveTurtle {
     private JButton btnAvancer;
     private JButton btnAjouterTortue;
     private JComboBox cbColorSelector;
+    private JButton btnAactionCarre;
+    private JButton btnSpiral;
+    private JButton btnPolygone;
 
     public Tortue tortueCourante;
 
@@ -32,30 +38,35 @@ public class ControlerMoveTurtle {
 
         this.tortueCourante = new Tortue();
 
-        ControlerFeuille controlleurFeuille = new ControlerFeuille(this.tortueCourante);
+        final ControlerFeuille controlleurFeuille = new ControlerFeuille(this,this.tortueCourante);
         panPrincipal.add(controlleurFeuille,"Center");
 
         btnAvancer.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                avancer(getParametter());
+                tortueCourante.avancer(getParametter());
             }
         });
 
 
         btnGauche.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                gauche(getParametter());
+                tortueCourante.gauche(getParametter());
             }
         });
 
         btnDroite.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                droite(getParametter());
+                tortueCourante.droite(getParametter());
             }
         });
 
         btnAjouterTortue.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                Tortue newT = new Tortue();
+                controlleurFeuille.addTortue(newT);
+                setCurrentTurlte(newT);
+
+                controlleurFeuille.repaint();
 
             }
         });
@@ -70,6 +81,23 @@ public class ControlerMoveTurtle {
                 tortueCourante.setColor((Tortue.Colors)cbColorSelector.getSelectedItem());
             }
         });
+        btnAactionCarre.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new ActionCarre().doAction(tortueCourante);
+            }
+        });
+        btnSpiral.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ActionSpiral().doAction(tortueCourante);
+            }
+        });
+        btnPolygone.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ActionPolygone().doAction(tortueCourante);
+            }
+        });
     }
 
     public int getParametter(){
@@ -81,26 +109,8 @@ public class ControlerMoveTurtle {
 
     }
 
-    public void avancer(int dist) {
-        int newX = ((int) Math.round(tortueCourante.getPosX()+dist*Math.cos(Math.toRadians(tortueCourante.getDir()))))%Tortue.WIDTH;
-        int newY = ((int) Math.round(tortueCourante.getPosY()+dist*Math.sin(Math.toRadians(tortueCourante.getDir()))))%Tortue.HEIGHT;
-
-        if(newX<0){
-            newX = Tortue.HEIGHT + newX;
-        }
-        if(newY<0){
-            newY = Tortue.WIDTH + newY;
-        }
-
-        tortueCourante.setPos(newX, newY);
-    }
-
-    public void droite(int ang) {
-        tortueCourante.setDir((tortueCourante.getDir()+ang)%360);
-    }
-
-    public void gauche(int ang) {
-        droite(-ang);
+    public void setCurrentTurlte(Tortue turtle){
+        this.tortueCourante = turtle;
     }
 
 

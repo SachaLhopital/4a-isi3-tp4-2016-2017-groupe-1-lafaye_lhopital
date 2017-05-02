@@ -101,5 +101,27 @@ public class Tortue extends Observable {
         }
     }
 
+    public void avancer(int dist) {
+        int newX = ((int) Math.round(getPosX()+dist*Math.cos(Math.toRadians(getDir()))))%Tortue.WIDTH;
+        int newY = ((int) Math.round(getPosY()+dist*Math.sin(Math.toRadians(getDir()))))%Tortue.HEIGHT;
+
+        if(newX<0){
+            newX = Tortue.HEIGHT + newX;
+        }
+        if(newY<0){
+            newY = Tortue.WIDTH + newY;
+        }
+
+        setPos(newX, newY);
+    }
+
+    public void droite(int ang) {
+        setDir((getDir()+ang)%360);
+    }
+
+    public void gauche(int ang) {
+        droite(-ang);
+    }
+
 
 }
