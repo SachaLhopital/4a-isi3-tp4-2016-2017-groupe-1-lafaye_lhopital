@@ -1,6 +1,7 @@
 package controler;
 
 import model.Tortue;
+import view.TortueApplication;
 import view.ViewTortue;
 
 import javax.swing.*;
@@ -14,11 +15,12 @@ import java.util.Observer;
 /**
  * Created by lafay on 27/04/2017.
  */
-public class ControlerFeuille extends JPanel implements Observer{
+public class ControlerFeuille extends JPanel {
+    //todo : remove extends JPanel
         private JPanel panFeuille;
 
     ControlerMoveTurtle parent;
-    public LinkedList<Tortue> tortues = new LinkedList<Tortue>();
+    public LinkedList<Tortue> listeTortues = new LinkedList<Tortue>();
     public Tortue currentTurtle;
 
     public ControlerFeuille(){
@@ -49,9 +51,11 @@ public class ControlerFeuille extends JPanel implements Observer{
 
     public ControlerFeuille(ControlerMoveTurtle parent,Tortue tortue){
 
-        this.addTortue(tortue);
         currentTurtle = tortue;
+        getListeTortues().add(tortue);
+
         this.parent = parent;
+
 
         this.setPreferredSize(new Dimension(Tortue.WIDTH,Tortue.HEIGHT));
 
@@ -68,9 +72,23 @@ public class ControlerFeuille extends JPanel implements Observer{
         });
     }
 
+    public LinkedList<Tortue> getListeTortues() {
+        return listeTortues;
+    }
+
+    /***
+     * Ajoute une tortue sur la feuille de dessin
+     */
+    public void ajouterTortue() {
+        Tortue tortue = new Tortue();
+        getListeTortues().add(tortue);
+        tortue.addObserver(TortueApplication.viewMenu);
+        repaint();
+    }
+
+    //todo remove
     public void addTortue(Tortue tortue){
-        this.tortues.add(tortue);
-        tortue.addObserver(this);
+        ajouterTortue();
     }
 
     public void paintComponent(Graphics graphics){
@@ -95,14 +113,14 @@ public class ControlerFeuille extends JPanel implements Observer{
 
         //dessin des tortues
         for (Tortue t:
-             tortues) {
+             listeTortues) {
             ViewTortue.dessine(t,graph);
         }
 
     }
 
     public Tortue selectTurtle(int posX, int posY){
-        for(Tortue t:tortues){
+        for(Tortue t:listeTortues){
             if(t.getPosX()>posX && t.getPosX()< posX+10 && t.getPosY()>posY && t.getPosY()< posY+10){
                 return t;
             }

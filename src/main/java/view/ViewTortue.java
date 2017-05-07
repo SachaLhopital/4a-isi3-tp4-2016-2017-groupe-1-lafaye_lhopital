@@ -1,13 +1,16 @@
 package view;
 
+import controler.ControlerMoveTurtle;
 import model.Tortue;
 
+import javax.swing.*;
 import java.awt.*;
 
 /**
  * Created by lafay on 27/04/2017.
  */
 public class ViewTortue {
+
     public static void dessine(Tortue tortue, Graphics graph){
         //Calcule les 3 coins du triangle a partir de
         // la position de la tortue p
