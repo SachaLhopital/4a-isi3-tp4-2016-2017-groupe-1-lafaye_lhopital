@@ -1,19 +1,22 @@
-package controler;
+package controleur;
 
-import model.ActionCarre;
-import model.ActionPolygone;
-import model.ActionSpiral;
+import model.Formes.Carre;
+import model.Formes.Polygone;
+import model.Formes.Spirale;
+import model.Service.TracerFormeService;
 import model.Tortue;
 
 /**
  * Created by lafay on 27/04/2017.
  */
-public class ControlerMoveTurtle {
+public class ControlerManipTortue {
 
     public Tortue tortueCourante;
+    public TracerFormeService formeService;
 
-    public ControlerMoveTurtle(Tortue tortue){
+    public ControlerManipTortue(Tortue tortue){
         tortueCourante = tortue;
+        formeService = new TracerFormeService();
     }
 
     //Méthodes
@@ -35,24 +38,28 @@ public class ControlerMoveTurtle {
     }
 
     public void tracerCarre() {
-        new ActionCarre().doAction(getTortueCourante());
+        getFormeService().doAction(getTortueCourante(), new Carre());
     }
 
     public void tracerSpiral() {
-        new ActionSpiral().doAction(getTortueCourante());
+        getFormeService().doAction(getTortueCourante(), new Spirale());
     }
 
     public void tracerPolygone() {
-        new ActionPolygone().doAction(getTortueCourante());
+        getFormeService().doAction(getTortueCourante(), new Polygone());
     }
 
     //Getters et Setters
+
+    public TracerFormeService getFormeService() {
+        return formeService;
+    }
 
     public Tortue getTortueCourante() {
         return tortueCourante;
     }
 
-    public void setCurrentTurlte(Tortue turtle){
+    public void setTortueCourante(Tortue turtle){
         this.tortueCourante = turtle;
     }
 }

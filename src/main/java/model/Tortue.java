@@ -8,9 +8,9 @@ import java.util.Observable;
  */
 public class Tortue extends Observable {
 
-    //Static values
     public static final int HEIGHT = 400;
     public static final int WIDTH = 500;
+    public static int RB =10, RP =10;
 
     public enum Colors{
         VERT,
@@ -18,13 +18,10 @@ public class Tortue extends Observable {
         NOIR
     }
 
-
-
     int posX,posY;
     int dir;
-    Colors color = Colors.VERT;
 
-    public static int RB =10,RP =10;
+    Colors color = Colors.VERT;
 
     public Tortue(){
         reset();
@@ -33,7 +30,6 @@ public class Tortue extends Observable {
     public Tortue(int posX, int posY){
         this.posX = posX;
         this.posY = posY;
-
         this.dir =0;
 
         setChanged();
@@ -122,6 +118,4 @@ public class Tortue extends Observable {
     public void gauche(int ang) {
         droite(-ang);
     }
-
-
 }

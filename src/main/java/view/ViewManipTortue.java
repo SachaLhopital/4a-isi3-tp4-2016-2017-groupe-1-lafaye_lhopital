@@ -1,7 +1,7 @@
 package view;
 
-import controler.ControlerFeuille;
-import controler.ControlerMoveTurtle;
+import controleur.ControleurTortues;
+import controleur.ControlerManipTortue;
 import model.Tortue;
 
 import javax.swing.*;
@@ -15,10 +15,10 @@ import java.util.Observer;
  * Vue principale avec header et footer de boutons
  * Created by Sachouw Dev on 07/05/2017.
  */
-public class ViewMenu extends JFrame implements Observer {
+public class ViewManipTortue extends JFrame implements Observer {
 
-    private ControlerMoveTurtle controleurPrincipal;
-    private ControlerFeuille controleurFeuille;
+    private ControlerManipTortue controleurPrincipal;
+    private ControleurTortues controleurFeuille;
 
     public JPanel panelPrincipal;
     private JPanel panAction;
@@ -34,22 +34,22 @@ public class ViewMenu extends JFrame implements Observer {
     private JButton btnSpiral;
     private JButton btnPolygone;
 
-    public ViewMenu(ControlerMoveTurtle controleur, ControlerFeuille controleurFeuille) {
+    public ViewManipTortue(ControlerManipTortue controleurA, ControleurTortues controleurF, ViewTortues sousVue) {
 
-        controleurPrincipal = controleur;
-        this.controleurFeuille = controleurFeuille;
+        controleurPrincipal = controleurA;
+        controleurFeuille = controleurF;
 
-        //Setup de la fenêtre
         setContentPane(panelPrincipal);
-        panelPrincipal.add(controleurFeuille,"Center");
+        //panelPrincipal.add(controleurFeuille,"Center");
+        panelPrincipal.add(sousVue, "Center");
+
+        pack();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(new Dimension(Tortue.WIDTH,Tortue.HEIGHT+67));
         setTitle("ControlerMoveTurtle");
-        pack();
         setVisible(true);
 
-        //Selecteur Couleurs
         for(Tortue.Colors c : Tortue.Colors.values()){
             cbColorSelector.addItem(c);
         }
@@ -58,7 +58,7 @@ public class ViewMenu extends JFrame implements Observer {
     }
 
     /***
-     * Configure les actionsListeners
+     * Configure les actionsListeners de la vue
      */
     private void initActionListeners() {
 
@@ -83,6 +83,7 @@ public class ViewMenu extends JFrame implements Observer {
         btnAjouterTortue.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 controleurFeuille.ajouterTortue();
+                repaint();
             }
         });
 
@@ -113,6 +114,10 @@ public class ViewMenu extends JFrame implements Observer {
         });
     }
 
+    /***
+     * Récupère le paramètre saisie par l'utilisateur
+     * @return
+     */
     public int getParametre(){
         try{
             return Integer.parseInt(txtParamettre.getText());
