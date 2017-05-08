@@ -22,23 +22,11 @@ public class ViewTortues extends JPanel {
 
         setPreferredSize(new Dimension(Tortue.WIDTH,Tortue.HEIGHT));
 
-        panFeuille.addMouseListener(new MouseAdapter() {
+        addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                //Todo not working
                 super.mouseClicked(e);
                 controleur.setTortueSelectionne(e.getX(), e.getY());
-                System.out.println("Trouvé 1");
-            }
-        });
-
-        panFeuille.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                //Todo not working
-                super.mousePressed(e);
-                controleur.setTortueSelectionne(e.getX(), e.getY());
-                System.out.println("Trouvé 2");
             }
         });
     }
