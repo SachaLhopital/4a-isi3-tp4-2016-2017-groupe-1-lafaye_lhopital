@@ -1,6 +1,5 @@
 package view;
 
-import controleur.ControleurTortues;
 import controleur.ControlerManipTortue;
 import model.Tortue;
 
@@ -18,7 +17,6 @@ import java.util.Observer;
 public class ViewManipTortue extends JFrame implements Observer {
 
     private ControlerManipTortue controleurPrincipal;
-    private ControleurTortues controleurFeuille;
 
     public JPanel panelPrincipal;
     private JPanel panAction;
@@ -33,15 +31,14 @@ public class ViewManipTortue extends JFrame implements Observer {
     private JButton btnAactionCarre;
     private JButton btnSpiral;
     private JButton btnPolygone;
+    private JPanel panFeuille;
 
-    public ViewManipTortue(ControlerManipTortue controleurA, ControleurTortues controleurF, ViewTortues sousVue) {
+    public ViewManipTortue(ControlerManipTortue controleurA) {
 
         controleurPrincipal = controleurA;
-        controleurFeuille = controleurF;
 
         setContentPane(panelPrincipal);
-        //panelPrincipal.add(controleurFeuille,"Center");
-        panelPrincipal.add(sousVue, "Center");
+
 
         pack();
 
@@ -55,6 +52,10 @@ public class ViewManipTortue extends JFrame implements Observer {
         }
 
         initActionListeners();
+
+        //ajout d'une premiere tortue
+        /*panFeuille.add(controleurPrincipal.ajouterTortueEtGetVue());
+        repaint();*/
     }
 
     /***
@@ -82,7 +83,7 @@ public class ViewManipTortue extends JFrame implements Observer {
 
         btnAjouterTortue.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                controleurFeuille.ajouterTortue();
+                panFeuille.add(controleurPrincipal.ajouterTortueEtGetVue());
                 repaint();
             }
         });
@@ -129,5 +130,26 @@ public class ViewManipTortue extends JFrame implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         repaint();
+    }
+
+    public void repaint(){
+        Graphics graphics = panFeuille.getGraphics();
+
+        if(graphics == null){
+            return;
+        }
+
+        //nettoyage du graphique
+        Color c = graphics.getColor();
+
+        Dimension dim = panFeuille.getSize();
+        graphics.setColor(Color.white);
+        graphics.fillRect(0,0,dim.width, dim.height);
+        graphics.setColor(c);
+
+        //dessin des tortues
+        for (Tortue t: controleurPrincipal.getListeTortues()) {
+            ViewTortueIndependante.dessine(t,graphics);
+        }
     }
 }

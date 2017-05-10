@@ -1,6 +1,6 @@
 package view;
 
-import controleur.ControleurTortues;
+import controleur.ControleurTortueIndependante;
 import model.Tortue;
 
 import javax.swing.*;
@@ -9,48 +9,21 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- * Created by lafay on 27/04/2017.
+ * Created by lafay on 10/05/2017.
  */
-public class ViewTortues extends JPanel {
+public class ViewTortueIndependante extends JComponent {
 
-    private ControleurTortues controleur;
-    private JPanel panFeuille;
-
-    public ViewTortues(ControleurTortues controleurF) {
-
-        controleur = controleurF;
-
-        setPreferredSize(new Dimension(Tortue.WIDTH,Tortue.HEIGHT));
+    public ViewTortueIndependante(ControleurTortueIndependante controleur){
 
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                controleur.setTortueSelectionne(e.getX(), e.getY());
+                controleur.setTortueSelectionne();
             }
         });
     }
 
-    public void paintComponent(Graphics graphics){
-        super.paintComponent(graphics);
-
-        if(graphics == null){
-            return;
-        }
-
-        //nettoyage du graphique
-        Color c = graphics.getColor();
-
-        Dimension dim = panFeuille.getSize();
-        graphics.setColor(Color.white);
-        graphics.fillRect(0,0,dim.width, dim.height);
-        graphics.setColor(c);
-
-        //dessin des tortues
-        for (Tortue t: controleur.getListeTortues()) {
-            ViewTortues.dessine(t,graphics);
-        }
-    }
 
     /***
      * Dessine une tortue sur la feuille
@@ -85,5 +58,6 @@ public class ViewTortues extends JPanel {
         arrow.addPoint(pointe.x,pointe.y);
         graph.setColor(tortue.getColor());
         graph.fillPolygon(arrow);
+        
     }
 }
