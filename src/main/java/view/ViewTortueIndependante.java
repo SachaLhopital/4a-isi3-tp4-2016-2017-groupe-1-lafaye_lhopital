@@ -58,6 +58,8 @@ public class ViewTortueIndependante extends JComponent {
         arrow.addPoint(pointe.x,pointe.y);
         graph.setColor(tortue.getColor());
         graph.fillPolygon(arrow);
-        
+
+        //setBounds(tortue.getPosX(),tortue.getPosY(),Tortue.RP,Tortue.RB);
+
     }
 }

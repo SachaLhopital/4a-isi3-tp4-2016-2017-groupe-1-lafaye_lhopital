@@ -152,4 +152,6 @@ public class ViewManipTortue extends JFrame implements Observer {
             ViewTortueIndependante.dessine(t,graphics);
         }
     }
+
+
 }
