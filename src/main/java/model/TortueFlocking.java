@@ -1,25 +1,29 @@
 package model;
 
-import java.util.LinkedList;
+import model.Comportements.Flocking;
 
 /**
  * Created by lafay on 10/05/2017.
  */
 public class TortueFlocking extends Tortue {
 
+    //TODO TO REMOVE AT THE END
+
+    private static int DISTANCE_SEPARATION = 30;
+    private static int DISTANCE_VUE = 60;
+    private static int SPEED = 5;
+
     public int separation;
     public int distanceDeVue;
-    public int angleVue;
     public int vitesse;
 
     public static int maxTurnTheta = 15;
 
-    public TortueFlocking(int separation, int distanceDeVue, int angleVue, int vitesse) {
-        super();
-        this.separation = separation;
-        this.distanceDeVue = distanceDeVue;
-        this.angleVue = angleVue;
-        this.vitesse = vitesse;
+    public TortueFlocking() {
+        super(new Flocking());
+        this.separation = DISTANCE_SEPARATION;
+        this.distanceDeVue = DISTANCE_VUE;
+        this.vitesse = SPEED;
     }
 
     /**
@@ -57,17 +61,6 @@ public class TortueFlocking extends Tortue {
        setPos(x,y);
     }
 
-    /**
-     * Get the distance in pixels between this bird and another
-     *
-     * @param  autreTortue The other bird to measure the distance between
-     * @return The distance to the other bird
-     */
-    public int getDistance(Tortue autreTortue) {
-        int dX = autreTortue.getPosX() - getPosX();
-        int dY = autreTortue.getPosY() - getPosY();
 
-        return (int)Math.sqrt( Math.pow( dX, 2 ) + Math.pow( dY, 2 ));
-    }
 
 }

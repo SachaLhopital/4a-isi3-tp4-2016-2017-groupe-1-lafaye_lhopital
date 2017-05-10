@@ -32,7 +32,7 @@ public class ViewTortueIndependante extends JComponent {
      */
     public static void dessine(Tortue tortue, Graphics graph){
         //Calcule les 3 coins du triangle a partir de la position de la tortue p
-        Point position = new Point(tortue.getPosX(),tortue.getPosY());
+        Point position = tortue.getLocalisation();
         Polygon arrow = new Polygon();
 
         //Calcule des deux bases
@@ -45,7 +45,7 @@ public class ViewTortueIndependante extends JComponent {
         //Sens de la fleche
 
         //Pointe
-        Point pointe=new Point((int) Math.round(position.x+rayon*Math.cos(theta)),
+        Point pointe = new Point((int) Math.round(position.x+rayon*Math.cos(theta)),
                 (int) Math.round(position.y-rayon*Math.sin(theta)));
         arrow.addPoint(pointe.x,pointe.y);
         arrow.addPoint((int) Math.round( pointe.x-rayon*Math.cos(theta + alpha) ),
@@ -61,5 +61,15 @@ public class ViewTortueIndependante extends JComponent {
 
         //setBounds(tortue.getPosX(),tortue.getPosY(),Tortue.RP,Tortue.RB);
 
+    }
+
+    public static int getAngle(Point target, Point origin) {
+        float angle = (float) Math.toDegrees(Math.atan2(target.y - origin.y, target.x - origin.x));
+
+        if(angle < 0){
+            angle += 360;
+        }
+
+        return Math.round(angle);
     }
 }

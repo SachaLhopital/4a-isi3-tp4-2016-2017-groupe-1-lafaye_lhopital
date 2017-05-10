@@ -1,43 +1,29 @@
 package controleur;
 
 
+import model.Comportements.Flocking;
 import model.Tortue;
 import model.TortueFlocking;
+import view.Application;
+import view.ViewTortueIndependante;
 
 import java.awt.*;
 
 /**
  * Created by lafay on 10/05/2017.
  */
-public class ControlerManipTortueFlocking extends ControlerManipTortue{
+public class ControlerFlockingTortue extends ControlerManipTortue {
 
+    public ControlerFlockingTortue() {
+        super();
+        setComportement(new Flocking());
+    }
 
-        /**
-                * Tells each Bird in the Vector to move in the direction of the generalHeading.
-            *
-            * @return  A vector of birds that were removed. This is used to update the
- *           sliders for the number of birds still on the map.
-            */
-    synchronized public void move() {
-        boolean predatorIsFull = false;
-        boolean ateBird = false;
-        int movingTortue = 0;
-
-        // Loop through each bird to move.
-        // Done this way, because the vector can change in the loop
-        while (movingTortue < getListeTortues().size()) {
-            predatorIsFull = false;
-            ateBird = false;
-
-
-            Tortue tortue = (Tortue) getListeTortues().get(movingTortue);
-            tortue.move(generalHeading(tortue));
-
-
-
-
+    @Override
+    public void avancerTortue(int distance) {
+        for(Tortue tortue : getListeTortues()) {
+            getComportement().avancer(tortue, generalHeading(tortue));
         }
-
     }
 
     /**
@@ -48,7 +34,7 @@ public class ControlerManipTortueFlocking extends ControlerManipTortue{
      *
      * @param  tortue The bird to get the heading for
      */
-    private int generalHeading(TortueFlocking tortue) {
+    private int generalHeading(Tortue tortue) {
 
         // Sum the location of all birds that are within our detection range
         Point target = new Point(0, 0);
@@ -67,79 +53,91 @@ public class ControlerManipTortueFlocking extends ControlerManipTortue{
             // the fact that the shortest path may be through the edge of the map
             int distance = tortue.getDistance(autresTortue);
 
-            if (!tortue.equals(autresTortue) && distance > 0 && distance <= tortue.separation)
+            /*if (!tortue.equals(autresTortue) && distance > 0 && distance <= tortue.separation)
             {
-            /*
-             * If the other bird is the same color, the algorithm tells the
-             * bird to align its direction with the other Bird. If the distance
-             * between them differs from DetectionRange then a weighted forces
-             * is applied to move it towards that distance. This force is
-             * stronger when the birds are very close or towards the limit of detection.
-             */
+            //*//*
+            *//* If the other bird is the same color, the algorithm tells the
+            *//* bird to align its direction with the other Bird. If the distance
+            *//* between them differs from DetectionRange then a weighted forces
+            *//* is applied to move it towards that distance. This force is
+            *//* stronger when the birds are very close or towards the limit of detection.
+            *//*//**//*
                 if (tortue.getColor().equals(autresTortue.getColor())) { // birds of same color attract
                     Point align = new Point((int)(100 * Math.cos(autresTortue.getDir() * Math.PI/180)),
                             (int)(-100 * Math.sin(autresTortue.getDir() * Math.PI/180)));
                     align = normalisePoint(align, 100); // alignment weight is 100
-                    boolean tooClose = (distance < SeparationRange);
+                    boolean tooClose = (distance < tortue.separation);
                     double weight = 200.0;
                     if (tooClose) {
-                        weight *= Math.pow(1 - (double) distance / SeparationRange, 2);
+                        weight *= Math.pow(1 - (double) distance / tortue.separation, 2);
                     }
                     else {
-                        weight *= - Math.pow((double)( distance - SeparationRange ) / ( DetectionRange - SeparationRange ), 2);
+                        weight *= - Math.pow((double)( distance - tortue.separation ) / ( tortue.distanceDeVue - tortue.separation ), 2);
                     }
-                    Point attract = sumPoints(otherLocation, -1.0, tortue.getLocation(), 1.0);
+                    Point attract = sumPoints(otherLocation, -1.0, new Point(tortue.getPosX(), tortue.getPosY()), 1.0);
                     attract = normalisePoint(attract, weight); // weight is variable
                     Point dist = sumPoints(align, 1.0, attract, 1.0);
                     dist = normalisePoint(dist, 100); // final weight is 100
                     target = sumPoints(target, 1.0, dist, 1.0);
                 }
-            /*
+           *//**//* *//**//**//**//*
              * If this bird is a predator, and the other bird is a normal bird
              * then there is again attraction, but the weight is fixed at 1.
-             */
+             *//**//**//**//*
                 else if ((tortue instanceof Predator) && (autresTortue.getClass().equals(Bird.class))) {
                     Point dist = sumPoints(tortue.getLocation(), -1.0, otherLocation, 1.0);
                     dist = normalisePoint(dist, 1000);
                     double weight = 1;
                     target = sumPoints(target, 1.0, dist, weight); // weight is variable
                 }
-            /*
+            *//**//**//**//*
              * If the other bird is food, then there is attraction, for both
              * birds and predators.
-             */
+             *//**//**//**//*
                 else if (autresTortue instanceof Food) {
                     Point dist = sumPoints(tortue.getLocation(), -1.0, otherLocation, 1.0);
                     dist = normalisePoint(dist, 1000);
                     double weight = 1;
                     target = sumPoints(target, 1.0, dist, weight); // weight is variable
                 }
-            /*
+            *//**//**//**//*
              * If the birds are a different color (or if the other bird is actually
              * an obstacle, the bird is repulsed with a force that is weighted
              * according to a distance square rule.
-             */
+             *//**//**//**//*
                 else {
                     Point dist = sumPoints(tortue.getLocation(), 1.0, otherLocation, -1.0);
                     dist = normalisePoint(dist, 1000);
                     double weight = Math.pow((1 - (double)distance/DetectionRange), 2);
                     target = sumPoints(target, 1.0, dist, weight); // weight is variable
-                }
-                numBirds++;
-            }
+                }*//**//*
+                numBirds++;*//*
+            }*/
         }
         // if no birds are close enough to detect, continue moving is same direction.
         if (numBirds == 0) {
-            return tortue.getTheta();
+            return tortue.getDir();
         }
         else { // average target points and add to position
-            target = sumPoints(tortue.getLocation(), 1.0, target, 1/(double)numBirds);
+            target = sumPoints(new Point(tortue.getPosX(), tortue.getPosY()), 1.0, target, 1/(double)numBirds);
         }
 
         // Turn the target location into a direction in degrees
-        int targetTheta = (int)(180/Math.PI * Math.atan2(tortue.getLocation().y - target.y, target.x - tortue.getLocation().x));
+        int targetTheta = (int)(180/Math.PI * Math.atan2(tortue.getPosY() - target.y, target.x - tortue.getPosX()));
         // Make sure the angle is 0-360
         return (targetTheta + 360) % 360; // angle for Bird to steer towards
+    }
+
+    /**
+     * Add two points together, scaling both according to their weight
+     *
+     * @param  p1 The first point to add
+     * @param  w1 The weight of the first poitn
+     * @param  p2 The second point to add
+     * @param  w2 The weight of the second point
+     */
+    public Point sumPoints(Point p1, double w1, Point p2, double w2) {
+        return new Point((int)(w1*p1.x + w2*p2.x), (int)(w1*p1.y + w2*p2.y));
     }
 
     /**

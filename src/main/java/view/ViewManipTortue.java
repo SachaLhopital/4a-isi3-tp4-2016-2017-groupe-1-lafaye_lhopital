@@ -39,7 +39,6 @@ public class ViewManipTortue extends JFrame implements Observer {
 
         setContentPane(panelPrincipal);
 
-
         pack();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,10 +51,6 @@ public class ViewManipTortue extends JFrame implements Observer {
         }
 
         initActionListeners();
-
-        //ajout d'une premiere tortue
-        /*panFeuille.add(controleurPrincipal.ajouterTortueEtGetVue());
-        repaint();*/
     }
 
     /***

@@ -4,7 +4,7 @@ package view;
  * Created by Sachouw Dev on 07/05/2017.
  */
 
-import controleur.ControlerManipTortue;
+import controleur.ControlerFlockingTortue;
 import javafx.stage.Stage;
 
 
@@ -22,13 +22,11 @@ public class Application extends javafx.application.Application {
     @Override
     public void start(Stage primaryStage) {
 
+        /*ControlerManipTortue controleurActionsTortues = new ControlerManipTortue();
+        viewManipTortue = new ViewManipTortue(controleurActionsTortues);*/
 
-        ControlerManipTortue controleurActionsTortues = new ControlerManipTortue();
-
-
-       // ViewTortues viewTortues = new ViewTortues(controleurFeuille);
+        //Flocking
+        ControlerFlockingTortue controleurActionsTortues = new ControlerFlockingTortue();
         viewManipTortue = new ViewManipTortue(controleurActionsTortues);
-
-        //premiereTortue.addObserver(viewManipTortue);
     }
 }
