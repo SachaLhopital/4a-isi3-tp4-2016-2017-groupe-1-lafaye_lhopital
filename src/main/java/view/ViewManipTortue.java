@@ -78,8 +78,7 @@ public class ViewManipTortue extends JFrame implements Observer {
 
         btnAjouterTortue.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                panFeuille.add(controleurPrincipal.ajouterTortueEtGetVue());
-                repaint();
+                ajouterTortue();
             }
         });
 
@@ -146,6 +145,11 @@ public class ViewManipTortue extends JFrame implements Observer {
         for (Tortue t: controleurPrincipal.getListeTortues()) {
             ViewTortueIndependante.dessine(t,graphics);
         }
+    }
+
+    public void ajouterTortue() {
+        panFeuille.add(controleurPrincipal.ajouterTortueEtGetVue());
+        repaint();
     }
 
 

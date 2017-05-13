@@ -1,7 +1,5 @@
 package controleur;
 
-import model.Comportements.IComportement;
-import model.Comportements.Manuel;
 import model.Formes.Carre;
 import model.Formes.Polygone;
 import model.Formes.Spirale;
@@ -19,19 +17,17 @@ public class ControlerManipTortue {
 
     private static Tortue tortueCourante;
     public TracerFormeService formeService;
-    public IComportement comportement;
 
     public LinkedList<Tortue> listeTortues = new LinkedList<Tortue>();
 
     public ControlerManipTortue(){
         formeService = new TracerFormeService();
-        comportement = new Manuel();
     }
 
     //Méthodes
 
     public void avancerTortue(int distance) {
-        getComportement().avancer(getTortueCourante(), distance);
+        getTortueCourante().avancer(distance);
     }
 
     public void tournerTortueAGauche(int angle) {
@@ -62,7 +58,7 @@ public class ControlerManipTortue {
      * Ajoute une tortue sur la feuille de dessin
      */
     public ViewTortueIndependante ajouterTortueEtGetVue() {
-        Tortue tortue = new Tortue(new Manuel());
+        Tortue tortue = new Tortue();
         getListeTortues().add(tortue);
         tortue.addObserver(Application.viewManipTortue);
         ControleurTortueIndependante controleurTortueIndependante = new ControleurTortueIndependante(tortue);
@@ -88,13 +84,5 @@ public class ControlerManipTortue {
 
     public LinkedList<Tortue> getListeTortues() {
         return listeTortues;
-    }
-
-    public IComportement getComportement() {
-        return comportement;
-    }
-
-    public void setComportement(IComportement comportement) {
-        this.comportement = comportement;
     }
 }

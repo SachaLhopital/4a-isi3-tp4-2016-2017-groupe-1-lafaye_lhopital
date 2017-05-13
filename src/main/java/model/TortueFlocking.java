@@ -1,7 +1,5 @@
 package model;
 
-import model.Comportements.Flocking;
-
 /**
  * Created by lafay on 10/05/2017.
  */
@@ -20,17 +18,17 @@ public class TortueFlocking extends Tortue {
     public static int maxTurnTheta = 15;
 
     public TortueFlocking() {
-        super(new Flocking());
+        super();
         this.separation = DISTANCE_SEPARATION;
         this.distanceDeVue = DISTANCE_VUE;
         this.vitesse = SPEED;
     }
 
-    /**
+   /* *//**
             * Causes the bird to attempt to face a new direction.
  * Based on maxTurnTheta, the bird may not be able to complete the turn.
             * @param  newHeading The direction in degrees that the bird should turn toward.
- */
+ *//*
     public void move(int newHeading) {
         // determine if it is better to turn left or right for the new heading
         int left = (newHeading - getDir() + 360) % 360;
@@ -59,7 +57,7 @@ public class TortueFlocking extends Tortue {
        y %= Tortue.HEIGHT;
 
        setPos(x,y);
-    }
+    }*/
 
 
 

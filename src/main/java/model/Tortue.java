@@ -51,9 +51,11 @@ public class Tortue extends Observable {
     public Color getColor(){return this.bindColor();}
 
     public void reset(){
-        posX =HEIGHT/2;
-        posY =WIDTH/2;
-        dir =0;
+
+        //Coordonées aléatoires pour positionner la tortue
+        posX = (int)(Math.random() * (HEIGHT));
+        posY = (int)(Math.random() * (WIDTH));
+        dir = (int)(Math.random() * (360)); //todo constante
 
         setChanged();
         notifyObservers();
@@ -79,6 +81,10 @@ public class Tortue extends Observable {
 
         setChanged();
         notifyObservers();
+    }
+
+    public Point getLocalisation() {
+        return new Point(getPosX(), getPosY());
     }
 
     private Color bindColor(){

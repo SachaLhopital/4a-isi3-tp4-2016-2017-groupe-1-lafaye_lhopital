@@ -28,5 +28,13 @@ public class Application extends javafx.application.Application {
         //Flocking
         ControlerFlockingTortue controleurActionsTortues = new ControlerFlockingTortue();
         viewManipTortue = new ViewManipTortue(controleurActionsTortues);
+
+
+        try {
+            Thread.sleep(15);
+        } catch (InterruptedException e) {
+        }
+        viewManipTortue.ajouterTortue();//première tortue
+        controleurActionsTortues.run();
     }
 }
