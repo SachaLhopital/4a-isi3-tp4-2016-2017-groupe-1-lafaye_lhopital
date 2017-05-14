@@ -3,32 +3,18 @@ package model;
 import java.awt.*;
 import java.util.Observable;
 
+import static utils.Constantes.*;
+
 /**
  * Created by lafay on 27/04/2017.
  */
 public class Tortue extends Observable {
 
-    //Constantes
-    public static int DISTANCE_SEPARATION = 30;
-    public static int DISTANCE_VUE = 60;
-    public static int MAXIMUM_SPEED = 5;
-    public static final int HEIGHT = 400;
-    public static final int WIDTH = 500;
-    public static int RB =10, RP =10;
-
-    public enum Colors{
-        VERT,
-        ROUGE,
-        NOIR
-    }
-
-    //Attributs
-
     int vitesse;
     int posX,posY;
     int dir;
 
-    Colors color = Colors.VERT;
+    Couleurs couleur = Couleurs.VERT;
 
     //Constructeurs
 
@@ -59,7 +45,7 @@ public class Tortue extends Observable {
         return dir;
     }
 
-    public Color getColor(){return this.bindColor();}
+    public Color getCouleur(){return this.bindColor();}
 
     public void setPos(int posX, int posY){
         this.posX = posX;
@@ -76,8 +62,8 @@ public class Tortue extends Observable {
         notifyObservers();
     }
 
-    public void setColor(Colors color){
-        this.color = color;
+    public void setCouleur(Couleurs couleur){
+        this.couleur = couleur;
 
         setChanged();
         notifyObservers();
@@ -100,9 +86,9 @@ public class Tortue extends Observable {
     public void reset(){
 
         //Coordonées aléatoires pour positionner la tortue
-        posX = (int)(Math.random() * (HEIGHT));
-        posY = (int)(Math.random() * (WIDTH));
-        dir = (int)(Math.random() * (360)); //todo constante
+        posX = (int)(Math.random() * HEIGHT);
+        posY = (int)(Math.random() * WIDTH);
+        dir = (int)(Math.random() * DEGREES);
         vitesse = (int) (Math.random() * MAXIMUM_SPEED);
 
         setChanged();
@@ -110,7 +96,7 @@ public class Tortue extends Observable {
     }
 
     private Color bindColor(){
-        switch (color){
+        switch (couleur){
             case VERT:
                 return Color.green;
 
@@ -125,25 +111,25 @@ public class Tortue extends Observable {
         }
     }
 
-    public void avancer(int dist) {
-        int newX = ((int) Math.round(getPosX()+dist*Math.cos(Math.toRadians(getDir()))))%Tortue.WIDTH;
-        int newY = ((int) Math.round(getPosY()+dist*Math.sin(Math.toRadians(getDir()))))%Tortue.HEIGHT;
+    public void avancer(int distance) {
+        int nouveauX = ((int) Math.round(getPosX()+distance*Math.cos(Math.toRadians(getDir()))))% WIDTH;
+        int nouveauY = ((int) Math.round(getPosY()+distance*Math.sin(Math.toRadians(getDir()))))% HEIGHT;
 
-        if(newX<0){
-            newX = Tortue.HEIGHT + newX;
+        if(nouveauX<0){
+            nouveauX = HEIGHT + nouveauX;
         }
-        if(newY<0){
-            newY = Tortue.WIDTH + newY;
+        if(nouveauY<0){
+            nouveauY = WIDTH + nouveauY;
         }
 
-        setPos(newX, newY);
+        setPos(nouveauX, nouveauY);
     }
 
-    public void droite(int ang) {
-        setDir((getDir()+ang)%360);
+    public void droite(int angle) {
+        setDir((getDir()+angle) % DEGREES);
     }
 
-    public void gauche(int ang) {
-        droite(-ang);
+    public void gauche(int angle) {
+        droite(-angle);
     }
 }

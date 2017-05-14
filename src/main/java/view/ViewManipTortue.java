@@ -2,6 +2,7 @@ package view;
 
 import controleur.ControlerManipTortue;
 import model.Tortue;
+import utils.Constantes;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +23,7 @@ public class ViewManipTortue extends JFrame implements Observer {
     private JPanel panAction;
     private JPanel panActionAuto;
     private JButton btnEffacer;
-    private JTextField txtParamettre;
+    private JTextField txtParametre;
     private JButton btnGauche;
     private JButton btnDroite;
     private JButton btnAvancer;
@@ -31,7 +32,7 @@ public class ViewManipTortue extends JFrame implements Observer {
     private JButton btnAactionCarre;
     private JButton btnSpiral;
     private JButton btnPolygone;
-    private JPanel panFeuille;
+    private JPanel panelFeuille;
 
     public ViewManipTortue(ControlerManipTortue controleurA) {
 
@@ -42,11 +43,11 @@ public class ViewManipTortue extends JFrame implements Observer {
         pack();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(new Dimension(Tortue.WIDTH,Tortue.HEIGHT+67));
-        setTitle("ControlerMoveTurtle");
+        setSize(new Dimension(WIDTH,HEIGHT+67)); //todo constante
+        setTitle("Mode Manuel");
         setVisible(true);
 
-        for(Tortue.Colors c : Tortue.Colors.values()){
+        for(Constantes.Couleurs c : Constantes.Couleurs.values()){
             cbColorSelector.addItem(c);
         }
 
@@ -84,7 +85,7 @@ public class ViewManipTortue extends JFrame implements Observer {
 
         cbColorSelector.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                controleurPrincipal.setCouleurTortue((Tortue.Colors)cbColorSelector.getSelectedItem());
+                controleurPrincipal.setCouleurTortue((Constantes.Couleurs)cbColorSelector.getSelectedItem());
             }
         });
 
@@ -115,7 +116,7 @@ public class ViewManipTortue extends JFrame implements Observer {
      */
     public int getParametre(){
         try{
-            return Integer.parseInt(txtParamettre.getText());
+            return Integer.parseInt(txtParametre.getText());
         }catch(Exception e){
             return 0;
         }
@@ -127,30 +128,32 @@ public class ViewManipTortue extends JFrame implements Observer {
     }
 
     public void repaint(){
-        Graphics graphics = panFeuille.getGraphics();
 
-        if(graphics == null){
+        Graphics graphic = panelFeuille.getGraphics();
+
+        if(graphic == null){
             return;
         }
 
         //nettoyage du graphique
-        Color c = graphics.getColor();
+        Color couleur = graphic.getColor();
 
-        Dimension dim = panFeuille.getSize();
-        graphics.setColor(Color.white);
-        graphics.fillRect(0,0,dim.width, dim.height);
-        graphics.setColor(c);
+        Dimension dimensions = panelFeuille.getSize();
+        graphic.setColor(Color.white);
+        graphic.fillRect(0,0,dimensions.width, dimensions.height);
+        graphic.setColor(couleur);
 
         //dessin des tortues
-        for (Tortue t: controleurPrincipal.getListeTortues()) {
-            ViewTortueIndependante.dessine(t,graphics);
+        for (Tortue tortue : controleurPrincipal.getListeTortues()) {
+            ViewTortueIndependante.dessine(tortue, graphic);
         }
     }
 
+    /***
+     * Ajoute une tortue sur la vue
+     */
     public void ajouterTortue() {
-        panFeuille.add(controleurPrincipal.ajouterTortueEtGetVue());
+        panelFeuille.add(controleurPrincipal.ajouterTortueEtGetVue());
         repaint();
     }
-
-
 }

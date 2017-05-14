@@ -4,6 +4,8 @@ package controleur;
 import model.Tortue;
 import view.Application;
 
+import static utils.Constantes.DISTANCE_SEPARATION;
+
 /**
  * Created by lafay on 10/05/2017.
  */
@@ -85,7 +87,7 @@ public class ControlerFlockingTortue extends ControlerManipTortue {
                 //ne rien faire
             } else {
                 int differenceDirection = tortueCourante.getDir() - tortue.getDir();
-                if(Math.abs(differenceDirection) < Tortue.DISTANCE_SEPARATION) {
+                if(Math.abs(differenceDirection) < DISTANCE_SEPARATION) {
                     direction = direction - differenceDirection;
                 }
             }
@@ -109,7 +111,6 @@ public class ControlerFlockingTortue extends ControlerManipTortue {
                 vitesse = vitesse + tortue.getVitesse();
             }
         }
-
         vitesse = vitesse / (getListeTortues().size() - 1);
         return (vitesse - tortueCourante.getVitesse()) / 8;
     }

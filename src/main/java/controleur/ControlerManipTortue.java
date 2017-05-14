@@ -5,10 +5,10 @@ import model.Formes.Polygone;
 import model.Formes.Spirale;
 import model.Service.TracerFormeService;
 import model.Tortue;
+import utils.Constantes;
 import view.Application;
 import view.ViewTortueIndependante;
 
-import java.util.Collections;
 import java.util.LinkedList;
 
 /**
@@ -18,7 +18,6 @@ public class ControlerManipTortue {
 
     private static Tortue tortueCourante;
     public TracerFormeService formeService;
-
     public LinkedList<Tortue> listeTortues = new LinkedList<Tortue>();
 
     public ControlerManipTortue(){
@@ -39,8 +38,8 @@ public class ControlerManipTortue {
         getTortueCourante().droite(angle);
     }
 
-    public void setCouleurTortue(Tortue.Colors couleur) {
-        getTortueCourante().setColor(couleur);
+    public void setCouleurTortue(Constantes.Couleurs couleur) {
+        getTortueCourante().setCouleur(couleur);
     }
 
     public void tracerCarre() {

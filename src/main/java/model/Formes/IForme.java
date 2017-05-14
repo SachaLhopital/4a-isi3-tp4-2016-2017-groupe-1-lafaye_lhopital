@@ -8,7 +8,5 @@ import model.Tortue;
  */
 public interface IForme {
 
-    int DEGREES = 360;
-
     void tracer(Tortue tortue);
 }

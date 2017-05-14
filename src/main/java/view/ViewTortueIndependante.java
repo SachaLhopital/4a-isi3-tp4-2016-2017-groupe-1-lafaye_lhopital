@@ -8,12 +8,16 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import static utils.Constantes.DEGREES;
+import static utils.Constantes.RB;
+import static utils.Constantes.RP;
+
 /**
  * Created by lafay on 10/05/2017.
  */
 public class ViewTortueIndependante extends JComponent {
 
-    public ViewTortueIndependante(ControleurTortueIndependante controleur){
+    public ViewTortueIndependante(ControleurTortueIndependante controleur) {
 
         addMouseListener(new MouseAdapter() {
             @Override
@@ -28,48 +32,35 @@ public class ViewTortueIndependante extends JComponent {
     /***
      * Dessine une tortue sur la feuille
      * @param tortue
-     * @param graph
+     * @param graphe
      */
-    public static void dessine(Tortue tortue, Graphics graph){
+    public static void dessine(Tortue tortue, Graphics graphe) {
         //Calcule les 3 coins du triangle a partir de la position de la tortue p
         Point position = tortue.getLocalisation();
-        Polygon arrow = new Polygon();
+        Polygon fleche = new Polygon();
 
         //Calcule des deux bases
         //Angle de la droite
-        double theta= Math.toRadians(-tortue.getDir());
+        double theta = Math.toRadians(-tortue.getDir());
         //Demi angle au sommet du triangle
-        double alpha=Math.atan( (float)Tortue.RB / (float)Tortue.RP );
+        double alpha = Math.atan((float) RB / (float) RP);
         //Rayon de la fleche
-        double rayon=Math.sqrt( Tortue.RP*Tortue.RP + Tortue.RB*Tortue.RB );
+        double rayon = Math.sqrt(RP * RP + RB * RB);
         //Sens de la fleche
 
         //Pointe
-        Point pointe = new Point((int) Math.round(position.x+rayon*Math.cos(theta)),
-                (int) Math.round(position.y-rayon*Math.sin(theta)));
-        arrow.addPoint(pointe.x,pointe.y);
-        arrow.addPoint((int) Math.round( pointe.x-rayon*Math.cos(theta + alpha) ),
-                (int) Math.round( pointe.y+rayon*Math.sin(theta + alpha) ));
+        Point pointe = new Point((int) Math.round(position.x + rayon * Math.cos(theta)),
+                (int) Math.round(position.y - rayon * Math.sin(theta)));
+        fleche.addPoint(pointe.x, pointe.y);
+        fleche.addPoint((int) Math.round(pointe.x - rayon * Math.cos(theta + alpha)),
+                (int) Math.round(pointe.y + rayon * Math.sin(theta + alpha)));
 
         //Base2
-        arrow.addPoint((int) Math.round( pointe.x-rayon*Math.cos(theta - alpha) ),
-                (int) Math.round( pointe.y+rayon*Math.sin(theta - alpha) ));
+        fleche.addPoint((int) Math.round(pointe.x - rayon * Math.cos(theta - alpha)),
+                (int) Math.round(pointe.y + rayon * Math.sin(theta - alpha)));
 
-        arrow.addPoint(pointe.x,pointe.y);
-        graph.setColor(tortue.getColor());
-        graph.fillPolygon(arrow);
-
-        //setBounds(tortue.getPosX(),tortue.getPosY(),Tortue.RP,Tortue.RB);
-
-    }
-
-    public static int getAngle(Point target, Point origin) {
-        float angle = (float) Math.toDegrees(Math.atan2(target.y - origin.y, target.x - origin.x));
-
-        if(angle < 0){
-            angle += 360;
-        }
-
-        return Math.round(angle);
+        fleche.addPoint(pointe.x, pointe.y);
+        graphe.setColor(tortue.getCouleur());
+        graphe.fillPolygon(fleche);
     }
 }

@@ -26,7 +26,7 @@
                   <text value="Effacer"/>
                 </properties>
               </component>
-              <component id="bfa8b" class="javax.swing.JTextField" binding="txtParamettre">
+              <component id="bfa8b" class="javax.swing.JTextField" binding="txtParametre">
                 <constraints/>
                 <properties>
                   <preferredSize width="25" height="31"/>
@@ -90,7 +90,7 @@
           </component>
         </children>
       </grid>
-      <grid id="e9859" binding="panFeuille" layout-manager="BorderLayout" hgap="0" vgap="0">
+      <grid id="e9859" binding="panelFeuille" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints border-constraint="Center"/>
         <properties>
           <minimumSize width="500" height="500"/>
