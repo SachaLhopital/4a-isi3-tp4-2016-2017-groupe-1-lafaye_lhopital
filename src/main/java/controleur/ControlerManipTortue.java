@@ -8,6 +8,7 @@ import model.Tortue;
 import view.Application;
 import view.ViewTortueIndependante;
 
+import java.util.Collections;
 import java.util.LinkedList;
 
 /**

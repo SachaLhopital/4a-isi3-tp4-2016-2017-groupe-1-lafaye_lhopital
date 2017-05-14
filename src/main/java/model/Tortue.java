@@ -8,6 +8,10 @@ import java.util.Observable;
  */
 public class Tortue extends Observable {
 
+    //Constantes
+    public static int DISTANCE_SEPARATION = 30;
+    public static int DISTANCE_VUE = 60;
+    public static int MAXIMUM_SPEED = 5;
     public static final int HEIGHT = 400;
     public static final int WIDTH = 500;
     public static int RB =10, RP =10;
@@ -18,10 +22,15 @@ public class Tortue extends Observable {
         NOIR
     }
 
+    //Attributs
+
+    int vitesse;
     int posX,posY;
     int dir;
 
     Colors color = Colors.VERT;
+
+    //Constructeurs
 
     public Tortue(){
         reset();
@@ -36,6 +45,8 @@ public class Tortue extends Observable {
         notifyObservers();
     }
 
+    //Getters & Setters
+
     public int getPosX() {
         return posX;
     }
@@ -49,17 +60,6 @@ public class Tortue extends Observable {
     }
 
     public Color getColor(){return this.bindColor();}
-
-    public void reset(){
-
-        //Coordonées aléatoires pour positionner la tortue
-        posX = (int)(Math.random() * (HEIGHT));
-        posY = (int)(Math.random() * (WIDTH));
-        dir = (int)(Math.random() * (360)); //todo constante
-
-        setChanged();
-        notifyObservers();
-    }
 
     public void setPos(int posX, int posY){
         this.posX = posX;
@@ -85,6 +85,28 @@ public class Tortue extends Observable {
 
     public Point getLocalisation() {
         return new Point(getPosX(), getPosY());
+    }
+
+    public int getVitesse() {
+        return vitesse;
+    }
+
+    public void setVitesse(int vitesse) {
+        this.vitesse = vitesse;
+    }
+
+    // Méthodes
+
+    public void reset(){
+
+        //Coordonées aléatoires pour positionner la tortue
+        posX = (int)(Math.random() * (HEIGHT));
+        posY = (int)(Math.random() * (WIDTH));
+        dir = (int)(Math.random() * (360)); //todo constante
+        vitesse = (int) (Math.random() * MAXIMUM_SPEED);
+
+        setChanged();
+        notifyObservers();
     }
 
     private Color bindColor(){
