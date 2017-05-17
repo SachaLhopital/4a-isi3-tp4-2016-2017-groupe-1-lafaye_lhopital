@@ -10,9 +10,9 @@ import java.util.Observer;
  * Created by lafay on 16/05/2017.
  */
 public class ControleurTortue implements Observer{
-    private Tortue tortue;
-    private ViewTortue viewTortue;
-    private ControleurFeuilleDessin controleurFeuilleDessin;
+    Tortue tortue;
+    ViewTortue viewTortue;
+    ControleurFeuilleDessin controleurFeuilleDessin;
 
     public ControleurTortue(ControleurFeuilleDessin controleurFeuilleDessin, Tortue tortue){
         this.tortue = tortue;

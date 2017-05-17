@@ -17,7 +17,7 @@ public class ControleurFeuilleFlockingSectaire extends ControleurFeuilleFlocking
 
     }
 
-    public void ajouterTortues() {
+    public void ajouterToutesLesTortues() {
         for(int i = 0 ; i < NB_TORTUESPARCOULEUR; i++){
             Tortue tNoire = new Tortue();
             tNoire.setCouleur(Color.BLACK);

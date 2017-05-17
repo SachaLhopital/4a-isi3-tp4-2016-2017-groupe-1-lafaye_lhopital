@@ -12,8 +12,6 @@ import java.util.Random;
  */
 public class ControleurFeuilleManuel extends ControleurFeuilleDessin{
 
-
-
     public void avancer(int distance){
         this.tortueCourrante.avancer(distance);
     }
@@ -34,5 +32,4 @@ public class ControleurFeuilleManuel extends ControleurFeuilleDessin{
     public void changerCouleur(Color couleur){
         this.tortueCourrante.setCouleur(couleur);
     }
-
 }
