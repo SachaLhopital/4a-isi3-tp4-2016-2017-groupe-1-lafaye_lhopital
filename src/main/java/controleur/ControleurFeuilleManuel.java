@@ -4,6 +4,7 @@ import model.Tortue;
 import utils.Constantes;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.Random;
 
 /**
@@ -28,6 +29,10 @@ public class ControleurFeuilleManuel extends ControleurFeuilleDessin{
     public void ajouter(){
         Tortue t = new Tortue(new Random().nextInt(Constantes.WIDTH),new Random().nextInt(Constantes.HEIGHT));
         this.ajouterTortue(t);
+    }
+
+    public void changerCouleur(Color couleur){
+        this.tortueCourrante.setCouleur(couleur);
     }
 
 }
