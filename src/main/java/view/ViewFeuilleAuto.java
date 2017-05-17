@@ -16,8 +16,11 @@ public class ViewFeuilleAuto extends ViewFeuille{
 
     JToolBar menu;
     JButton btnAjouter;
+
     public ViewFeuilleAuto(ControleurFeuilleAuto controleurFeuilleAuto) {
         super(controleurFeuilleAuto);
+
+        this.setTitle("Automatique");
 
         this.controleurFeuilleAuto = controleurFeuilleAuto;
         //ajout d'une toolbar

@@ -30,6 +30,7 @@ public class ViewFeuilleManuel extends ViewFeuille {
 
     public ViewFeuilleManuel(ControleurFeuilleManuel controleurFeuilleManuel) {
         super(controleurFeuilleManuel);
+        this.setTitle("Manuel");
 
         panHaut = new JPanel();
 

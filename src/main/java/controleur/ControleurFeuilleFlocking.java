@@ -14,6 +14,8 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
     private static int DISTANCE_VUE = 30;
     private static int DISTANCE = 10;
 
+    private boolean enRoute = false;
+
     public ControleurFeuilleFlocking(){
         super();
     }
@@ -26,6 +28,10 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
 
 
     public void miseAJour(){
+        if(!enRoute){
+            return;
+        }
+
         for (Tortue tortue : getTortues()) {
 
             int directionMoyenne = getDirectionMoyenne(tortue);
@@ -36,6 +42,7 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
             tortue.setDir(directionMoyenne + directionSeparation);
             tortue.avancer(DISTANCE);
         }
+
     }
 
     /***
@@ -112,7 +119,7 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
         return Math.abs(Math.sqrt(Math.pow((point1.x - point2.x), 2) + Math.pow((point1.y - point2.y), 2)));
     }
 
-    private boolean tortuesSontVoisines(Tortue tortue1, Tortue tortue2) {
+    protected boolean tortuesSontVoisines(Tortue tortue1, Tortue tortue2) {
         if(tortue1.equals(tortue2)) {
             return false;
         }
@@ -125,5 +132,9 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
             return true;
         }
         return false;
+    }
+
+    public void démarrer(){
+        enRoute = true;
     }
 }

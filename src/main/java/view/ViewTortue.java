@@ -53,7 +53,7 @@ public class ViewTortue extends AbstractButton {
 
 
     @Override
-    public void paintComponent(Graphics g){
+    public void paint(Graphics g){
         Graphics2D graphics = (Graphics2D)g;
         Tortue tortue = controleurTortue.getTortue();
 

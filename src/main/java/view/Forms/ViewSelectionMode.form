@@ -33,6 +33,12 @@
               <text value="Flocking"/>
             </properties>
           </component>
+          <component id="1023b" class="javax.swing.JButton" binding="btnFlockingSectaire">
+            <constraints/>
+            <properties>
+              <text value="Flocking Sectaire"/>
+            </properties>
+          </component>
         </children>
       </grid>
       <component id="70c8c" class="javax.swing.JButton" binding="btnQuitter">
