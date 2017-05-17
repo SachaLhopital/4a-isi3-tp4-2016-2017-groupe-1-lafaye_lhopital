@@ -1,12 +1,9 @@
 package model;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import utils.Constantes;
-import utils.Vecteur;
 
 import java.awt.*;
 import java.util.Observable;
-import java.util.Vector;
 
 import static utils.Constantes.*;
 

@@ -1,9 +1,6 @@
 package view;
 
 import controleur.ControleurFeuilleAuto;
-import controleur.ControleurTortue;
-import model.Tortue;
-import view.Forms.ViewTortue;
 
 import javax.swing.*;
 import java.awt.*;

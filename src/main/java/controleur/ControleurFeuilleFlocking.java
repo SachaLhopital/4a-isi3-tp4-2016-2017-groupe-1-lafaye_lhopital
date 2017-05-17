@@ -1,14 +1,13 @@
 package controleur;
 
 import model.Tortue;
-import utils.Vecteur;
 
 import java.awt.*;
 
 /**
  * Created by lafay on 17/05/2017.
  */
-public class ControleurFeuilleFlocking extends ControleurFeuilleAuto{
+public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
 
     private static int DISTANCE_SEPARATION = 10;
     private static final int NOMBRES_TORTUES = 13;
@@ -33,13 +32,8 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto{
             int directionSeparation = getDirectionSeparation(tortue);
             int vitesseCohesion = getVitesseCohesion(tortue);
 
-
-            //vitesseCohesion.ajouterVecteur(tortue.getVitesse());
-            //vitesseCohesion.ajouterEntier(directionSeparation + directionMoyenne);
-
             tortue.setVitesse(vitesseCohesion + tortue.getVitesse() + directionMoyenne + directionSeparation);
             tortue.setDir(directionMoyenne + directionSeparation);
-            //tortue.setLocalisation(vitesseCohesion.ajouterPoint(tortue.getLocalisation()));
             tortue.avancer(DISTANCE);
         }
     }

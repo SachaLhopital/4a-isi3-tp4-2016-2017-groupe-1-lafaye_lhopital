@@ -2,7 +2,7 @@ package controleur;
 
 import model.Tortue;
 import view.ViewFeuille;
-import view.Forms.ViewTortue;
+import view.ViewTortue;
 
 import java.util.LinkedList;
 import java.util.List;

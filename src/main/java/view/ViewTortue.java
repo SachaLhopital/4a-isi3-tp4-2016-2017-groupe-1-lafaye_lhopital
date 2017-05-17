@@ -1,4 +1,4 @@
-package view.Forms;
+package view;
 
 import controleur.ControleurTortue;
 import model.Tortue;
