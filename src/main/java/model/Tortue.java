@@ -1,5 +1,8 @@
 package model;
 
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
+import utils.Constantes;
+
 import java.awt.*;
 import java.util.Observable;
 
@@ -14,7 +17,7 @@ public class Tortue extends Observable {
     int posX,posY;
     int dir;
 
-    Couleurs couleur = Couleurs.VERT;
+    Color couleur = Color.GREEN;
 
     //Constructeurs
 
@@ -45,11 +48,27 @@ public class Tortue extends Observable {
         return dir;
     }
 
-    public Color getCouleur(){return this.bindColor();}
+    public Color getCouleur(){return this.couleur;}
 
     public void setPos(int posX, int posY){
         this.posX = posX;
         this.posY = posY;
+
+        if(posX > Constantes.WIDTH){
+            this.posX = posX - Constantes.WIDTH;
+        }
+
+        if(posX < 0){
+            this.posX = posX + Constantes.WIDTH;
+        }
+
+        if(posY > Constantes.HEIGHT){
+            this.posY = posY - Constantes.HEIGHT;
+        }
+
+        if(posY < 0){
+            this.posY = posY + Constantes.HEIGHT;
+        }
 
         setChanged();
         notifyObservers();
@@ -58,11 +77,19 @@ public class Tortue extends Observable {
     public void setDir(int dir){
         this.dir = dir;
 
+        if(dir> Constantes.DEGREES){
+            this.dir = dir - Constantes.DEGREES;
+        }
+
+        if(dir < 0){
+            this.dir = dir + Constantes.DEGREES;
+        }
+
         setChanged();
         notifyObservers();
     }
 
-    public void setCouleur(Couleurs couleur){
+    public void setCouleur(Color couleur){
         this.couleur = couleur;
 
         setChanged();
@@ -95,38 +122,15 @@ public class Tortue extends Observable {
         notifyObservers();
     }
 
-    private Color bindColor(){
-        switch (couleur){
-            case VERT:
-                return Color.green;
-
-            case NOIR:
-                return Color.BLACK;
-
-            case ROUGE:
-                return Color.RED;
-            default:
-                return Color.green;
-
-        }
-    }
-
     public void avancer(int distance) {
-        int nouveauX = ((int) Math.round(getPosX()+distance*Math.cos(Math.toRadians(getDir()))))% WIDTH;
-        int nouveauY = ((int) Math.round(getPosY()+distance*Math.sin(Math.toRadians(getDir()))))% HEIGHT;
-
-        if(nouveauX<0){
-            nouveauX = HEIGHT + nouveauX;
-        }
-        if(nouveauY<0){
-            nouveauY = WIDTH + nouveauY;
-        }
+        int nouveauX = ((int) Math.round(getPosX()+distance*Math.cos(Math.toRadians(getDir()))));
+        int nouveauY = ((int) Math.round(getPosY()+distance*Math.sin(Math.toRadians(getDir()))));
 
         setPos(nouveauX, nouveauY);
     }
 
     public void droite(int angle) {
-        setDir((getDir()+angle) % DEGREES);
+        setDir((getDir()+angle));
     }
 
     public void gauche(int angle) {
