@@ -13,20 +13,17 @@ public class ViewFeuille extends JFrame {
 
     private JPanel panFeuille;
 
-    private ControleurFeuilleDessin controleurFeuilleDessin;
-
-    public ViewFeuille(ControleurFeuilleDessin controleurFeuilleDessin){
-        this.controleurFeuilleDessin = controleurFeuilleDessin;
+    ViewFeuille(ControleurFeuilleDessin controleurFeuilleDessin){
         controleurFeuilleDessin.setFeuilleDessin(this);
 
         init();
     }
 
-    public JPanel getPanFeuille() {
+    private JPanel getPanFeuille() {
         return panFeuille;
     }
 
-    public void init(){
+    private void init(){
         panFeuille = new JPanel();
         panFeuille.setLayout(null);
         panFeuille.setSize(Constantes.WIDTH,Constantes.HEIGHT);

@@ -11,16 +11,13 @@ import java.awt.event.ActionListener;
  */
 public class ViewFeuilleFlocking extends ViewFeuille {
 
-    JButton btnDemarrer;
-    JPanel menu;
-
     public ViewFeuilleFlocking(ControleurFeuilleFlocking controleurFeuilleFlocking) {
         super(controleurFeuilleFlocking);
 
         this.setTitle("Flocking");
 
-        menu = new JPanel();
-        btnDemarrer = new JButton("Démarrer");
+        JPanel menu = new JPanel();
+        JButton btnDemarrer = new JButton("Démarrer");
         menu.add(btnDemarrer);
 
         //this.getContentPane().add(menu, BorderLayout.SOUTH);

@@ -9,9 +9,9 @@ import java.awt.*;
  */
 public class ControleurFeuilleFlockingSectaire extends ControleurFeuilleFlocking {
 
-    public static int NB_TORTUESPARCOULEUR = 10;
+    private static int NB_TORTUESPARCOULEUR = 10;
 
-    public ControleurFeuilleFlockingSectaire(){
+    ControleurFeuilleFlockingSectaire(){
         super();
         this.démarrer();
 

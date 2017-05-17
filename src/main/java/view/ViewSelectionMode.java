@@ -20,7 +20,7 @@ public class ViewSelectionMode extends JFrame{
 
     ControleurSelectionMode controleur;
 
-    public ViewSelectionMode(ControleurSelectionMode controleur){
+    ViewSelectionMode(ControleurSelectionMode controleur){
         this.controleur = controleur;
 
         this.setTitle("Selection du Mode");

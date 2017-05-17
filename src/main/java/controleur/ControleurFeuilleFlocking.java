@@ -17,7 +17,7 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
 
     private boolean enRoute = false;
 
-    public ControleurFeuilleFlocking(){
+    ControleurFeuilleFlocking(){
         super();
     }
 
@@ -49,7 +49,7 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
      * Calcul la direction moyenne que la tortue doit suivre, en fonction de ses voisins
      * @return Direction moyenne (en degrée)
      */
-    public int getDirectionMoyenne(Tortue tortueCourante) {
+    private int getDirectionMoyenne(Tortue tortueCourante) {
 
         int somme = 0;
         int nombreVoisins = 0;
@@ -73,7 +73,7 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
      * @param tortueCourante
      * @return
      */
-    public int getDirectionSeparation(Tortue tortueCourante) {
+    private int getDirectionSeparation(Tortue tortueCourante) {
 
         int direction = 0;
 
@@ -95,7 +95,7 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
      * @param tortueCourante
      * @return
      */
-    public int getVitesseCohesion(Tortue tortueCourante) {
+    private int getVitesseCohesion(Tortue tortueCourante) {
 
         int nombreVoisins = 0;
         int vitesse = 0;

@@ -14,34 +14,24 @@ import java.awt.event.ActionListener;
  */
 public class ViewFeuilleManuel extends ViewFeuille {
 
-    JPanel panHaut;
+    private JTextField txtPramettres;
 
-    JToolBar toolBar;
-
-    JTextField txtPramettres;
-
-    JButton btnAvancer;
-    JButton btnDroite;
-    JButton btnGauche;
-    JButton btnEffacer;
-    JButton btnAjouter;
-
-    JComboBox <Color> choixCouleur;
+    private JComboBox <Color> choixCouleur;
 
     public ViewFeuilleManuel(ControleurFeuilleManuel controleurFeuilleManuel) {
         super(controleurFeuilleManuel);
         this.setTitle("Manuel");
 
-        panHaut = new JPanel();
+        JPanel panHaut = new JPanel();
 
-        toolBar = new JToolBar();
+        JToolBar toolBar = new JToolBar();
 
         txtPramettres = new JTextField("10");
-        btnAvancer = new JButton("Avancer");
-        btnAjouter = new JButton("Ajouter");
-        btnDroite = new JButton("Droite");
-        btnGauche = new JButton("Gauche");
-        btnEffacer = new JButton("Effacer");
+        JButton btnAvancer = new JButton("Avancer");
+        JButton btnAjouter = new JButton("Ajouter");
+        JButton btnDroite = new JButton("Droite");
+        JButton btnGauche = new JButton("Gauche");
+        JButton btnEffacer = new JButton("Effacer");
 
         choixCouleur = new JComboBox<>();
         choixCouleur.addItem(Color.BLACK);

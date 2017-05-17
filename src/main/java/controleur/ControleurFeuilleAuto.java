@@ -12,9 +12,9 @@ import java.util.TimerTask;
  */
 public class ControleurFeuilleAuto extends ControleurFeuilleDessin {
 
-    ControleurFeuilleAuto controleurFeuilleAuto;
+    private ControleurFeuilleAuto controleurFeuilleAuto;
 
-    public ControleurFeuilleAuto(){
+    ControleurFeuilleAuto(){
         super();
         controleurFeuilleAuto = this;
         Timer timer = new Timer();
