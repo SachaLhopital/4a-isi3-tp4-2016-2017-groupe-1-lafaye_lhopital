@@ -3,7 +3,6 @@ package view;
 import controleur.ControleurFeuilleFlocking;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -32,6 +31,6 @@ public class ViewFeuilleFlocking extends ViewFeuille {
                 controleurFeuilleFlocking.démarrer();
             }
         });
-        controleurFeuilleFlocking.ajouterTortues();
+        controleurFeuilleFlocking.ajouterToutesLesTortues();
     }
 }

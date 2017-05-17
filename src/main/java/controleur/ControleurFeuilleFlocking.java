@@ -9,10 +9,11 @@ import java.awt.*;
  */
 public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
 
+
+    private static int DISTANCE_DEPLACEMENT = 10;
     private static int DISTANCE_SEPARATION = 10;
-    private static final int NOMBRES_TORTUES = 13;
     private static int DISTANCE_VUE = 30;
-    private static int DISTANCE = 10;
+    private static final int NOMBRES_TORTUES_BASE = 13;
 
     private boolean enRoute = false;
 
@@ -20,12 +21,11 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
         super();
     }
 
-    public void ajouterTortues() {
-        for(int i = 0; i < NOMBRES_TORTUES; i++) {
+    public void ajouterToutesLesTortues() {
+        for(int i = 0; i < NOMBRES_TORTUES_BASE; i++) {
             ajouterTortue(new Tortue());
         }
     }
-
 
     public void miseAJour(){
         if(!enRoute){
@@ -38,9 +38,9 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
             int directionSeparation = getDirectionSeparation(tortue);
             int vitesseCohesion = getVitesseCohesion(tortue);
 
-            tortue.setVitesse(vitesseCohesion + tortue.getVitesse() + directionMoyenne + directionSeparation);
+            tortue.setVitesse(tortue.getVitesse() + vitesseCohesion + directionMoyenne + directionSeparation);
             tortue.setDir(directionMoyenne + directionSeparation);
-            tortue.avancer(DISTANCE);
+            tortue.avancer(DISTANCE_DEPLACEMENT);
         }
 
     }
@@ -55,6 +55,7 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
         int nombreVoisins = 0;
 
         for(Tortue tortue : getTortues()) {
+
             if(tortuesSontVoisines(tortueCourante, tortue)) {
                 somme += tortue.getDir();
                 nombreVoisins++;
@@ -64,7 +65,6 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
         if(nombreVoisins == 0) {
             return tortueCourante.getDir();
         }
-
         return somme / nombreVoisins;
     }
 
@@ -80,8 +80,8 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
         for(Tortue tortue : getTortues()) {
 
             if(tortuesSontVoisines(tortueCourante, tortue)) {
-                //TODO refactoring localisation !
-                double differencePosition = getDistanceEuclidienne(tortue, tortueCourante);
+
+                double differencePosition = getDistanceEuclidienne(tortueCourante.getPosition(), tortue.getPosition());
                 if(differencePosition < DISTANCE_SEPARATION) {
                     direction = direction - (int) differencePosition;
                 }
@@ -113,22 +113,30 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
         return (vitesse - tortueCourante.getVitesse()) / 8;
     }
 
-    private double getDistanceEuclidienne(Tortue tortue1, Tortue tortue2) {
-        Point point1 = tortue1.getLocalisation();
-        Point point2 = tortue2.getLocalisation();
-        return Math.abs(Math.sqrt(Math.pow((point1.x - point2.x), 2) + Math.pow((point1.y - point2.y), 2)));
+    /***
+     * Calcul la distance Euclidienne entre deux points
+     * @param point1
+     * @param point2
+     * @return
+     */
+    private double getDistanceEuclidienne(Point point1, Point point2) {
+        return Math.abs(Math.sqrt(Math.pow((point1.getX() - point2.getX()), 2) + Math.pow((point1.getY() - point2.getY()), 2)));
     }
 
+    /***
+     * Vérifie si deux tortues sont voisines
+     * (Attention, si la même tortue est passé en paramètre 2 fois, on retourne faux)
+     * @param tortue1
+     * @param tortue2
+     * @return
+     */
     protected boolean tortuesSontVoisines(Tortue tortue1, Tortue tortue2) {
         if(tortue1.equals(tortue2)) {
             return false;
         }
 
-        Point point1 = tortue1.getLocalisation();
-        Point point2 = tortue2.getLocalisation();
-
         //Si leur distance euclidienne est inférieur à la distance de vue : elles sont voisines
-        if(getDistanceEuclidienne(tortue1, tortue2) < DISTANCE_VUE) {
+        if(getDistanceEuclidienne(tortue1.getPosition(), tortue2.getPosition()) < DISTANCE_VUE) {
             return true;
         }
         return false;

@@ -12,9 +12,9 @@ import static utils.Constantes.*;
  */
 public class Tortue extends Observable {
 
-    int vitesse;
-    int posX,posY;
     int dir;
+    int vitesse;
+    Point position;
 
     Color couleur = Color.GREEN;
 
@@ -25,8 +25,7 @@ public class Tortue extends Observable {
     }
 
     public Tortue(int posX, int posY){
-        this.posX = posX;
-        this.posY = posY;
+        position = new Point(posX, posY);
         this.dir =0;
 
         setChanged();
@@ -36,11 +35,15 @@ public class Tortue extends Observable {
     //Getters & Setters
 
     public int getPosX() {
-        return posX;
+        return (int) position.getX();
     }
 
     public int getPosY() {
-        return posY;
+        return (int) position.getY();
+    }
+
+    public Point getPosition() {
+        return position;
     }
 
     public int getDir() {
@@ -49,25 +52,31 @@ public class Tortue extends Observable {
 
     public Color getCouleur(){return this.couleur;}
 
-    public void setPos(int posX, int posY){
-        this.posX = posX;
-        this.posY = posY;
+    public int getVitesse() {
+        return vitesse;
+    }
+
+    public void setPosition(int posX, int posY){
+        int nouveauX = posX;
+        int nouveauY = posY;
 
         if(posX > Constantes.WIDTH){
-            this.posX = posX - Constantes.WIDTH;
+            nouveauX = posX - Constantes.WIDTH;
         }
 
         if(posX < 0){
-            this.posX = posX + Constantes.WIDTH;
+            nouveauX = posX + Constantes.WIDTH;
         }
 
         if(posY > Constantes.HEIGHT){
-            this.posY = posY - Constantes.HEIGHT;
+            nouveauY = posY - Constantes.HEIGHT;
         }
 
         if(posY < 0){
-            this.posY = posY + Constantes.HEIGHT;
+            nouveauY = posY + Constantes.HEIGHT;
         }
+
+        position = new Point(nouveauX, nouveauY);
 
         setChanged();
         notifyObservers();
@@ -95,18 +104,6 @@ public class Tortue extends Observable {
         notifyObservers();
     }
 
-    public void setLocalisation(Point p) {
-        setPos(p.x, p.y);
-    }
-
-    public Point getLocalisation() {
-        return new Point(getPosX(), getPosY());
-    }
-
-    public int getVitesse() {
-        return vitesse;
-    }
-
     public void setVitesse(int vitesse) {
         this.vitesse = vitesse;
     }
@@ -114,12 +111,9 @@ public class Tortue extends Observable {
     // Méthodes
 
     public void reset(){
-
-        //Coordonées aléatoires pour positionner la tortue
-        posX = (int)(Math.random() * HEIGHT);
-        posY = (int)(Math.random() * HEIGHT);
         dir = (int)(Math.random() * DEGREES);
         vitesse = (int)(Math.random() * MAXIMUM_SPEED);
+        position = new Point((int)(Math.random() * HEIGHT), (int)(Math.random() * WIDTH));
 
         setChanged();
         notifyObservers();
@@ -129,7 +123,7 @@ public class Tortue extends Observable {
         int nouveauX = ((int) Math.round(getPosX()+distance*Math.cos(Math.toRadians(getDir()))));
         int nouveauY = ((int) Math.round(getPosY()+distance*Math.sin(Math.toRadians(getDir()))));
 
-        setPos(nouveauX, nouveauY);
+        setPosition(nouveauX, nouveauY);
     }
 
     public void droite(int angle) {
