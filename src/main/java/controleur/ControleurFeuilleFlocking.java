@@ -15,7 +15,9 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
     private static int DISTANCE_VUE = 30;
     private static final int NOMBRES_TORTUES_BASE = 13;
 
-    public ControleurFeuilleFlocking(){
+    private boolean enRoute = false;
+
+    ControleurFeuilleFlocking(){
         super();
     }
 
@@ -26,6 +28,10 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
     }
 
     public void miseAJour(){
+        if(!enRoute){
+            return;
+        }
+
         for (Tortue tortue : getTortues()) {
 
             int directionMoyenne = getDirectionMoyenne(tortue);
@@ -36,13 +42,14 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
             tortue.setDir(directionMoyenne + directionSeparation);
             tortue.avancer(DISTANCE_DEPLACEMENT);
         }
+
     }
 
     /***
      * Calcul la direction moyenne que la tortue doit suivre, en fonction de ses voisins
      * @return Direction moyenne (en degrée)
      */
-    public int getDirectionMoyenne(Tortue tortueCourante) {
+    private int getDirectionMoyenne(Tortue tortueCourante) {
 
         int somme = 0;
         int nombreVoisins = 0;
@@ -66,7 +73,7 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
      * @param tortueCourante
      * @return
      */
-    public int getDirectionSeparation(Tortue tortueCourante) {
+    private int getDirectionSeparation(Tortue tortueCourante) {
 
         int direction = 0;
 
@@ -88,7 +95,7 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
      * @param tortueCourante
      * @return
      */
-    public int getVitesseCohesion(Tortue tortueCourante) {
+    private int getVitesseCohesion(Tortue tortueCourante) {
 
         int nombreVoisins = 0;
         int vitesse = 0;
@@ -123,7 +130,7 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
      * @param tortue2
      * @return
      */
-    private boolean tortuesSontVoisines(Tortue tortue1, Tortue tortue2) {
+    protected boolean tortuesSontVoisines(Tortue tortue1, Tortue tortue2) {
         if(tortue1.equals(tortue2)) {
             return false;
         }
@@ -133,5 +140,9 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
             return true;
         }
         return false;
+    }
+
+    public void démarrer(){
+        enRoute = true;
     }
 }

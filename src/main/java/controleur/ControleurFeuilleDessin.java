@@ -16,7 +16,7 @@ public class ControleurFeuilleDessin {
     ViewFeuille feuilleDessin = null;
     Tortue tortueCourrante = null;
 
-    public ControleurFeuilleDessin(){
+    ControleurFeuilleDessin(){
         this.tortues = new LinkedList<>();
     }
 
@@ -26,15 +26,15 @@ public class ControleurFeuilleDessin {
         this.feuilleDessin = applicationFrame;
     }
 
-    public void setTortueCourrante(Tortue tortue){
+    private void setTortueCourrante(Tortue tortue){
         this.tortueCourrante = tortue;
     }
 
-    public List<Tortue> getTortues() {
+    List<Tortue> getTortues() {
         return tortues;
     }
 
-    public ViewFeuille getFeuilleDessin() {
+    private ViewFeuille getFeuilleDessin() {
         return feuilleDessin;
     }
 

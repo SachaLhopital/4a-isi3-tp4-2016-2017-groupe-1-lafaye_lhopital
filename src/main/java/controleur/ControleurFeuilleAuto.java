@@ -18,7 +18,7 @@ public class ControleurFeuilleAuto extends ControleurFeuilleDessin {
     private static final int PERIODE = 50;
     private static final int DISTANCE_BASE = 10;
 
-    public ControleurFeuilleAuto(){
+    ControleurFeuilleAuto(){
         super();
         Timer timer = new Timer();
         TimerTask myTask = new TimerTask() {

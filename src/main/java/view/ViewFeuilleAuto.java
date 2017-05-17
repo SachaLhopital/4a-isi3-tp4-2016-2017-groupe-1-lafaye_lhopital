@@ -12,17 +12,14 @@ import java.awt.event.ActionListener;
  */
 public class ViewFeuilleAuto extends ViewFeuille{
 
-    ControleurFeuilleAuto controleurFeuilleAuto;
-
-    JToolBar menu;
-    JButton btnAjouter;
     public ViewFeuilleAuto(ControleurFeuilleAuto controleurFeuilleAuto) {
         super(controleurFeuilleAuto);
 
-        this.controleurFeuilleAuto = controleurFeuilleAuto;
+        this.setTitle("Automatique");
+
         //ajout d'une toolbar
-        menu = new JToolBar();
-        btnAjouter = new JButton("Ajouter Tortue");
+        JToolBar menu = new JToolBar();
+        JButton btnAjouter = new JButton("Ajouter Tortue");
         menu.add(btnAjouter);
 
         this.getContentPane().add(menu, BorderLayout.NORTH);

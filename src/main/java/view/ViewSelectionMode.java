@@ -16,12 +16,14 @@ public class ViewSelectionMode extends JFrame{
     private JButton btnAutomatique;
     private JButton btnFlocking;
     private JButton btnQuitter;
+    private JButton btnFlockingSectaire;
 
     ControleurSelectionMode controleur;
 
-    public ViewSelectionMode(ControleurSelectionMode controleur){
+    ViewSelectionMode(ControleurSelectionMode controleur){
         this.controleur = controleur;
 
+        this.setTitle("Selection du Mode");
 
         setContentPane(panPrincipal);
 
@@ -54,6 +56,12 @@ public class ViewSelectionMode extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 controleur.quitter();
+            }
+        });
+        btnFlockingSectaire.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controleur.lancerTortueFlockingSectaire();
             }
         });
     }

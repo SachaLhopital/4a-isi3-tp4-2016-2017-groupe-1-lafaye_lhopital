@@ -45,4 +45,14 @@ public class ControleurSelectionMode {
         Tortue t = new Tortue(10,10);
         ctrl.ajouterTortue(t);
     }
+
+    public void lancerTortueFlockingSectaire() {
+        ControleurFeuilleFlockingSectaire ctrl = new ControleurFeuilleFlockingSectaire();
+        ViewFeuilleFlocking app = new ViewFeuilleFlocking(ctrl);
+
+        app.setVisible(true);
+
+
+
+    }
 }
