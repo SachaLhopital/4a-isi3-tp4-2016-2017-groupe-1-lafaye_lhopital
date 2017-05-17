@@ -22,6 +22,10 @@ public class ViewFeuille extends JFrame {
         init();
     }
 
+    public JPanel getPanFeuille() {
+        return panFeuille;
+    }
+
     public void init(){
         panFeuille = new JPanel();
         panFeuille.setLayout(null);
@@ -36,10 +40,13 @@ public class ViewFeuille extends JFrame {
         this.setVisible(true);
     }
 
-    public void addTortue(ViewTortue viewTortue){
-        panFeuille.add(viewTortue);
+    /***
+     * Ajoute une vue de tortue à la feuille
+     * @param viewTortue
+     */
+    public void ajouterVueTortue(ViewTortue viewTortue){
+        getPanFeuille().add(viewTortue);
         viewTortue.repaint();
-
         this.pack();
     }
 

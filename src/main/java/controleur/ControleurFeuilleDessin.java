@@ -34,31 +34,26 @@ public class ControleurFeuilleDessin {
         return tortues;
     }
 
-    public void setTortues(List<Tortue> tortues) {
-        this.tortues = tortues;
-    }
-
     public ViewFeuille getFeuilleDessin() {
         return feuilleDessin;
     }
 
-    public Tortue getTortueCourrante() {
-        return tortueCourrante;
-    }
-
     //Méthodes
 
+    /***
+     * Ajoute une tortue sur la feuille de dessin
+     * @param tortue
+     */
     public void ajouterTortue(Tortue tortue){
 
-        tortues.add(tortue);
+        getTortues().add(tortue);
 
-        ControleurTortue controleurTortue = new ControleurTortue(this,tortue);
+        ControleurTortue controleurTortue = new ControleurTortue(this, tortue);
         ViewTortue viewTortue = new ViewTortue(controleurTortue);
 
-        feuilleDessin.addTortue(viewTortue);
+        getFeuilleDessin().ajouterVueTortue(viewTortue);
 
-        tortueCourrante = tortue;
-
+        setTortueCourrante(tortue);
     }
 
 }

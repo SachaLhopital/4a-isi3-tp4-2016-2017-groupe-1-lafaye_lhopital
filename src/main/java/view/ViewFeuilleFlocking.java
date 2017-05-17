@@ -9,6 +9,6 @@ public class ViewFeuilleFlocking extends ViewFeuille {
 
     public ViewFeuilleFlocking(ControleurFeuilleFlocking controleurFeuilleDessin) {
         super(controleurFeuilleDessin);
-        controleurFeuilleDessin.ajouterTortues();
+        controleurFeuilleDessin.ajouterToutesLesTortues();
     }
 }

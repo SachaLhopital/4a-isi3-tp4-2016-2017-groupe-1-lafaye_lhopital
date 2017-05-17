@@ -12,6 +12,8 @@ import static utils.Constantes.*;
  */
 public class Tortue extends Observable {
 
+    Point position;
+
     int vitesse;
     int posX,posY;
     int dir;

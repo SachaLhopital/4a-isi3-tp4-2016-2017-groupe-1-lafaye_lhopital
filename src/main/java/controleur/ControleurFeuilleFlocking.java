@@ -9,21 +9,21 @@ import java.awt.*;
  */
 public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
 
+
+    private static int DISTANCE_DEPLACEMENT = 10;
     private static int DISTANCE_SEPARATION = 10;
-    private static final int NOMBRES_TORTUES = 13;
     private static int DISTANCE_VUE = 30;
-    private static int DISTANCE = 10;
+    private static final int NOMBRES_TORTUES_BASE = 13;
 
     public ControleurFeuilleFlocking(){
         super();
     }
 
-    public void ajouterTortues() {
-        for(int i = 0; i < NOMBRES_TORTUES; i++) {
+    public void ajouterToutesLesTortues() {
+        for(int i = 0; i < NOMBRES_TORTUES_BASE; i++) {
             ajouterTortue(new Tortue());
         }
     }
-
 
     public void miseAJour(){
         for (Tortue tortue : getTortues()) {
@@ -34,7 +34,7 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
 
             tortue.setVitesse(vitesseCohesion + tortue.getVitesse() + directionMoyenne + directionSeparation);
             tortue.setDir(directionMoyenne + directionSeparation);
-            tortue.avancer(DISTANCE);
+            tortue.avancer(DISTANCE_DEPLACEMENT);
         }
     }
 
@@ -48,6 +48,7 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
         int nombreVoisins = 0;
 
         for(Tortue tortue : getTortues()) {
+
             if(tortuesSontVoisines(tortueCourante, tortue)) {
                 somme += tortue.getDir();
                 nombreVoisins++;
@@ -57,7 +58,6 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
         if(nombreVoisins == 0) {
             return tortueCourante.getDir();
         }
-
         return somme / nombreVoisins;
     }
 
@@ -73,8 +73,10 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
         for(Tortue tortue : getTortues()) {
 
             if(tortuesSontVoisines(tortueCourante, tortue)) {
-                //TODO refactoring localisation !
-                double differencePosition = getDistanceEuclidienne(tortue, tortueCourante);
+
+                double differencePosition = getDistanceEuclidienne(
+                        new Point(tortue.getPosX(), tortue.getPosY()),
+                        new Point(tortueCourante.getPosX(), tortueCourante.getPosY()));
                 if(differencePosition < DISTANCE_SEPARATION) {
                     direction = direction - (int) differencePosition;
                 }
@@ -106,22 +108,32 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
         return (vitesse - tortueCourante.getVitesse()) / 8;
     }
 
-    private double getDistanceEuclidienne(Tortue tortue1, Tortue tortue2) {
-        Point point1 = tortue1.getLocalisation();
-        Point point2 = tortue2.getLocalisation();
+    /***
+     * Calcul la distance Euclidienne entre deux points
+     * @param point1
+     * @param point2
+     * @return
+     */
+    private double getDistanceEuclidienne(Point point1, Point point2) {
         return Math.abs(Math.sqrt(Math.pow((point1.x - point2.x), 2) + Math.pow((point1.y - point2.y), 2)));
     }
 
+    /***
+     * Vérifie si deux tortues sont voisines
+     * (Attention, si la même tortue est passé en paramètre 2 fois, on retourne faux)
+     * @param tortue1
+     * @param tortue2
+     * @return
+     */
     private boolean tortuesSontVoisines(Tortue tortue1, Tortue tortue2) {
         if(tortue1.equals(tortue2)) {
             return false;
         }
 
-        Point point1 = tortue1.getLocalisation();
-        Point point2 = tortue2.getLocalisation();
-
         //Si leur distance euclidienne est inférieur à la distance de vue : elles sont voisines
-        if(getDistanceEuclidienne(tortue1, tortue2) < DISTANCE_VUE) {
+        if(getDistanceEuclidienne(
+                new Point(tortue1.getPosX(), tortue1.getPosY()),
+                new Point(tortue2.getPosX(), tortue2.getPosY())) < DISTANCE_VUE) {
             return true;
         }
         return false;
