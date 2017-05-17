@@ -38,6 +38,10 @@ public class ControleurFeuilleDessin {
         return feuilleDessin;
     }
 
+    public Tortue getTortueCourrante() {
+        return tortueCourrante;
+    }
+
     //Méthodes
 
     /***

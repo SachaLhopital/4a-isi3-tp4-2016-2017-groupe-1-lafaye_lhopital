@@ -1,8 +1,6 @@
 package view;
 
 import controleur.ControleurFeuilleDessin;
-import utils.Constantes;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -10,6 +8,9 @@ import java.awt.*;
  * Created by lafay on 15/05/2017.
  */
 public class ViewFeuille extends JFrame {
+
+    private static final int HEIGHT = 400;
+    private static final int WIDTH = 500;
 
     private JPanel panFeuille;
 
@@ -26,18 +27,22 @@ public class ViewFeuille extends JFrame {
         return panFeuille;
     }
 
-    public void init(){
-        panFeuille = new JPanel();
-        panFeuille.setLayout(null);
-        panFeuille.setSize(Constantes.WIDTH,Constantes.HEIGHT);
-        this.getContentPane().setPreferredSize(panFeuille.getSize());
-        this.getContentPane().setSize(panFeuille.getSize());
-        this.getContentPane().setLayout(new BorderLayout());
-        this.getContentPane().add(panFeuille,BorderLayout.CENTER);
-        panFeuille.setBackground(Color.WHITE);
-        panFeuille.setVisible(true);
+    public void setPanFeuille(JPanel nouvelleFeuille) {
+        panFeuille = nouvelleFeuille;
+    }
 
-        this.setVisible(true);
+    public void init(){
+        setPanFeuille(new JPanel());
+        getPanFeuille().setLayout(null);
+        getPanFeuille().setSize(WIDTH, HEIGHT);
+        getContentPane().setPreferredSize(getPanFeuille().getSize());
+        getContentPane().setSize(getPanFeuille().getSize());
+        getContentPane().setLayout(new BorderLayout());
+        getContentPane().add(getPanFeuille(),BorderLayout.CENTER);
+        getPanFeuille().setBackground(Color.WHITE);
+        getPanFeuille().setVisible(true);
+
+        setVisible(true);
     }
 
     /***
@@ -47,8 +52,6 @@ public class ViewFeuille extends JFrame {
     public void ajouterVueTortue(ViewTortue viewTortue){
         getPanFeuille().add(viewTortue);
         viewTortue.repaint();
-        this.pack();
+        pack();
     }
-
-
 }

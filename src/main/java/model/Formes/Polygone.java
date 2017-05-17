@@ -2,14 +2,13 @@ package model.Formes;
 
 import model.Tortue;
 
-import static utils.Constantes.ANGLE_POLYGONE;
-import static utils.Constantes.DEGREES;
-import static utils.Constantes.DISTANCE_POLYGONE;
-
 /**
  * Created by Sachouw Dev on 08/05/2017.
  */
 public class Polygone implements IForme {
+
+    public static final int DISTANCE_POLYGONE = 60;
+    public static final int ANGLE_POLYGONE = 8;
 
     @Override
     public void tracer(Tortue tortue) {

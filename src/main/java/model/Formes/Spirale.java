@@ -9,6 +9,10 @@ import static utils.Constantes.*;
  */
 public class Spirale implements IForme{
 
+    public static final int AVANCEMENT = 40;
+    public static final int ANGLE_SPIRALE = 6;
+    public static int DISTANCE_SPIRALE = 50;
+
     @Override
     public void tracer(Tortue tortue) {
         for (int i = 0; i < AVANCEMENT; i++) {

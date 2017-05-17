@@ -1,7 +1,6 @@
 package controleur;
 
 import model.Tortue;
-import utils.Constantes;
 
 import java.util.Random;
 import java.util.Timer;
@@ -12,32 +11,46 @@ import java.util.TimerTask;
  */
 public class ControleurFeuilleAuto extends ControleurFeuilleDessin {
 
-    ControleurFeuilleAuto controleurFeuilleAuto;
+    private static int DEGREES = 360;
+    private static final int HEIGHT = 400;
+    private static final int WIDTH = 500;
+    private static final int DELAI = 50;
+    private static final int PERIODE = 50;
+    private static final int DISTANCE_BASE = 10;
 
     public ControleurFeuilleAuto(){
         super();
-        controleurFeuilleAuto = this;
         Timer timer = new Timer();
         TimerTask myTask = new TimerTask() {
             @Override
             public void run() {
-                controleurFeuilleAuto.miseAJour();
+                miseAJour();
             }
         };
 
-        timer.schedule(myTask, 50, 50);
+        timer.schedule(myTask, DELAI, PERIODE);
     }
 
     public void ajouter(){
-        Tortue t = new Tortue(new Random().nextInt(Constantes.WIDTH),new Random().nextInt(Constantes.HEIGHT));
-        this.ajouterTortue(t);
+        Tortue t = new Tortue();
+        ajouterTortue(t);
     }
 
-    public void  miseAJour(){
-        for(Tortue tortue:this.tortues){
-            tortue.avancer(10 );
-            tortue.droite(new Random().nextInt(Constantes.DEGREES/2));
-            tortue.gauche(new Random().nextInt(Constantes.DEGREES/2));
+    public void miseAJour(){
+        for(Tortue tortue: getTortues()){
+
+            tortue.avancer(DISTANCE_BASE);
+
+            switch((int) (Math.random() * 2)) {
+                case 1 :
+                    tortue.droite(new Random().nextInt(DEGREES/2));
+                    break;
+                case 2 :
+                    tortue.gauche(new Random().nextInt(DEGREES/2));
+                    break;
+                default:
+                    //ne rien faire : la tortue avancera tout droit
+            }
         }
     }
 

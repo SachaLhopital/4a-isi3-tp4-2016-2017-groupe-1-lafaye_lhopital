@@ -1,27 +1,25 @@
 package model;
 
-import utils.Constantes;
-
 import java.awt.*;
 import java.util.Observable;
-
-import static utils.Constantes.*;
 
 /**
  * Created by lafay on 27/04/2017.
  */
 public class Tortue extends Observable {
 
+    private static final int HEIGHT = 400;
+    private static final int WIDTH = 500;
+    private static int DEGREES = 360;
+    private static int MAXIMUM_SPEED = 5;
+
     int dir;
     int vitesse;
     Point position;
-
     Color couleur = Color.GREEN;
 
-    //Constructeurs
-
     public Tortue(){
-        reset();
+        resetInRandomPosition();
     }
 
     public Tortue(int posX, int posY){
@@ -60,20 +58,20 @@ public class Tortue extends Observable {
         int nouveauX = posX;
         int nouveauY = posY;
 
-        if(posX > Constantes.WIDTH){
-            nouveauX = posX - Constantes.WIDTH;
+        if(posX > WIDTH){
+            nouveauX = posX - WIDTH;
         }
 
         if(posX < 0){
-            nouveauX = posX + Constantes.WIDTH;
+            nouveauX = posX + WIDTH;
         }
 
-        if(posY > Constantes.HEIGHT){
-            nouveauY = posY - Constantes.HEIGHT;
+        if(posY > HEIGHT){
+            nouveauY = posY - HEIGHT;
         }
 
         if(posY < 0){
-            nouveauY = posY + Constantes.HEIGHT;
+            nouveauY = posY + HEIGHT;
         }
 
         position = new Point(nouveauX, nouveauY);
@@ -85,12 +83,12 @@ public class Tortue extends Observable {
     public void setDir(int dir){
         this.dir = dir;
 
-        if(dir> Constantes.DEGREES){
-            this.dir = dir - Constantes.DEGREES;
+        if(dir > DEGREES){
+            this.dir = dir - DEGREES;
         }
 
         if(dir < 0){
-            this.dir = dir + Constantes.DEGREES;
+            this.dir = dir + DEGREES;
         }
 
         setChanged();
@@ -110,7 +108,7 @@ public class Tortue extends Observable {
 
     // Méthodes
 
-    public void reset(){
+    public void resetInRandomPosition(){
         dir = (int)(Math.random() * DEGREES);
         vitesse = (int)(Math.random() * MAXIMUM_SPEED);
         position = new Point((int)(Math.random() * HEIGHT), (int)(Math.random() * WIDTH));
