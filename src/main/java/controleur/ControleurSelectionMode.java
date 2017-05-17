@@ -27,6 +27,13 @@ public class ControleurSelectionMode {
 
     public void lancerTortueFlocking(){
 
+        ControleurFeuilleFlocking ctrl = new ControleurFeuilleFlocking();
+        ViewFeuilleAuto app = new ViewFeuilleAuto(ctrl);
+
+        app.setVisible(true);
+        Tortue t = new Tortue(10,10);
+        ctrl.ajouterTortue(t);
+
     }
 
     public void lancerTortueAuto(){
