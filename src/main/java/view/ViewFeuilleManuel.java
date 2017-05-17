@@ -22,6 +22,7 @@ public class ViewFeuilleManuel extends ViewFeuille {
         super(controleurFeuilleManuel);
         this.setTitle("Manuel");
 
+        //menu du haut
         JPanel panHaut = new JPanel();
 
         JToolBar toolBar = new JToolBar();

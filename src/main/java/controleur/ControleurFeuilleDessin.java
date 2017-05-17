@@ -26,7 +26,7 @@ public class ControleurFeuilleDessin {
         this.feuilleDessin = applicationFrame;
     }
 
-    private void setTortueCourrante(Tortue tortue){
+    void setTortueCourrante(Tortue tortue){
         this.tortueCourrante = tortue;
     }
 

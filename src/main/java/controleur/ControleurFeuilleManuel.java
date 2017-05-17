@@ -28,5 +28,4 @@ public class ControleurFeuilleManuel extends ControleurFeuilleDessin{
     public void changerCouleur(Color couleur){
         getTortueCourrante().setCouleur(couleur);
     }
-
 }
