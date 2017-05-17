@@ -3,6 +3,7 @@ package controleur;
 import model.Tortue;
 import view.ViewFeuille;
 import view.ViewFeuilleAuto;
+import view.ViewFeuilleFlocking;
 import view.ViewFeuilleManuel;
 
 /**
@@ -28,7 +29,7 @@ public class ControleurSelectionMode {
     public void lancerTortueFlocking(){
 
         ControleurFeuilleFlocking ctrl = new ControleurFeuilleFlocking();
-        ViewFeuilleAuto app = new ViewFeuilleAuto(ctrl);
+        ViewFeuilleFlocking app = new ViewFeuilleFlocking(ctrl);
 
         app.setVisible(true);
         Tortue t = new Tortue(10,10);

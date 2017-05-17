@@ -1,6 +1,5 @@
 package view;
 
-import controleur.ControleurFeuilleDessin;
 import controleur.ControleurFeuilleFlocking;
 
 /**
@@ -8,6 +7,8 @@ import controleur.ControleurFeuilleFlocking;
  */
 public class ViewFeuilleFlocking extends ViewFeuille {
     public ViewFeuilleFlocking(ControleurFeuilleFlocking controleurFeuilleDessin) {
+
         super(controleurFeuilleDessin);
+        controleurFeuilleDessin.ajouterTortues();
     }
 }

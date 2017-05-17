@@ -2,9 +2,11 @@ package model;
 
 import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import utils.Constantes;
+import utils.Vecteur;
 
 import java.awt.*;
 import java.util.Observable;
+import java.util.Vector;
 
 import static utils.Constantes.*;
 
@@ -96,6 +98,10 @@ public class Tortue extends Observable {
         notifyObservers();
     }
 
+    public void setLocalisation(Point p) {
+        setPos(p.x, p.y);
+    }
+
     public Point getLocalisation() {
         return new Point(getPosX(), getPosY());
     }
@@ -114,9 +120,9 @@ public class Tortue extends Observable {
 
         //Coordonées aléatoires pour positionner la tortue
         posX = (int)(Math.random() * HEIGHT);
-        posY = (int)(Math.random() * WIDTH);
+        posY = (int)(Math.random() * HEIGHT);
         dir = (int)(Math.random() * DEGREES);
-        vitesse = (int) (Math.random() * MAXIMUM_SPEED);
+        vitesse = (int)(Math.random() * MAXIMUM_SPEED);
 
         setChanged();
         notifyObservers();

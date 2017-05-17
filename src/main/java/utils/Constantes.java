@@ -5,6 +5,8 @@ package utils;
  */
 public class Constantes {
 
+    //Todo : enlever la classe
+
     public static int DEGREES = 360;
 
     public static int DISTANCE_SEPARATION = 30;

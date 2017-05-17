@@ -15,6 +15,7 @@ public class ControleurFeuilleAuto extends ControleurFeuilleDessin {
     ControleurFeuilleAuto controleurFeuilleAuto;
 
     public ControleurFeuilleAuto(){
+        super();
         controleurFeuilleAuto = this;
         Timer timer = new Timer();
         TimerTask myTask = new TimerTask() {
