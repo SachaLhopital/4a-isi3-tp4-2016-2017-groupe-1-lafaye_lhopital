@@ -1,7 +1,6 @@
 package view;
 
 import controleur.ControleurFeuilleManuel;
-import utils.Constantes;
 
 
 import javax.swing.*;

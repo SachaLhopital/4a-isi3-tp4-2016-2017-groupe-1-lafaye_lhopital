@@ -30,7 +30,7 @@ public class ControleurFeuilleDessin {
         this.tortueCourrante = tortue;
     }
 
-    List<Tortue> getTortues() {
+    public List<Tortue> getTortues() {
         return tortues;
     }
 
