@@ -1,8 +1,8 @@
 package controleur;
 
-import model.Tortue;
-import view.ViewFeuille;
-import view.ViewTortue;
+import modele.Tortue;
+import vue.ViewFeuille;
+import vue.ViewTortue;
 
 import java.util.LinkedList;
 import java.util.List;

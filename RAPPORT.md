@@ -71,7 +71,12 @@ public void poly(int n, int a){[...]}
 - Il y a aussi des problèmes d'indentations du code.
 
 ## Question 2
-*Rien à rédiger*
+Pour appliquer l’architecture MVC, nous avons réorganiser les éléments de l’application en trois package (modele, vue, controleur). 
+La couche métier contient le code pour définir une tortue et pour la déplacer de la tortue (avec une classe Tortue). Pour que les actions de la tortue se repercutent dans l'affichage, nous utilisons le pattern observer - observé tel qu'une Tortue est observable par un controleurTortue.
+Ainsi lorsque le controleurTortue perçoit un changement, il met à jour la vue. 
+Concernant la gestion du déplacement de la Tortue, les boutons de l'IHM sont définies dans la viewFeuilleManuel. Lorsque l'on clique sur l'un, il appel une méthode associé dans le controleur qui lui même appelle la méthode du métier. 
+
+Pour gérer les différentes Formes, nous avions mis en place une interface IForme qui permettais au controleur de simplement faire IForme.tracer(), plutôt que de devoir gérer le type de forme avec des méthodes différentes. Finallement se code a été supprimé car inutilisé dans notre projet final. 
 
 ## Question 3
 *Rien à rédiger*

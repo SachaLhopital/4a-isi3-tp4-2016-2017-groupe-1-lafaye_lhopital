@@ -1,6 +1,6 @@
 package controleur;
 
-import model.Tortue;
+import modele.Tortue;
 import java.awt.*;
 
 /**

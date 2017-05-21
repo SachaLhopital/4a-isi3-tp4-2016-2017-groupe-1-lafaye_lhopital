@@ -1,4 +1,4 @@
-package view;
+package vue;
 
 import controleur.ControleurFeuilleAuto;
 

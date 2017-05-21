@@ -1,9 +1,6 @@
-package view;
+package vue;
 
 import controleur.ControleurFeuilleManuel;
-import utils.Constantes;
-
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
