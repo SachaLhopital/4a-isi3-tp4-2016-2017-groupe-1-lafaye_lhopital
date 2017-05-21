@@ -17,7 +17,7 @@ public class ControleurFeuilleDessin {
     Tortue tortueCourrante = null;
 
     ControleurFeuilleDessin(){
-        this.tortues = new LinkedList<>();
+        tortues = new LinkedList<>();
     }
 
     //Getters & Setters
@@ -54,6 +54,7 @@ public class ControleurFeuilleDessin {
 
         ControleurTortue controleurTortue = new ControleurTortue(this, tortue);
         ViewTortue viewTortue = new ViewTortue(controleurTortue);
+        tortue.addObserver(viewTortue);
 
         getFeuilleDessin().ajouterVueTortue(viewTortue);
 

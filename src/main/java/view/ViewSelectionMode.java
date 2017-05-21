@@ -3,7 +3,6 @@ package view;
 import controleur.ControleurSelectionMode;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -30,7 +29,6 @@ public class ViewSelectionMode extends JFrame{
         pack();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //setSize(new Dimension(WIDTH,HEIGHT+67)); //todo constante
         setTitle("Selection mode de lancement");
         setVisible(true);
 

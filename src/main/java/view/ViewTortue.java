@@ -7,24 +7,29 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.util.Observable;
+import java.util.Observer;
 
 
 /**
  * Created by lafay on 15/05/2017.
  */
-public class ViewTortue extends AbstractButton {
+public class ViewTortue extends AbstractButton implements Observer {
+
+    private static final int TAILLE_FENETRE = 20;
+    private static final int CORRECTEUR_COORDONNES = 10;
+    private static final int VALEUR_ARC_TANGANTE = 5;
 
     ControleurTortue controleurTortue;
 
     public ViewTortue(ControleurTortue controleurTortue){
-        this.controleurTortue = controleurTortue;
-        controleurTortue.setViewTortue(this);
-        this.setVisible(true);
-        this.setSize(20,20);
-        this.setPreferredSize(this.getSize());
 
-        this.addMouseListener(new MouseAdapter() {
+        this.controleurTortue = controleurTortue;
+        setVisible(true);
+        setSize(TAILLE_FENETRE,TAILLE_FENETRE);
+        setPreferredSize(this.getSize());
+
+        addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 controleurTortue.setCurrentTortue();
@@ -32,49 +37,51 @@ public class ViewTortue extends AbstractButton {
         });
     }
 
-
     @Override
     public void paint(Graphics g){
         Graphics2D graphics = (Graphics2D)g;
         Tortue tortue = controleurTortue.getTortue();
 
-        this.setBounds(tortue.getPosX() - 10, tortue.getPosY() - 10, 20, 20);
+        setBounds(tortue.getPosX() - CORRECTEUR_COORDONNES,
+                tortue.getPosY() - CORRECTEUR_COORDONNES,
+                TAILLE_FENETRE,
+                TAILLE_FENETRE);
 
         //dessine fleche
         graphics.setColor(Color.GREEN);
 
-        //tourne la fleche
-        //graphics.rotate(Math.toRadians(tortue.getDir()));
-
-
         //Calcule les 3 coins du triangle a partir de
-        // la position de la tortue p
-        Point p = new Point(10,10);
-        Polygon arrow = new Polygon();
+        // la position de la tortue
+        Point position = new Point(CORRECTEUR_COORDONNES,CORRECTEUR_COORDONNES);
+        Polygon fleche = new Polygon();
 
         //Calcule des deux bases
         //Angle de la droite
         double theta=Math.toRadians(-tortue.getDir());
         //Demi angle au sommet du triangle
-        double alpha=Math.atan( (float)5 / (float)5 );
+        double alpha=Math.atan((float) VALEUR_ARC_TANGANTE / (float) VALEUR_ARC_TANGANTE );
         //Rayon de la fleche
-        double r=Math.sqrt( 5*5 + 5*5 );
-        //Sens de la fleche
+        double r=Math.sqrt(VALEUR_ARC_TANGANTE*VALEUR_ARC_TANGANTE
+                + VALEUR_ARC_TANGANTE*VALEUR_ARC_TANGANTE);
 
         //Pointe
-        Point p2=new Point((int) Math.round(p.x+r*Math.cos(theta)),
-                (int) Math.round(p.y-r*Math.sin(theta)));
-        arrow.addPoint(p2.x,p2.y);
-        arrow.addPoint((int) Math.round( p2.x-r*Math.cos(theta + alpha) ),
-                (int) Math.round( p2.y+r*Math.sin(theta + alpha) ));
+        Point pointe = new Point((int) Math.round(position.getX()+r*Math.cos(theta)),
+                (int) Math.round(position.getY()-r*Math.sin(theta)));
+        fleche.addPoint(pointe.x,pointe.y);
+        fleche.addPoint((int) Math.round( pointe.x-r*Math.cos(theta + alpha) ),
+                (int) Math.round( pointe.y+r*Math.sin(theta + alpha) ));
 
         //Base2
-        arrow.addPoint((int) Math.round( p2.x-r*Math.cos(theta - alpha) ),
-                (int) Math.round( p2.y+r*Math.sin(theta - alpha) ));
+        fleche.addPoint((int) Math.round( pointe.x-r*Math.cos(theta - alpha) ),
+                (int) Math.round( pointe.y+r*Math.sin(theta - alpha) ));
 
-        arrow.addPoint(p2.x,p2.y);
+        fleche.addPoint(pointe.x,pointe.y);
         graphics.setColor(tortue.getCouleur());
-        graphics.fillPolygon(arrow);
+        graphics.fillPolygon(fleche);
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
+        repaint();
+    }
 }
