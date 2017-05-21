@@ -1,10 +1,6 @@
 package controleur;
 
 import model.Tortue;
-import view.ViewTortue;
-
-import java.util.Observable;
-import java.util.Observer;
 
 /**
  * Created by lafay on 16/05/2017.
@@ -24,8 +20,8 @@ public class ControleurTortue{
         return tortue;
     }
 
-    public void setCurrentTortue() {
-        controleurFeuilleDessin.setTortueCourrante(tortue);
+    public void setTortueCourante() {
+        controleurFeuilleDessin.setTortueCourante(tortue);
         System.out.println("Tortue selectionnée");
     }
 }

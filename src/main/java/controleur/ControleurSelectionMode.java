@@ -11,6 +11,10 @@ import view.ViewFeuilleManuel;
  */
 public class ControleurSelectionMode {
 
+    //TODO refactoring + instancier les tortues dans le controleur ???
+
+    private static final int POSITION_INITIALE = 10;
+
     public void quitter(){
         System.exit(0);
     }
@@ -21,7 +25,7 @@ public class ControleurSelectionMode {
         ViewFeuilleManuel app = new ViewFeuilleManuel(ctrl);
 
         app.setVisible(true);
-        Tortue t = new Tortue(10,10);
+        Tortue t = new Tortue(POSITION_INITIALE,POSITION_INITIALE);
         ctrl.ajouterTortue(t);
 
     }
@@ -32,7 +36,7 @@ public class ControleurSelectionMode {
         ViewFeuilleFlocking app = new ViewFeuilleFlocking(ctrl);
 
         app.setVisible(true);
-        Tortue t = new Tortue(10,10);
+        Tortue t = new Tortue(POSITION_INITIALE,POSITION_INITIALE);
         ctrl.ajouterTortue(t);
 
     }
@@ -42,7 +46,7 @@ public class ControleurSelectionMode {
         ViewFeuilleAuto app = new ViewFeuilleAuto(ctrl);
 
         app.setVisible(true);
-        Tortue t = new Tortue(10,10);
+        Tortue t = new Tortue(POSITION_INITIALE,POSITION_INITIALE);
         ctrl.ajouterTortue(t);
     }
 

@@ -32,7 +32,7 @@ public class ViewTortue extends AbstractButton implements Observer {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                controleurTortue.setCurrentTortue();
+                controleurTortue.setTortueCourante();
             }
         });
     }

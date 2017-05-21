@@ -26,7 +26,7 @@ public class ControleurFeuilleDessin {
         this.feuilleDessin = applicationFrame;
     }
 
-    void setTortueCourrante(Tortue tortue){
+    void setTortueCourante(Tortue tortue){
         this.tortueCourrante = tortue;
     }
 
@@ -58,7 +58,7 @@ public class ControleurFeuilleDessin {
 
         getFeuilleDessin().ajouterVueTortue(viewTortue);
 
-        setTortueCourrante(tortue);
+        setTortueCourante(tortue);
     }
 
 }
