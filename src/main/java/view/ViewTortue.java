@@ -1,12 +1,13 @@
-package vue;
+package view;
 
 import controleur.ControleurTortue;
-import modele.Tortue;
+import model.Tortue;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 
 /**

@@ -1,9 +1,10 @@
 package controleur;
 
-import modele.Tortue;
-import vue.ViewFeuilleAuto;
-import vue.ViewFeuilleFlocking;
-import vue.ViewFeuilleManuel;
+import model.Tortue;
+import view.ViewFeuille;
+import view.ViewFeuilleAuto;
+import view.ViewFeuilleFlocking;
+import view.ViewFeuilleManuel;
 
 /**
  * Created by lafay on 15/05/2017.

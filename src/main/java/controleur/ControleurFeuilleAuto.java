@@ -1,6 +1,6 @@
 package controleur;
 
-import modele.Tortue;
+import model.Tortue;
 
 import java.util.Random;
 import java.util.Timer;

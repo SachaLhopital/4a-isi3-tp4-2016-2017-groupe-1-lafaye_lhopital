@@ -1,4 +1,4 @@
-package vue;
+package view;
 
 import controleur.ControleurFeuilleDessin;
 import javax.swing.*;

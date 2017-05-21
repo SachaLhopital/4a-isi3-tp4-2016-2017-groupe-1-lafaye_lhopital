@@ -1,7 +1,7 @@
 package controleur;
 
-import modele.Tortue;
-import vue.ViewTortue;
+import model.Tortue;
+import view.ViewTortue;
 
 import java.util.Observable;
 import java.util.Observer;

@@ -1,4 +1,4 @@
-package vue;
+package view;
 
 /**
  * Created by Sachouw Dev on 07/05/2017.
