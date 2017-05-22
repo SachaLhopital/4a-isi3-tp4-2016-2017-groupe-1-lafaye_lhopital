@@ -9,8 +9,6 @@ import java.awt.*;
  */
 public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
 
-    private static int DISTANCE_DEPLACEMENT = 10;
-    private static int DISTANCE_SEPARATION = 10;
     private static int DISTANCE_VUE = 30;
     public static final int NOMBRES_TORTUES_BASE = 13;
 
@@ -42,7 +40,7 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
 
             tortue.setVitesse(tortue.getVitesse() + vitesseCohesion + directionMoyenne + directionSeparation);
             tortue.setDir(directionMoyenne + directionSeparation);
-            tortue.avancer(DISTANCE_DEPLACEMENT);
+            tortue.avancer(DISTANCE_BASE);
         }
     }
 
@@ -83,7 +81,7 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
             if(tortuesSontVoisines(tortueCourante, tortue)) {
 
                 double differencePosition = getDistanceEuclidienne(tortueCourante.getPosition(), tortue.getPosition());
-                if(differencePosition < DISTANCE_SEPARATION) {
+                if(differencePosition < DISTANCE_BASE) {
                     direction = direction - (int) differencePosition;
                 }
             }

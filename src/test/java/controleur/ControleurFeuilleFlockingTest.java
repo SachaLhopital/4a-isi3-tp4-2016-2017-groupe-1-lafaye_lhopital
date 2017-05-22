@@ -27,6 +27,11 @@ public class ControleurFeuilleFlockingTest {
 
     private ControleurFeuilleFlocking controleur;
 
+    private Method getDistanceEuclidienne;
+    private Point[] parametres;
+    private Class[] typesDesParametres;
+
+    @Mock private ViewFeuille mockViewFeuille;
     @Mock private Tortue tortuePositionneeEn1010;
     @Mock private Tortue tortuePositionneeEn2020;
     @Mock private Tortue tortuePositionneeEn4010;
@@ -34,18 +39,12 @@ public class ControleurFeuilleFlockingTest {
     @Mock private Tortue tortuePositionneeEn1010Negatif;
     @Mock private Tortue tortuePositionneeEn5010Negatif;
 
-    private Method getDistanceEuclidienne;
-    private Point[] parametres;
-    private Class[] typesDesParametres;
-
-    @Mock private ViewFeuille viewFeuille;
-
     @Before
     public void setUp() throws Exception {
 
         /* Mocks */
         MockitoAnnotations.initMocks(this);
-        Mockito.doNothing().when(viewFeuille).ajouterVueTortue(any());
+        Mockito.doNothing().when(mockViewFeuille).ajouterVueTortue(any());
         Mockito.when(tortuePositionneeEn1010.getPosition()).thenReturn(new Point(10,10));
         Mockito.when(tortuePositionneeEn2020.getPosition()).thenReturn(new Point(20,20));
         Mockito.when(tortuePositionneeEn4010.getPosition()).thenReturn(new Point(40,10));
@@ -55,7 +54,7 @@ public class ControleurFeuilleFlockingTest {
 
         /* Variables diverses */
         controleur = new ControleurFeuilleFlocking();
-        controleur.setFeuilleDessin(viewFeuille);
+        controleur.setFeuilleDessin(mockViewFeuille);
 
         /* Setup pour tester les méthodes privées */
         parametres = new Point[2];
@@ -143,12 +142,7 @@ public class ControleurFeuilleFlockingTest {
 
     @Test
     public void miseAJour_devrait_bouger_les_tortues() {
-        List<Tortue> listeTortues = new LinkedList<>();
-        listeTortues.add(tortuePositionneeEn1010);
-        listeTortues.add(tortuePositionneeEn4010);
-        listeTortues.add(tortuePositionneeEn2020);
-        controleur.getTortues().addAll(listeTortues);
-
+        ajouterTortuesAuControleur();
         controleur.démarrer();
         controleur.miseAJour();
 
@@ -157,5 +151,26 @@ public class ControleurFeuilleFlockingTest {
         verify(tortuePositionneeEn2020, atLeast(1)).avancer(anyInt());
     }
 
-    //miseAJour_devrait_ne_rien_faire_si_programme_non_en_route()
+    @Test
+    public void miseAJour_devrait_ne_rien_faire_si_programme_non_en_route() {
+        ajouterTortuesAuControleur();
+        controleur.miseAJour();
+
+        verify(tortuePositionneeEn1010, never()).avancer(anyInt());
+        verify(tortuePositionneeEn4010, never()).avancer(anyInt());
+        verify(tortuePositionneeEn2020, never()).avancer(anyInt());
+    }
+
+    //Methodes privées
+
+    /***
+     * Ajoute 3 mocks à la liste des tortues du controleur
+     */
+    private void ajouterTortuesAuControleur() {
+        List<Tortue> listeTortues = new LinkedList<>();
+        listeTortues.add(tortuePositionneeEn1010);
+        listeTortues.add(tortuePositionneeEn4010);
+        listeTortues.add(tortuePositionneeEn2020);
+        controleur.getTortues().addAll(listeTortues);
+    }
 }
