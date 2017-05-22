@@ -12,7 +12,7 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
     private static int DISTANCE_DEPLACEMENT = 10;
     private static int DISTANCE_SEPARATION = 10;
     private static int DISTANCE_VUE = 30;
-    private static final int NOMBRES_TORTUES_BASE = 13;
+    public static final int NOMBRES_TORTUES_BASE = 13;
 
     private boolean enRoute = false;
 
@@ -26,6 +26,9 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
         }
     }
 
+    /***
+     * Déplace les tortues selon le flocking
+     */
     public void miseAJour(){
         if(!enRoute){
             return;
@@ -41,7 +44,6 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
             tortue.setDir(directionMoyenne + directionSeparation);
             tortue.avancer(DISTANCE_DEPLACEMENT);
         }
-
     }
 
     /***
