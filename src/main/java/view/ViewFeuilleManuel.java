@@ -1,6 +1,7 @@
 package view;
 
 import controleur.ControleurFeuilleManuel;
+import model.MyColor;
 
 
 import javax.swing.*;
@@ -15,7 +16,7 @@ public class ViewFeuilleManuel extends ViewFeuille {
 
     private JTextField txtPramettres;
 
-    private JComboBox <Color> choixCouleur;
+    private JComboBox <MyColor.Color> choixCouleur;
 
     public ViewFeuilleManuel(ControleurFeuilleManuel controleurFeuilleManuel) {
         super(controleurFeuilleManuel);
@@ -34,11 +35,11 @@ public class ViewFeuilleManuel extends ViewFeuille {
         JButton btnEffacer = new JButton("Effacer");
 
         choixCouleur = new JComboBox<>();
-        choixCouleur.addItem(Color.BLACK);
-        choixCouleur.addItem(Color.BLUE);
-        choixCouleur.addItem(Color.RED);
-        choixCouleur.addItem(Color.GREEN);
-        choixCouleur.addItem(Color.PINK);
+        choixCouleur.addItem(MyColor.Color.NOIR);
+        choixCouleur.addItem(MyColor.Color.VERT);
+        choixCouleur.addItem(MyColor.Color.BLEU);
+        choixCouleur.addItem(MyColor.Color.ROUGE);
+        choixCouleur.addItem(MyColor.Color.ROSE);
 
 
 
@@ -80,13 +81,14 @@ public class ViewFeuilleManuel extends ViewFeuille {
             @Override
             public void actionPerformed(ActionEvent e) {
                 controleurFeuilleManuel.ajouter();
+                controleurFeuilleManuel.changerCouleur(MyColor.getColor((MyColor.Color)choixCouleur.getSelectedItem()));
             }
         });
 
         choixCouleur.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controleurFeuilleManuel.changerCouleur((Color)choixCouleur.getSelectedItem());
+                controleurFeuilleManuel.changerCouleur(MyColor.getColor((MyColor.Color)choixCouleur.getSelectedItem()));
             }
         });
 
