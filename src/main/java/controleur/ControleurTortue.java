@@ -22,6 +22,5 @@ public class ControleurTortue{
 
     public void setTortueCourante() {
         controleurFeuilleDessin.setTortueCourante(tortue);
-        System.out.println("Tortue selectionnée");
     }
 }

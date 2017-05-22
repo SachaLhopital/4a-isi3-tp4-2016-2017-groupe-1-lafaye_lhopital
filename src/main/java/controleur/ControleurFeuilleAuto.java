@@ -12,8 +12,6 @@ import java.util.TimerTask;
 public class ControleurFeuilleAuto extends ControleurFeuilleDessin {
 
     private static int DEGREES = 360;
-    private static final int HEIGHT = 400;
-    private static final int WIDTH = 500;
     private static final int DELAI = 50;
     private static final int PERIODE = 50;
     private static final int DISTANCE_BASE = 10;

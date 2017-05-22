@@ -11,8 +11,6 @@ import view.ViewFeuilleManuel;
  */
 public class ControleurSelectionMode {
 
-    //TODO refactoring + instancier les tortues dans le controleur ???
-
     private static final int POSITION_INITIALE = 10;
 
     public void quitter(){
