@@ -2,14 +2,15 @@ package model;
 
 import java.awt.*;
 import java.util.Observable;
+import java.util.Random;
 
 /**
  * Created by lafay on 27/04/2017.
  */
 public class Tortue extends Observable {
 
-    private static final int HEIGHT = 400;
-    private static final int WIDTH = 500;
+    public static final int HEIGHT = 400;
+    public static final int WIDTH = 500;
     private static int DEGREES = 360;
     private static int MAXIMUM_SPEED = 5;
 
@@ -109,12 +110,10 @@ public class Tortue extends Observable {
     // Méthodes
 
     public void resetInRandomPosition(){
-        dir = (int)(Math.random() * DEGREES);
-        vitesse = (int)(Math.random() * MAXIMUM_SPEED);
-        position = new Point((int)(Math.random() * HEIGHT), (int)(Math.random() * WIDTH));
-
-        setChanged();
-        notifyObservers();
+        Random rand = new Random();
+        dir = rand.nextInt(DEGREES);
+        vitesse = rand.nextInt(MAXIMUM_SPEED);
+        setPosition(rand.nextInt(WIDTH),rand.nextInt(HEIGHT));
     }
 
     public void avancer(int distance) {

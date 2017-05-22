@@ -1,6 +1,8 @@
 package view;
 
 import controleur.ControleurFeuilleDessin;
+import model.Tortue;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,9 +10,6 @@ import java.awt.*;
  * Created by lafay on 15/05/2017.
  */
 public class ViewFeuille extends JFrame {
-
-    private static final int HEIGHT = 400;
-    private static final int WIDTH = 500;
 
     private JPanel panFeuille;
 
@@ -31,7 +30,7 @@ public class ViewFeuille extends JFrame {
     public void init(){
         setPanFeuille(new JPanel());
         getPanFeuille().setLayout(null);
-        getPanFeuille().setSize(WIDTH, HEIGHT);
+        getPanFeuille().setSize(Tortue.WIDTH, Tortue.HEIGHT);
         getContentPane().setPreferredSize(getPanFeuille().getSize());
         getContentPane().setSize(getPanFeuille().getSize());
         getContentPane().setLayout(new BorderLayout());
