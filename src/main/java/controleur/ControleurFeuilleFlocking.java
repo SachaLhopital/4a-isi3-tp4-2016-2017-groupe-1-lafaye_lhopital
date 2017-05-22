@@ -9,7 +9,6 @@ import java.awt.*;
  */
 public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
 
-
     private static int DISTANCE_DEPLACEMENT = 10;
     private static int DISTANCE_SEPARATION = 10;
     private static int DISTANCE_VUE = 30;
