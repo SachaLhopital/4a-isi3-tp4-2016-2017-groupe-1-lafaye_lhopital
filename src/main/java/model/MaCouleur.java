@@ -1,13 +1,11 @@
 package model;
 
-import java.awt.*;
-
 /**
  * Created by lafay on 22/05/2017.
  */
-public class MyColor {
+public class MaCouleur {
 
-    public enum Color {
+    public enum Couleur {
         NOIR,
         ROUGE,
         BLEU,
@@ -15,7 +13,7 @@ public class MyColor {
         ROSE;
     }
 
-    public static java.awt.Color getColor(MyColor.Color couleur) {
+    public static java.awt.Color getColor(Couleur couleur) {
         switch (couleur){
             case NOIR:
                 return java.awt.Color.BLACK;
