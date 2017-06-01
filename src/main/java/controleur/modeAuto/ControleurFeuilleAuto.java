@@ -15,6 +15,7 @@ public class ControleurFeuilleAuto extends ControleurModeAuto {
         super();
     }
 
+    @Override
     public void miseAJour(){
         for(Tortue tortue: getTortues()){
 
@@ -31,5 +32,10 @@ public class ControleurFeuilleAuto extends ControleurModeAuto {
                     //ne rien faire : la tortue avance tout droit
             }
         }
+    }
+
+    @Override
+    public void ajouterToutesLesTortues() {
+        ajouterTortue(new Tortue());
     }
 }

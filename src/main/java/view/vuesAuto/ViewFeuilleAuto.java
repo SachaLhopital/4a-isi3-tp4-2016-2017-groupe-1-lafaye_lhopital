@@ -33,6 +33,7 @@ public class ViewFeuilleAuto extends ViewFeuille {
             }
         });
 
+        controleurFeuilleAuto.ajouterToutesLesTortues();
     }
 
 

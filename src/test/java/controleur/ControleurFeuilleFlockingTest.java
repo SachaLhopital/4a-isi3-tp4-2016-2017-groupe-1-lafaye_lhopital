@@ -112,22 +112,22 @@ public class ControleurFeuilleFlockingTest {
 
     @Test
     public void tortuesSontVoisines_devrait_retourner_faux_pour_2tortues_identiques() throws Exception {
-        assertThat(controleur.tortuesSontVoisines(tortuePositionneeEn1010, tortuePositionneeEn1010)).isFalse();
+        assertThat(controleur.tortuesPeuventSeSuivre(tortuePositionneeEn1010, tortuePositionneeEn1010)).isFalse();
     }
 
     @Test
     public void tortuesSontVoisines_devrait_retourner_vrai_pour_distance_euclidienne_inferieure_distance_vue() throws Exception {
-        assertThat(controleur.tortuesSontVoisines(tortuePositionneeEn1010, tortuePositionneeEn2020)).isTrue();
+        assertThat(controleur.tortuesPeuventSeSuivre(tortuePositionneeEn1010, tortuePositionneeEn2020)).isTrue();
     }
 
     @Test
     public void tortuesSontVoisines_devrait_retourner_faux_pour_distance_euclidienne_superieur_distance_vue() throws Exception {
-        assertThat(controleur.tortuesSontVoisines(tortuePositionneeEn1010, tortuePositionneeEn100100)).isFalse();
+        assertThat(controleur.tortuesPeuventSeSuivre(tortuePositionneeEn1010, tortuePositionneeEn100100)).isFalse();
     }
 
     @Test
     public void tortuesSontVoisines_devrait_retourner_faux_pour_distance_euclidienne_egale_distance_vue() throws Exception {
-        assertThat(controleur.tortuesSontVoisines(tortuePositionneeEn1010, tortuePositionneeEn4010)).isFalse();
+        assertThat(controleur.tortuesPeuventSeSuivre(tortuePositionneeEn1010, tortuePositionneeEn4010)).isFalse();
     }
 
     //ajouterToutesLesTortues

@@ -30,4 +30,5 @@ public abstract class ControleurModeAuto extends ControleurFeuilleDessin {
     }
 
     public abstract void miseAJour();
+    public abstract void ajouterToutesLesTortues();
 }

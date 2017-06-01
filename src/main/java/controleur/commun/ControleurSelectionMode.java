@@ -47,8 +47,6 @@ public class ControleurSelectionMode {
         ViewFeuilleAuto app = new ViewFeuilleAuto(ctrl);
 
         app.setVisible(true);
-        Tortue t = new Tortue(POSITION_INITIALE,POSITION_INITIALE);
-        ctrl.ajouterTortue(t);
     }
 
     public void lancerTortueFlockingSectaire() {

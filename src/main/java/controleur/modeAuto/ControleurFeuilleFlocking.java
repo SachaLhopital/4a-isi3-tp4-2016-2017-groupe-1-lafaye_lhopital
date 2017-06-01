@@ -18,6 +18,7 @@ public class ControleurFeuilleFlocking extends ControleurModeAuto {
         super();
     }
 
+    @Override
     public void ajouterToutesLesTortues() {
         for(int i = 0; i < NOMBRES_TORTUES_BASE; i++) {
             ajouterTortue(new Tortue());
@@ -27,6 +28,7 @@ public class ControleurFeuilleFlocking extends ControleurModeAuto {
     /***
      * Déplace les tortues selon le flocking
      */
+    @Override
     public void miseAJour(){
         if(!enRoute){
             return;
@@ -55,7 +57,7 @@ public class ControleurFeuilleFlocking extends ControleurModeAuto {
 
         for(Tortue tortue : getTortues()) {
 
-            if(tortuesSontVoisines(tortueCourante, tortue)) {
+            if(tortuesPeuventSeSuivre(tortueCourante, tortue)) {
                 somme += tortue.getDir();
                 nombreVoisins++;
             }
@@ -78,7 +80,7 @@ public class ControleurFeuilleFlocking extends ControleurModeAuto {
 
         for(Tortue tortue : getTortues()) {
 
-            if(tortuesSontVoisines(tortueCourante, tortue)) {
+            if(tortuesPeuventSeSuivre(tortueCourante, tortue)) {
 
                 double differencePosition = getDistanceEuclidienne(tortueCourante.getPosition(), tortue.getPosition());
                 if(differencePosition < DISTANCE_BASE) {
@@ -100,7 +102,7 @@ public class ControleurFeuilleFlocking extends ControleurModeAuto {
         int vitesse = 0;
 
         for(Tortue tortue : getTortues()) {
-            if(tortuesSontVoisines(tortue, tortueCourante)) {
+            if(tortuesPeuventSeSuivre(tortue, tortueCourante)) {
                 vitesse += tortue.getVitesse();
                 nombreVoisins++;
             }
@@ -123,13 +125,13 @@ public class ControleurFeuilleFlocking extends ControleurModeAuto {
     }
 
     /***
-     * Vérifie si deux tortues sont voisines
+     * Vérifie si deux tortues peuvent se suivre (si elles sont voisines)
      * (Attention, si la même tortue est passé en paramètre 2 fois, on retourne faux)
      * @param tortue1
      * @param tortue2
      * @return
      */
-    public boolean tortuesSontVoisines(Tortue tortue1, Tortue tortue2) {
+    public boolean tortuesPeuventSeSuivre(Tortue tortue1, Tortue tortue2) {
         if(tortue1.equals(tortue2)) {
             return false;
         }

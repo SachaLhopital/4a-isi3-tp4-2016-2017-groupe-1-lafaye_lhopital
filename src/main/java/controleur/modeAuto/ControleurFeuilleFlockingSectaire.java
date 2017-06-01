@@ -16,6 +16,7 @@ public class ControleurFeuilleFlockingSectaire extends ControleurFeuilleFlocking
         démarrer();
     }
 
+    @Override
     public void ajouterToutesLesTortues() {
         for(int i = 0 ; i < NB_TORTUESPARCOULEUR; i++){
             Tortue tNoire = new Tortue();
@@ -33,7 +34,8 @@ public class ControleurFeuilleFlockingSectaire extends ControleurFeuilleFlocking
         }
     }
 
-    public boolean tortuesSontVoisines(Tortue tortue1, Tortue tortue2) {
-        return tortue1.getCouleur().equals(tortue2.getCouleur()) && super.tortuesSontVoisines(tortue1, tortue2);
+    @Override
+    public boolean tortuesPeuventSeSuivre(Tortue tortue1, Tortue tortue2) {
+        return tortue1.getCouleur().equals(tortue2.getCouleur()) && super.tortuesPeuventSeSuivre(tortue1, tortue2);
     }
 }
