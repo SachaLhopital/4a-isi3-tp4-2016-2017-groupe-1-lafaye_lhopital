@@ -1,10 +1,13 @@
-package controleur;
+package controleur.commun;
 
+import controleur.modeAuto.ControleurFeuilleAuto;
+import controleur.modeAuto.ControleurFeuilleFlocking;
+import controleur.modeAuto.ControleurFeuilleFlockingSectaire;
+import controleur.modeManuel.ControleurFeuilleManuel;
 import model.Tortue;
-import view.ViewFeuille;
-import view.ViewFeuilleAuto;
-import view.ViewFeuilleFlocking;
-import view.ViewFeuilleManuel;
+import view.vuesAuto.ViewFeuilleAuto;
+import view.vuesAuto.ViewFeuilleFlocking;
+import view.vuesManuelle.ViewFeuilleManuel;
 
 /**
  * Created by lafay on 15/05/2017.
@@ -53,8 +56,5 @@ public class ControleurSelectionMode {
         ViewFeuilleFlocking app = new ViewFeuilleFlocking(ctrl);
 
         app.setVisible(true);
-
-
-
     }
 }

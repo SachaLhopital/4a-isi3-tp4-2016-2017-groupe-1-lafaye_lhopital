@@ -4,8 +4,9 @@ package view;
  * Created by Sachouw Dev on 07/05/2017.
  */
 
-import controleur.ControleurSelectionMode;
+import controleur.commun.ControleurSelectionMode;
 import javafx.stage.Stage;
+import view.commun.ViewSelectionMode;
 
 
 /***

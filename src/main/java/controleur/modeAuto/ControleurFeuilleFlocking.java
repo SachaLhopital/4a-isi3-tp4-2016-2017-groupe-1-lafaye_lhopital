@@ -1,4 +1,4 @@
-package controleur;
+package controleur.modeAuto;
 
 import model.Tortue;
 
@@ -7,14 +7,14 @@ import java.awt.*;
 /**
  * Created by lafay on 17/05/2017.
  */
-public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
+public class ControleurFeuilleFlocking extends ControleurModeAuto {
 
     private static int DISTANCE_VUE = 30;
     public static final int NOMBRES_TORTUES_BASE = 13;
 
     private boolean enRoute = false;
 
-    ControleurFeuilleFlocking(){
+    public ControleurFeuilleFlocking(){
         super();
     }
 
@@ -129,7 +129,7 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
      * @param tortue2
      * @return
      */
-    protected boolean tortuesSontVoisines(Tortue tortue1, Tortue tortue2) {
+    public boolean tortuesSontVoisines(Tortue tortue1, Tortue tortue2) {
         if(tortue1.equals(tortue2)) {
             return false;
         }

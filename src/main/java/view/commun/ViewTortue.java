@@ -1,6 +1,6 @@
-package view;
+package view.commun;
 
-import controleur.ControleurTortue;
+import controleur.commun.ControleurTortue;
 import model.Tortue;
 
 import javax.swing.*;

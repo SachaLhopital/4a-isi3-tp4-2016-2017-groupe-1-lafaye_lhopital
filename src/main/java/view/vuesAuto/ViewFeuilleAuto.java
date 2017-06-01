@@ -1,6 +1,8 @@
-package view;
+package view.vuesAuto;
 
-import controleur.ControleurFeuilleAuto;
+import controleur.modeAuto.ControleurFeuilleAuto;
+import model.Tortue;
+import view.commun.ViewFeuille;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +12,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by lafay on 16/05/2017.
  */
-public class ViewFeuilleAuto extends ViewFeuille{
+public class ViewFeuilleAuto extends ViewFeuille {
 
     public ViewFeuilleAuto(ControleurFeuilleAuto controleurFeuilleAuto) {
         super(controleurFeuilleAuto);
@@ -27,7 +29,7 @@ public class ViewFeuilleAuto extends ViewFeuille{
         btnAjouter.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controleurFeuilleAuto.ajouter();
+                controleurFeuilleAuto.ajouterTortue(new Tortue());
             }
         });
 

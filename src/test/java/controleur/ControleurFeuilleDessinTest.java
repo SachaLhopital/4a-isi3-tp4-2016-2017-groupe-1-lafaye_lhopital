@@ -1,12 +1,12 @@
 package controleur;
 
+import controleur.commun.ControleurFeuilleDessin;
 import model.Tortue;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import view.ViewFeuille;
+import view.commun.ViewFeuille;
 
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.times;

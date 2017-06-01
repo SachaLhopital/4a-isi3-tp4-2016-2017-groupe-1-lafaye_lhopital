@@ -1,6 +1,6 @@
-package view;
+package view.commun;
 
-import controleur.ControleurSelectionMode;
+import controleur.commun.ControleurSelectionMode;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -19,7 +19,7 @@ public class ViewSelectionMode extends JFrame{
 
     ControleurSelectionMode controleur;
 
-    ViewSelectionMode(ControleurSelectionMode controleur){
+    public ViewSelectionMode(ControleurSelectionMode controleur){
         this.controleur = controleur;
 
         this.setTitle("Selection du Mode");

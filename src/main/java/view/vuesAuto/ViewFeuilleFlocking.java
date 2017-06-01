@@ -1,6 +1,7 @@
-package view;
+package view.vuesAuto;
 
-import controleur.ControleurFeuilleFlocking;
+import controleur.modeAuto.ControleurFeuilleFlocking;
+import view.commun.ViewFeuille;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

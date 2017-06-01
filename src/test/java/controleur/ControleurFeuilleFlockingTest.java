@@ -1,12 +1,13 @@
 package controleur;
 
+import controleur.modeAuto.ControleurFeuilleFlocking;
 import model.Tortue;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import view.ViewFeuille;
+import view.commun.ViewFeuille;
 
 import java.awt.*;
 import java.lang.reflect.Method;

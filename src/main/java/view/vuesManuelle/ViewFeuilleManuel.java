@@ -1,7 +1,9 @@
-package view;
+package view.vuesManuelle;
 
-import controleur.ControleurFeuilleManuel;
-import model.MyColor;
+import controleur.modeManuel.ControleurFeuilleManuel;
+import model.MaCouleur;
+import model.Tortue;
+import view.commun.ViewFeuille;
 
 
 import javax.swing.*;
@@ -16,7 +18,7 @@ public class ViewFeuilleManuel extends ViewFeuille {
 
     private JTextField txtPramettres;
 
-    private JComboBox <MyColor.Color> choixCouleur;
+    private JComboBox <MaCouleur.Couleur> choixCouleur;
 
     public ViewFeuilleManuel(ControleurFeuilleManuel controleurFeuilleManuel) {
         super(controleurFeuilleManuel);
@@ -32,14 +34,13 @@ public class ViewFeuilleManuel extends ViewFeuille {
         JButton btnAjouter = new JButton("Ajouter");
         JButton btnDroite = new JButton("Droite");
         JButton btnGauche = new JButton("Gauche");
-        JButton btnEffacer = new JButton("Effacer");
 
         choixCouleur = new JComboBox<>();
-        choixCouleur.addItem(MyColor.Color.NOIR);
-        choixCouleur.addItem(MyColor.Color.VERT);
-        choixCouleur.addItem(MyColor.Color.BLEU);
-        choixCouleur.addItem(MyColor.Color.ROUGE);
-        choixCouleur.addItem(MyColor.Color.ROSE);
+        choixCouleur.addItem(MaCouleur.Couleur.NOIR);
+        choixCouleur.addItem(MaCouleur.Couleur.VERT);
+        choixCouleur.addItem(MaCouleur.Couleur.BLEU);
+        choixCouleur.addItem(MaCouleur.Couleur.ROUGE);
+        choixCouleur.addItem(MaCouleur.Couleur.ROSE);
 
 
 
@@ -48,7 +49,6 @@ public class ViewFeuilleManuel extends ViewFeuille {
         toolBar.add(btnDroite);
         toolBar.add(btnGauche);
         toolBar.add(btnAjouter);
-        toolBar.add(btnEffacer);
         toolBar.add(choixCouleur);
 
         panHaut.add(toolBar);
@@ -80,15 +80,15 @@ public class ViewFeuilleManuel extends ViewFeuille {
         btnAjouter.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controleurFeuilleManuel.ajouter();
-                controleurFeuilleManuel.changerCouleur(MyColor.getColor((MyColor.Color)choixCouleur.getSelectedItem()));
+                controleurFeuilleManuel.ajouterTortue(new Tortue());
+                controleurFeuilleManuel.changerCouleur(MaCouleur.getColor((MaCouleur.Couleur)choixCouleur.getSelectedItem()));
             }
         });
 
         choixCouleur.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controleurFeuilleManuel.changerCouleur(MyColor.getColor((MyColor.Color)choixCouleur.getSelectedItem()));
+                controleurFeuilleManuel.changerCouleur(MaCouleur.getColor((MaCouleur.Couleur)choixCouleur.getSelectedItem()));
             }
         });
 
@@ -101,7 +101,7 @@ public class ViewFeuilleManuel extends ViewFeuille {
             valeur = Integer.parseInt(txtPramettres.getText());
         }catch (Exception e){
             //print message log
-            System.out.println("Format du paramettre invalide, il faut un nombre en entrée");
+            System.out.println("Format du parametre invalide, merci de saisir un entier");
         }
 
         return valeur;

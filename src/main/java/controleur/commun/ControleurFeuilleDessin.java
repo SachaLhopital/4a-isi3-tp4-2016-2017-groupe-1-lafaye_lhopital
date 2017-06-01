@@ -1,8 +1,8 @@
-package controleur;
+package controleur.commun;
 
 import model.Tortue;
-import view.ViewFeuille;
-import view.ViewTortue;
+import view.commun.ViewFeuille;
+import view.commun.ViewTortue;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -12,11 +12,13 @@ import java.util.List;
  */
 public class ControleurFeuilleDessin {
 
+    protected static final int DISTANCE_BASE = 10;
+
     List<Tortue> tortues;
     ViewFeuille feuilleDessin = null;
     Tortue tortueCourrante = null;
 
-    ControleurFeuilleDessin(){
+    public ControleurFeuilleDessin(){
         tortues = new LinkedList<>();
     }
 

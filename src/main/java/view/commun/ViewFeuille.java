@@ -1,6 +1,6 @@
-package view;
+package view.commun;
 
-import controleur.ControleurFeuilleDessin;
+import controleur.commun.ControleurFeuilleDessin;
 import model.Tortue;
 
 import javax.swing.*;
