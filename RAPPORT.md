@@ -8,11 +8,11 @@
 
 ## Introduction
 
-Ce rapport présente le compte rendu de développement et d'amélioration d'un projet de gestion de Tortues. Ce document présente notre travail, mais égalements les difficultés que nous avons rencontrés.
+Ce rapport présente le compte rendu de développement et d'amélioration d'un projet de gestion de Tortues. Ce document présente notre travail, mais égalements les difficultés que nous avons rencontrées.
  
 Nous commencerons par présenter les différents problèmes initialement présents dans le projet que nous avons résolu au fur et à mesure. 
 
-Le projet comprend une application principale avec des interfaces utilisateurs en Swing. Le projet comprends également quelques tests. 
+Le projet comprend une application principale avec des interfaces utilisateurs en Swing. Le projet comprend également quelques tests. 
 
 L'application implémente les notions suivantes : Pattern MVC, Pattern Observeur - Observé, Tests Unitaires, Code SMELL le plus propre possible. 
 L'application implémente également les fonctionnalités suivantes : Gestion d'une multitude de Tortues (Mode manuel ou Automatique), Tortues Flocking (et Flocking Sectaire) et enfin un ensemble de tests, surtout concentré sur les fonctionnalités liées au flocking. 
@@ -90,52 +90,51 @@ public void poly(int n, int a){[...]}
 
 Pour appliquer l’architecture MVC, nous avons réorganisé les éléments de l’application en trois package (modele, vue, controleur). 
  
-Afin de permettre une mise a jour dynamique de la vue, un utilise un pattern observeur/observé.
+Afin de permettre une mise a jour dynamique de la vue, on utilise un pattern observeur/observé.
 
 La chaque Tortue déclarée est observé par une vue associée qui est notifiée à chaque changement de direction ou de position afin de la mettre à jour.
 
-Le controleur est en charge de la gestion des actions, un event sur la vue (clique sur un button, une tortue ...) appelle automatiquement une methode du controlleur associé. En cas de paramettres entré par l'utilisateur (distance et angle), la vue est également en charge de verifier si l'entrée est correcte.
+Le controleur est en charge de la gestion des actions, un event sur la vue (clique sur un bouton, une tortue ...) appelle automatiquement une methode du controleur associé. En cas de paramètres saisie par l'utilisateur (distance et angle), la vue est également en charge de verifier si l'entrée est correcte.
 
 Le controleur modifie également le modele en appelant les methodes de changement de direction (gauche(), droite()) et de déplacement (avancer()).
 
-Certains problèmes sont remontés par l'utilisation du patern observeur/observé car nous avions une boucle infinie de notification. Cette boucle etait due à une mauvaise implementation du patern MVC.
+Certains problèmes sont remontés par l'utilisation du pattern observeur/observé car nous avions une boucle infinie de notification. Cette boucle etait due à une mauvaise implementation du pattern MVC.
 
 #### Modèle
 
-![Diagrame de Classe du modele](images/rapport/diagramModele.PNG)
+![Diagrame de Classe du modele](images/rapport/diagramModele.png)
 
-Pour gérer les différentes Formes, nous avions mis en place une interface IForme qui permettais au controleur de simplement faire IForme.tracer(), plutôt que de devoir gérer le type de forme avec des méthodes différentes. Finallement se code a été supprimé car inutilisé dans notre projet final.
+Pour gérer les différentes Formes, nous avions mis en place une interface IForme qui permettais au controleur de simplement faire IForme.tracer(), plutôt que de devoir gérer le type de forme avec des méthodes différentes. Finalement se code a été supprimé car inutilisé dans notre projet final.
 
 #### Controleur
 
-![Diagrame de Classe du modele](images/rapport/diagramControler.PNG)
+![Diagrame de Classe du modele](images/rapport/diagramControler.png)
 
 #### Vue
 
-![Diagrame de Classe du modele](images/rapport/diagramVue.PNG)
+![Diagrame de Classe du modele](images/rapport/diagramVue.png)
 
 ## Extension du projet
 
 #### Gestion de plusieurs tortues
 
-Le but etait de pouvoir afficher lusieurs tortues et de pouvoir les selectionner de maniere independante.
-La technique utilisée est d'aficher des JComponent qui ne sont en charge que du dessin de la tortue (triangle et orientation) puis 
-de placer ces JComponent dans un JPannel de maniere fixée (avec la methode setBounds). En utilisant cette technique, nous avont acces aux diférents évenements sur chaque JComponent dont le Clic ... A la détecton d'un clic on peut donc selectionner une tortue de maniere simple.
+Le but etait de pouvoir afficher plusieurs tortues et de pouvoir les selectionner de maniere independante.
+La technique utilisée est d'afficher des JComponents qui ne sont en charge que du dessin de la tortue (triangle et orientation) puis de placer ces JComponents dans un JPanel de maniere fixée (avec la methode setBounds). En utilisant cette technique, nous avons accès aux différents évenements sur chaque JComponent dont le clic. A la détection d'un clic on peut donc selectionner une tortue de maniere simple.
 
 #### Tortues autonomes
 
-Les tortues autonomes sont des tortues qui se mettent à jour de maniere réguliere selon un algorythe précis (aléatoire, flocking ...). Afin d'automatiser les mises à jours, chaque controlleur execute à intervale reguliere la methode miseAJour qui est en charge de mettre à jour chque tortue presente sur l'afichage. Le mode auto fonctione sur une base aléatoire (avancer de x, tourner a droite de y, tourner a gauche de z, [x,y,z] etant selectionnés aléatoirement).
+Les tortues autonomes sont des tortues qui se mettent à jour de maniere réguliere selon un algorythme précis (aléatoire, flocking ...). Afin d'automatiser les mises à jour, chaque controleur exécute à intervalle regulier la methode miseAJour qui est en charge de mettre à jour chaque tortue presente sur l'affichage. Le mode auto fonctionne sur une base aléatoire (avancer de x, tourner a droite de y, tourner a gauche de z, [x,y,z] etant selectionnés aléatoirement).
 
 ````java
- Timer timer = new Timer();
-        TimerTask myTask = new TimerTask() {
-            @Override
-            public void run() {
-                miseAJour();
-            }
-        };
+Timer timer = new Timer();
+TimerTask myTask = new TimerTask() {
+    @Override
+    public void run() {
+        miseAJour();
+    }
+};
 
-        timer.schedule(myTask, DELAI, PERIODE);
+timer.schedule(myTask, DELAI, PERIODE);
 ````
 
 
@@ -147,7 +146,7 @@ Au départ nous pensions implémenter une nouvelle classe de tortues qui hérite
 
 Dans un second temps, nous avions pensé à implémenter le flocking sous forme d'un comportement (où une tortue possèderait un comportement disons normal et flocking), mais là encore nous nous sommes rendus compte que cela modifiait beaucoup de code existant pour au final ne pas vraiment nous faciliter le développement de ce nouveau comportement. 
 
-Finallement, nous avons opté pour une implémentation plus classique. Disposant déjà d'un mode automatique pour gérer des tortues qui se déplacent aléatoirement (avec une méthode de mise à jour qui est appellée automatiquement par un timer : Cf. partie précédente), nous avons décidé de rajouter un controleur *ControleurFeuilleFlocking* qui implémenterais le même principe sauf qu'au lieu de se déplacer aléatoirement, les tortues suivent un comportement de flocking. Pour éviter la redondance de code avec *ControleurFeuilleAuto* nous avons créé une classe abstraite *ControleurModeAuto* comme suit : 
+Finalement, nous avons opté pour une implémentation plus classique. Disposant déjà d'un mode automatique pour gérer des tortues qui se déplacent aléatoirement (avec une méthode de mise à jour qui est appelée automatiquement par un timer : Cf. partie précédente), nous avons décidé de rajouter un controleur *ControleurFeuilleFlocking* qui implémenterais le même principe sauf qu'au lieu de se déplacer aléatoirement, les tortues suivent un comportement de flocking. Pour éviter la redondance de code avec *ControleurFeuilleAuto* nous avons créé une classe abstraite *ControleurModeAuto* comme suit : 
 
 ```java
 public abstract class ControleurModeAuto extends ControleurFeuilleDessin {
@@ -174,7 +173,7 @@ public abstract class ControleurModeAuto extends ControleurFeuilleDessin {
 }
 ```
 
-Les méthodes relatives au comportement du flocking sont définies dans le *ControleurFeuilleFlocking* et sont appellées dans la fonction miseAJour : 
+Les méthodes relatives au comportement du flocking sont définies dans le *ControleurFeuilleFlocking* et sont appelées dans la fonction miseAJour : 
 
 ```java
 /***
@@ -200,7 +199,7 @@ public void miseAJour(){
 }
 ```
 
-Assez rapidement, comme toutes les tortues finissent par se voir mutuellement dans leur champs de vision, des groupes de tortues se forment suivent la même direction jusqu'à ce que toutes les tortues se suivent comme un unique groupe. 
+Assez rapidement, comme toutes les tortues finissent par se voir mutuellement dans leurs champs de vision, des groupes de tortues se forment suivent la même direction jusqu'à ce que toutes les tortues se suivent comme un unique groupe. 
 
 ![Illustration du flocking avec deux groupes visibles](images/rapport/flocking.PNG)
 
@@ -210,7 +209,7 @@ Au départ, pour mettre en place le flocking, nous avons suivi des pseudo-algori
 
 Nous souhaitions par la suite que les tortues appliquent un comportement de flocking uniquement avec des voisines qui sont de la même couleur qu'elles. 
 
-Grâce à notre modélisation précédente, il nous as suffit d'ajouter un *ControleurFeuilleFlockingSectaire* qui hérite du *ControleurFeuilleFlocking* classique et override la méthode qui instancie toutes les tortues sur l'affichage. 
+Grâce à notre modélisation précédente, il nous a suffi d'ajouter un *ControleurFeuilleFlockingSectaire* qui hérite du *ControleurFeuilleFlocking* classique et override la méthode qui instancie toutes les tortues sur l'affichage. 
 
 ```java
 public class ControleurFeuilleFlockingSectaire extends ControleurFeuilleFlocking {
@@ -261,7 +260,7 @@ Enfin, en complément de notre application, nous avons décidé d'implémenter q
 Dans un premier temps nous avons testé *ControleurFeuilleDessin* en mockant une *VueFeuille* et une *Tortue*. Nous avons ainsi réalisé un test simple pour vérifier que la méthode *ajouterTortue* avait le bon comportement. 
 
 Puis nous avons décidé de tester le controleur en charge du flocking car c'est une fonctionnalité très sensible. Nous avons là aussi utilisé les Mocks. 
-En plus des Mocks, nous avons eu beaucoup de mal à tester certaines méthodes de la classe car elles étaient privées. En effet, les méthodes qui sont les plus importantes sont privées car elle ne sont accessible que depuis la méthode de *miseAJour()*. Pour pallier à ce problème, nous avons utilisé la méthode de **Reflection** qui permet de rendre les méthodes accesible pendant les tests. 
+En plus des Mocks, nous avons eu beaucoup de mal à tester certaines méthodes de la classe car elles étaient privées. En effet, les méthodes qui sont les plus importantes sont privées car elles ne sont accessible que depuis la méthode de *miseAJour()*. Pour pallier à ce problème, nous avons utilisé la méthode de **Reflection** qui permet de rendre les méthodes accessible pendant les tests. 
 
 Par manque de temps, nous n'avons pas réalisé "beaucoup" de tests, surtout concernant l'interface avec l'utilisateur. C'est sans doute ce qui constitue la plus grande faiblesse de notre projet.  
 
@@ -273,7 +272,7 @@ Ce projet a été l’occasion pour nous d'améliorer une application en profond
 - **DRY** : Bon
 - **Optimisation** : Assez Bon, peut-être que l'on peut encore l'améliorer au niveau du MVC (et plus particulièrement VC). 
 - **Testabilité** : Bonne
-- **SOLID** : Assez Bon, plus de tests doivent permettrent de définir si l'application est correctement développée ou si il reste du travail
+- **SOLID** : Assez Bon, plus de tests doivent permettre de définir si l'application est correctement développée ou si il reste du travail
 - **Testé** : A Améliorer, code coverage actuel : 
 
 ![Code Coverage](images/rapport/codeCoverage.PNG)
