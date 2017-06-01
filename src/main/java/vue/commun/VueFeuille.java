@@ -1,4 +1,4 @@
-package view.commun;
+package vue.commun;
 
 import controleur.commun.ControleurFeuilleDessin;
 import model.Tortue;
@@ -9,11 +9,11 @@ import java.awt.*;
 /**
  * Created by lafay on 15/05/2017.
  */
-public class ViewFeuille extends JFrame {
+public class VueFeuille extends JFrame {
 
     private JPanel panFeuille;
 
-    public ViewFeuille(ControleurFeuilleDessin controleurFeuilleDessin){
+    public VueFeuille(ControleurFeuilleDessin controleurFeuilleDessin){
         controleurFeuilleDessin.setFeuilleDessin(this);
 
         init();
@@ -43,11 +43,11 @@ public class ViewFeuille extends JFrame {
 
     /***
      * Ajoute une vue de tortue à la feuille
-     * @param viewTortue
+     * @param vueTortue
      */
-    public void ajouterVueTortue(ViewTortue viewTortue){
-        getPanFeuille().add(viewTortue);
-        viewTortue.repaint();
+    public void ajouterVueTortue(VueTortue vueTortue){
+        getPanFeuille().add(vueTortue);
+        vueTortue.repaint();
         pack();
     }
 }

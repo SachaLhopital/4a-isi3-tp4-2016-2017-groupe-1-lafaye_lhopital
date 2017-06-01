@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import view.commun.ViewFeuille;
+import vue.commun.VueFeuille;
 
 import java.awt.*;
 import java.lang.reflect.Method;
@@ -32,7 +32,7 @@ public class ControleurFeuilleFlockingTest {
     private Point[] parametres;
     private Class[] typesDesParametres;
 
-    @Mock private ViewFeuille mockViewFeuille;
+    @Mock private VueFeuille mockVueFeuille;
     @Mock private Tortue tortuePositionneeEn1010;
     @Mock private Tortue tortuePositionneeEn2020;
     @Mock private Tortue tortuePositionneeEn4010;
@@ -45,7 +45,7 @@ public class ControleurFeuilleFlockingTest {
 
         /* Mocks */
         MockitoAnnotations.initMocks(this);
-        Mockito.doNothing().when(mockViewFeuille).ajouterVueTortue(any());
+        Mockito.doNothing().when(mockVueFeuille).ajouterVueTortue(any());
         Mockito.when(tortuePositionneeEn1010.getPosition()).thenReturn(new Point(10,10));
         Mockito.when(tortuePositionneeEn2020.getPosition()).thenReturn(new Point(20,20));
         Mockito.when(tortuePositionneeEn4010.getPosition()).thenReturn(new Point(40,10));
@@ -55,7 +55,7 @@ public class ControleurFeuilleFlockingTest {
 
         /* Variables diverses */
         controleur = new ControleurFeuilleFlocking();
-        controleur.setFeuilleDessin(mockViewFeuille);
+        controleur.setFeuilleDessin(mockVueFeuille);
 
         /* Setup pour tester les méthodes privées */
         parametres = new Point[2];

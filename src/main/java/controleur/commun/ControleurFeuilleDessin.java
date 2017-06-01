@@ -1,8 +1,8 @@
 package controleur.commun;
 
 import model.Tortue;
-import view.commun.ViewFeuille;
-import view.commun.ViewTortue;
+import vue.commun.VueFeuille;
+import vue.commun.VueTortue;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class ControleurFeuilleDessin {
     protected static final int DISTANCE_BASE = 10;
 
     List<Tortue> tortues;
-    ViewFeuille feuilleDessin = null;
+    VueFeuille feuilleDessin = null;
     Tortue tortueCourrante = null;
 
     public ControleurFeuilleDessin(){
@@ -24,7 +24,7 @@ public class ControleurFeuilleDessin {
 
     //Getters & Setters
 
-    public void setFeuilleDessin(ViewFeuille applicationFrame){
+    public void setFeuilleDessin(VueFeuille applicationFrame){
         this.feuilleDessin = applicationFrame;
     }
 
@@ -36,7 +36,7 @@ public class ControleurFeuilleDessin {
         return tortues;
     }
 
-    private ViewFeuille getFeuilleDessin() {
+    private VueFeuille getFeuilleDessin() {
         return feuilleDessin;
     }
 
@@ -55,10 +55,10 @@ public class ControleurFeuilleDessin {
         getTortues().add(tortue);
 
         ControleurTortue controleurTortue = new ControleurTortue(this, tortue);
-        ViewTortue viewTortue = new ViewTortue(controleurTortue);
-        tortue.addObserver(viewTortue);
+        VueTortue vueTortue = new VueTortue(controleurTortue);
+        tortue.addObserver(vueTortue);
 
-        getFeuilleDessin().ajouterVueTortue(viewTortue);
+        getFeuilleDessin().ajouterVueTortue(vueTortue);
 
         setTortueCourante(tortue);
     }

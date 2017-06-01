@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import view.commun.ViewFeuille;
+import vue.commun.VueFeuille;
 
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.times;
@@ -20,7 +20,7 @@ public class ControleurFeuilleDessinTest {
 
     protected ControleurFeuilleDessin controleur;
 
-    @Mock protected ViewFeuille mockViewFeuille;
+    @Mock protected VueFeuille mockVueFeuille;
     @Mock protected Tortue mockTortue;
 
     @Before
@@ -28,7 +28,7 @@ public class ControleurFeuilleDessinTest {
         MockitoAnnotations.initMocks(this);
 
         controleur = new ControleurFeuilleDessin();
-        controleur.setFeuilleDessin(mockViewFeuille);
+        controleur.setFeuilleDessin(mockVueFeuille);
     }
 
     @Test
@@ -41,7 +41,7 @@ public class ControleurFeuilleDessinTest {
         assertThat(controleur.getTortues().size()).isEqualTo(1);
         assertThat(controleur.getTortueCourrante()).isEqualToComparingFieldByField(mockTortue);
         verify(mockTortue, times(1)).addObserver(anyObject());
-        verify(mockViewFeuille, times(1)).ajouterVueTortue(anyObject());
+        verify(mockVueFeuille, times(1)).ajouterVueTortue(anyObject());
     }
 
 }

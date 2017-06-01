@@ -1,9 +1,9 @@
-package view.vuesManuelle;
+package vue.vuesManuelle;
 
 import controleur.modeManuel.ControleurFeuilleManuel;
 import model.MaCouleur;
 import model.Tortue;
-import view.commun.ViewFeuille;
+import vue.commun.VueFeuille;
 
 
 import javax.swing.*;
@@ -14,13 +14,13 @@ import java.awt.event.ActionListener;
 /**
  * Created by lafay on 16/05/2017.
  */
-public class ViewFeuilleManuel extends ViewFeuille {
+public class VueFeuilleManuel extends VueFeuille {
 
     private JTextField txtPramettres;
 
     private JComboBox <MaCouleur.Couleur> choixCouleur;
 
-    public ViewFeuilleManuel(ControleurFeuilleManuel controleurFeuilleManuel) {
+    public VueFeuilleManuel(ControleurFeuilleManuel controleurFeuilleManuel) {
         super(controleurFeuilleManuel);
         this.setTitle("Manuel");
 

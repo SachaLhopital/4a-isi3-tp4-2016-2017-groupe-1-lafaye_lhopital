@@ -1,8 +1,8 @@
-package view.vuesAuto;
+package vue.vuesAuto;
 
 import controleur.modeAuto.ControleurFeuilleAuto;
 import model.Tortue;
-import view.commun.ViewFeuille;
+import vue.commun.VueFeuille;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,9 +12,9 @@ import java.awt.event.ActionListener;
 /**
  * Created by lafay on 16/05/2017.
  */
-public class ViewFeuilleAuto extends ViewFeuille {
+public class VueFeuilleAuto extends VueFeuille {
 
-    public ViewFeuilleAuto(ControleurFeuilleAuto controleurFeuilleAuto) {
+    public VueFeuilleAuto(ControleurFeuilleAuto controleurFeuilleAuto) {
         super(controleurFeuilleAuto);
 
         this.setTitle("Automatique");

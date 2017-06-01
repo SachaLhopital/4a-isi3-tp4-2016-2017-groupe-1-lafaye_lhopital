@@ -1,7 +1,7 @@
-package view.vuesAuto;
+package vue.vuesAuto;
 
 import controleur.modeAuto.ControleurFeuilleFlocking;
-import view.commun.ViewFeuille;
+import vue.commun.VueFeuille;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -10,9 +10,9 @@ import java.awt.event.ActionListener;
 /**
  * Created by lafay on 17/05/2017.
  */
-public class ViewFeuilleFlocking extends ViewFeuille {
+public class VueFeuilleFlocking extends VueFeuille {
 
-    public ViewFeuilleFlocking(ControleurFeuilleFlocking controleurFeuilleFlocking) {
+    public VueFeuilleFlocking(ControleurFeuilleFlocking controleurFeuilleFlocking) {
         super(controleurFeuilleFlocking);
 
         this.setTitle("Flocking");
