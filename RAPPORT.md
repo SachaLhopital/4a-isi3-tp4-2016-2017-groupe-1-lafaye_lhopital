@@ -4,9 +4,21 @@
 
 # Rapport TP4 - Projet
 
+*Ce projet a été réalisé dans le cadre du cours d’ISI de Polytech Lyon - 4e Année du cycle d’Ingénieur Informatique.*
+
 ## Introduction
 
-//Todo SLH
+Ce rapport présente le compte rendu de développement et d'amélioration d'un projet de gestion de Tortues. Ce document présente notre travail, mais égalements les difficultés que nous avons rencontrés.
+ 
+Nous commencerons par présenter les différents problèmes initialement présents dans le projet que nous avons résolu au fur et à mesure. 
+
+Le projet comprend une application principale avec des interfaces utilisateurs en Swing. Le projet comprends également quelques tests. 
+
+L'application implémente les notions suivantes : Pattern MVC, Pattern Observeur - Observé, Tests Unitaires, Code SMELL le plus propre possible. 
+L'application implémente également les fonctionnalités suivantes : Gestion d'une multitude de Tortues (Mode manuel ou Automatique), Tortues Flocking (et Flocking Sectaire) et enfin un ensemble de tests, surtout concentré sur les fonctionnalités liées au flocking. 
+
+Nous terminerons par une conclusion sur notre travail.
+
 
 ## Etude de l'existant
 
@@ -86,11 +98,17 @@ Pour appliquer l’architecture MVC, nous avons réorganisé les éléments de l
 
 #### Modèle
 
+//TODO Yoan
+
 Pour gérer les différentes Formes, nous avions mis en place une interface IForme qui permettais au controleur de simplement faire IForme.tracer(), plutôt que de devoir gérer le type de forme avec des méthodes différentes. Finallement se code a été supprimé car inutilisé dans notre projet final.
 
 #### Controleur
 
+//TODO Yoan
+
 #### Vue
+
+//TODO Yoan
 
 ## Extension du projet
 
@@ -116,5 +134,6 @@ Pour gérer les différentes Formes, nous avions mis en place une interface IFor
 
 ## Conclusion
 
-//Todo SLH
+Ce projet a été l’occasion pour nous d'améliorer un application en profondeur et de réellement nous rendre compte de l'importance que nous devons donner aux principes de développement Clean.
+
  
