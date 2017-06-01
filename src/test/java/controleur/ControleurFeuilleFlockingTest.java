@@ -46,10 +46,19 @@ public class ControleurFeuilleFlockingTest {
         /* Mocks */
         MockitoAnnotations.initMocks(this);
         Mockito.doNothing().when(mockVueFeuille).ajouterVueTortue(any());
+
         Mockito.when(tortuePositionneeEn1010.getPosition()).thenReturn(new Point(10,10));
+        Mockito.when(tortuePositionneeEn1010.getCouleur()).thenReturn(Color.BLACK);
+
         Mockito.when(tortuePositionneeEn2020.getPosition()).thenReturn(new Point(20,20));
+        Mockito.when(tortuePositionneeEn2020.getCouleur()).thenReturn(Color.BLACK);
+
         Mockito.when(tortuePositionneeEn4010.getPosition()).thenReturn(new Point(40,10));
+        Mockito.when(tortuePositionneeEn4010.getCouleur()).thenReturn(Color.BLACK);
+
         Mockito.when(tortuePositionneeEn100100.getPosition()).thenReturn(new Point(100,100));
+        Mockito.when(tortuePositionneeEn100100.getCouleur()).thenReturn(Color.BLACK);
+
         Mockito.when(tortuePositionneeEn1010Negatif.getPosition()).thenReturn(new Point(-10,-10));
         Mockito.when(tortuePositionneeEn5010Negatif.getPosition()).thenReturn(new Point(-50,-10));
 

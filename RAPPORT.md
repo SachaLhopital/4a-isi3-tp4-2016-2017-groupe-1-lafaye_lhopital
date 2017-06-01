@@ -139,18 +139,161 @@ Les tortues autonomes sont des tortues qui se mettent à jour de maniere réguli
 
 #### Comportement de flocking
 
-//Todo SLH
+Notre objectif, ici, était de proposer un mode automatique à l'utilisateur où un certain nombre de tortues se déplacent avec un comportement de [flocking](https://en.wikipedia.org/wiki/Flocking_(behavior)), à la manière des oiseaux. 
+
+Au départ nous pensions implémenter une nouvelle classe de tortues qui hériteraient de *Tortue* pour pouvoir réutiliser les méthodes du controleur principal. Cette idée a très vite était abandonnée car en réalité, le comportement de flocking ne change pas vraiment les méthodes de déplacement d'une tortue classique. 
+
+Dans un second temps, nous avions pensé à implémenter le flocking sous forme d'un comportement (où une tortue possèderait un comportement disons normal et flocking), mais là encore nous nous sommes rendus compte que cela modifiait beaucoup de code existant pour au final ne pas vraiment nous faciliter le développement de ce nouveau comportement. 
+
+```java
+private static final int DELAI = 50;
+private static final int PERIODE = 50;
+
+public ControleurFeuilleAuto() {
+    super();
+
+    Timer timer = new Timer();
+    TimerTask myTask = new TimerTask() {
+        @Override
+        public void run() {
+            miseAJour();
+        }
+    };
+
+    timer.schedule(myTask, DELAI, PERIODE);
+}
+```
+
+Finallement, nous avons opté pour une implémentation plus classique. Disposant déjà d'un mode automatique pour gérer des tortues qui se déplacent aléatoirement (avec une méthode de mise à jour qui est appellée automatiquement par un timer : Cf. code ci-dessus), nous avons décidé de rajouter un controleur *ControleurFeuilleFlocking* qui implémenterais le même principe sauf qu'au lieu de se déplacer aléatoirement, les tortues suivent un comportement de flocking. Pour éviter la redondance de code avec *ControleurFeuilleAuto* nous avons créé une classe abstraite *ControleurModeAuto* comme suit : 
+
+```java
+public abstract class ControleurModeAuto extends ControleurFeuilleDessin {
+
+    private static final int DELAI = 50;
+    private static final int PERIODE = 50;
+
+    public ControleurModeAuto() {
+        super();
+
+        Timer timer = new Timer();
+        TimerTask myTask = new TimerTask() {
+            @Override
+            public void run() {
+                miseAJour();
+            }
+        };
+
+        timer.schedule(myTask, DELAI, PERIODE);
+    }
+
+    public abstract void miseAJour();
+    public abstract void ajouterToutesLesTortues();
+}
+```
+
+Les méthodes relatives au comportement du flocking sont définies dans le *ControleurFeuilleFlocking* et sont appellées dans la fonction miseAJour : 
+
+```java
+/***
+ * Déplace les tortues selon le flocking
+ */
+@Override
+public void miseAJour(){
+    if(!enRoute){
+        return;
+    }
+
+    for (Tortue tortue : getTortues()) {
+
+        int directionMoyenne = getDirectionMoyenne(tortue); //Calcul la direction moyenne que la tortue doit suivre, en fonction de ses voisins
+        int directionSeparation = getDirectionSeparation(tortue); //Calcul la direction à prendre pour ne pas rentrer en collision avec une autre tortue
+        int vitesseCohesion = getVitesseCohesion(tortue); //Récupère la vitesse de cohésion des tortues
+
+        tortue.setVitesse(tortue.getVitesse() + vitesseCohesion + directionMoyenne + directionSeparation);
+        tortue.setDir(directionMoyenne + directionSeparation);
+        tortue.avancer(DISTANCE_BASE);
+    }
+}
+```
+
+Assez rapidement, comme toutes les tortues finissent par se voir mutuellement dans leur champs de vision, des groupes de tortues se forment suivent la même direction jusqu'à ce que toutes les tortues se suivent comme un unique groupe. 
+
+![Illustration du flocking avec deux groupes visibles](images/rapport/flocking.PNG)
+
+Au départ, pour mettre en place le flocking, nous avons suivi des pseudo-algorithmes sur internet et nous avons essayé d'implémenter une structure avec des Vecteurs pour modéliser la position et la direction des Tortues. Nous avons fini par abandonner car cette implémentation modifiait toute la structure de notre code précédent et il était possible de réaliser un flocking fonctionnel tout en conservant la modification originale. Néanmoins, notre comportement n'est pas tout à fait parfait, et c'est peut-être aussi à cause de notre façon de modéliser - calculer les directions des tortues à suivre. 
 
 #### Comportement de flocking sectaire
 
-//Todo SLH
+Nous souhaitions par la suite que les tortues appliquent un comportement de flocking uniquement avec des voisines qui sont de la même couleur qu'elles. 
+
+Grâce à notre modélisation précédente, il nous as suffit d'ajouter un *ControleurFeuilleFlockingSectaire* qui hérite du *ControleurFeuilleFlocking* classique et override la méthode qui instancie toutes les tortues sur l'affichage. 
+
+```java
+public class ControleurFeuilleFlockingSectaire extends ControleurFeuilleFlocking {
+
+    private static int NB_TORTUESPARCOULEUR = 10;
+
+    public ControleurFeuilleFlockingSectaire(){
+        super();
+        démarrer();
+    }
+
+    @Override
+    public void ajouterToutesLesTortues() {
+        for(int i = 0 ; i < NB_TORTUESPARCOULEUR; i++){
+            Tortue tNoire = new Tortue();
+            tNoire.setCouleur(Color.BLACK);
+            ajouterTortue(tNoire);
+            Tortue tRouge = new Tortue();
+            tRouge.setCouleur(Color.RED);
+            ajouterTortue(tRouge);
+            Tortue tVerte = new Tortue();
+            tVerte.setCouleur(Color.GREEN);
+            ajouterTortue(tVerte);
+            Tortue tBleue = new Tortue();
+            tBleue.setCouleur(Color.BLUE);
+            ajouterTortue(tBleue);
+        }
+    }
+}
+```
+
+Pour le comportement de flocking classique, nous avions définie une méthode privée *tortuesPeuventSeSuivre(Tortue tortue1, Tortue tortue2)* qui retournait *true* si les tortues se voient et *false* sinon. 
+Pour être sûr que les tortues ne se suivent que si elles sont de la même couleur, nous avons juste eu besoin de rajouter une condition dans cette méthode :  
+
+```java
+//Si les tortues ne sont pas de la même couleur : elles ne se suivent pas
+if(!tortue1.getCouleur().equals(tortue2.getCouleur())) {
+    return false;
+}
+```
+
+Au départ nous avons surchargé la méthode dans la classe *ControleurFeuilleFlockingSectaire* mais enfaite on peut directement mettre la condition dans le controleur parent car cette condition n'affecte pas la fonctionnalité précédente. 
 
 #### Tests
 
-//Todo SLH
+Enfin, en complément de notre application, nous avons décidé d'implémenter quelques tests avec JUnit. 
+
+Dans un premier temps nous avons testé *ControleurFeuilleDessin* en mockant une *VueFeuille* et une *Tortue*. Nous avons ainsi réalisé un test simple pour vérifier que la méthode *ajouterTortue* avait le bon comportement. 
+
+Puis nous avons décidé de tester le controleur en charge du flocking car c'est une fonctionnalité très sensible. Nous avons là aussi utilisé les Mocks. 
+En plus des Mocks, nous avons eu beaucoup de mal à tester certaines méthodes de la classe car elles étaient privées. En effet, les méthodes qui sont les plus importantes sont privées car elle ne sont accessible que depuis la méthode de *miseAJour()*. Pour pallier à ce problème, nous avons utilisé la méthode de **Reflection** qui permet de rendre les méthodes accesible pendant les tests. 
+
+Par manque de temps, nous n'avons pas réalisé "beaucoup" de tests, surtout concernant l'interface avec l'utilisateur. C'est sans doute ce qui constitue la plus grande faiblesse de notre projet.  
 
 ## Conclusion
 
-Ce projet a été l’occasion pour nous d'améliorer un application en profondeur et de réellement nous rendre compte de l'importance que nous devons donner aux principes de développement Clean.
+Ce projet a été l’occasion pour nous d'améliorer une application en profondeur et de réellement nous rendre compte de l'importance que nous devons donner aux principes de développement Clean. Nous avons constaté que c'est un travail, long, minutieux et murement réfléchis, mais que l'application ou le projet n'en ressort que meilleur. La rétrospective ci-après donne une idée de la satisfaction que nous retirons de ce projet, bien qu'il ne soit pas parfait :
+
+- **Lisibilité** : Bonne
+- **DRY** : Bon
+- **Optimisation** : Assez Bon, peut-être que l'on peut encore l'améliorer au niveau du MVC (et plus particulièrement VC). 
+- **Testabilité** : Bonne
+- **SOLID** : Assez Bon, plus de tests doivent permettrent de définir si l'application est correctement développée ou si il reste du travail
+- **Testé** : A Améliorer, code coverage actuel : 
+
+![Code Coverage](images/rapport/codeCoverage.PNG)
+
+- **Documenté** : Bon
 
  

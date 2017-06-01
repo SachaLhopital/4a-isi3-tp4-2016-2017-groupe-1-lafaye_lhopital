@@ -125,7 +125,7 @@ public class ControleurFeuilleFlocking extends ControleurModeAuto {
     }
 
     /***
-     * Vérifie si deux tortues peuvent se suivre (si elles sont voisines)
+     * Vérifie si deux tortues peuvent se suivre (si elles sont voisines et de la même couleur)
      * (Attention, si la même tortue est passé en paramètre 2 fois, on retourne faux)
      * @param tortue1
      * @param tortue2
@@ -133,6 +133,11 @@ public class ControleurFeuilleFlocking extends ControleurModeAuto {
      */
     public boolean tortuesPeuventSeSuivre(Tortue tortue1, Tortue tortue2) {
         if(tortue1.equals(tortue2)) {
+            return false;
+        }
+
+        //Si les tortues ne sont pas de la même couleur : elles ne se suivent pas
+        if(!tortue1.getCouleur().equals(tortue2.getCouleur())) {
             return false;
         }
 
