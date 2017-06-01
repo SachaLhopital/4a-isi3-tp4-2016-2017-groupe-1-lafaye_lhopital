@@ -41,7 +41,7 @@ public class ControleurFeuilleFlocking extends ControleurModeAuto {
             int vitesseCohesion = getVitesseCohesion(tortue);
 
             tortue.setVitesse(tortue.getVitesse() + vitesseCohesion + directionMoyenne + directionSeparation);
-            tortue.setDir(directionMoyenne + directionSeparation);
+            tortue.setDirection(directionMoyenne + directionSeparation);
             tortue.avancer(DISTANCE_BASE);
         }
     }

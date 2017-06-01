@@ -60,7 +60,10 @@ public class ControleurFeuilleFlockingTest {
         Mockito.when(tortuePositionneeEn100100.getCouleur()).thenReturn(Color.BLACK);
 
         Mockito.when(tortuePositionneeEn1010Negatif.getPosition()).thenReturn(new Point(-10,-10));
+        Mockito.when(tortuePositionneeEn1010Negatif.getCouleur()).thenReturn(Color.BLUE);
+
         Mockito.when(tortuePositionneeEn5010Negatif.getPosition()).thenReturn(new Point(-50,-10));
+        Mockito.when(tortuePositionneeEn5010Negatif.getCouleur()).thenReturn(Color.BLUE);
 
         /* Variables diverses */
         controleur = new ControleurFeuilleFlocking();
@@ -137,6 +140,11 @@ public class ControleurFeuilleFlockingTest {
     @Test
     public void tortuesSontVoisines_devrait_retourner_faux_pour_distance_euclidienne_egale_distance_vue() throws Exception {
         assertThat(controleur.tortuesPeuventSeSuivre(tortuePositionneeEn1010, tortuePositionneeEn4010)).isFalse();
+    }
+
+    @Test
+    public void tortuesSontVoisines_devrait_retourner_faux_pour_tortues_couleurs_differentes() throws Exception {
+        assertThat(controleur.tortuesPeuventSeSuivre(tortuePositionneeEn1010, tortuePositionneeEn5010Negatif)).isFalse();
     }
 
     //ajouterToutesLesTortues

@@ -81,15 +81,15 @@ public class Tortue extends Observable {
         notifyObservers();
     }
 
-    public void setDir(int dir){
-        this.dir = dir;
+    public void setDirection(int direction){
+        this.dir = direction;
 
-        if(dir > DEGREES){
-            this.dir = dir - DEGREES;
+        if(direction > DEGREES){
+            this.dir = direction - DEGREES;
         }
 
-        if(dir < 0){
-            this.dir = dir + DEGREES;
+        if(direction < 0){
+            this.dir = direction + DEGREES;
         }
 
         setChanged();
@@ -124,7 +124,7 @@ public class Tortue extends Observable {
     }
 
     public void droite(int angle) {
-        setDir((getDir()+angle));
+        setDirection((getDir()+angle));
     }
 
     public void gauche(int angle) {
