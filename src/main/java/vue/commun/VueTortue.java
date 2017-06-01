@@ -1,6 +1,6 @@
-package view;
+package vue.commun;
 
-import controleur.ControleurTortue;
+import controleur.commun.ControleurTortue;
 import model.Tortue;
 
 import javax.swing.*;
@@ -14,7 +14,7 @@ import java.util.Observer;
 /**
  * Created by lafay on 15/05/2017.
  */
-public class ViewTortue extends AbstractButton implements Observer {
+public class VueTortue extends AbstractButton implements Observer {
 
     private static final int TAILLE_FENETRE = 20;
     private static final int CORRECTEUR_COORDONNES = 10;
@@ -22,7 +22,7 @@ public class ViewTortue extends AbstractButton implements Observer {
 
     ControleurTortue controleurTortue;
 
-    public ViewTortue(ControleurTortue controleurTortue){
+    public VueTortue(ControleurTortue controleurTortue){
 
         this.controleurTortue = controleurTortue;
         setVisible(true);

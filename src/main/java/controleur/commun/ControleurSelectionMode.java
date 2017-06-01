@@ -1,10 +1,13 @@
-package controleur;
+package controleur.commun;
 
+import controleur.modeAuto.ControleurFeuilleAuto;
+import controleur.modeAuto.ControleurFeuilleFlocking;
+import controleur.modeAuto.ControleurFeuilleFlockingSectaire;
+import controleur.modeManuel.ControleurFeuilleManuel;
 import model.Tortue;
-import view.ViewFeuille;
-import view.ViewFeuilleAuto;
-import view.ViewFeuilleFlocking;
-import view.ViewFeuilleManuel;
+import vue.vuesAuto.VueFeuilleAuto;
+import vue.vuesAuto.VueFeuilleFlocking;
+import vue.vuesManuelle.VueFeuilleManuel;
 
 /**
  * Created by lafay on 15/05/2017.
@@ -20,7 +23,7 @@ public class ControleurSelectionMode {
     public void lancerTortueManuelle(){
 
         ControleurFeuilleManuel ctrl = new ControleurFeuilleManuel();
-        ViewFeuilleManuel app = new ViewFeuilleManuel(ctrl);
+        VueFeuilleManuel app = new VueFeuilleManuel(ctrl);
 
         app.setVisible(true);
         Tortue t = new Tortue(POSITION_INITIALE,POSITION_INITIALE);
@@ -31,7 +34,7 @@ public class ControleurSelectionMode {
     public void lancerTortueFlocking(){
 
         ControleurFeuilleFlocking ctrl = new ControleurFeuilleFlocking();
-        ViewFeuilleFlocking app = new ViewFeuilleFlocking(ctrl);
+        VueFeuilleFlocking app = new VueFeuilleFlocking(ctrl);
 
         app.setVisible(true);
         Tortue t = new Tortue(POSITION_INITIALE,POSITION_INITIALE);
@@ -41,20 +44,15 @@ public class ControleurSelectionMode {
 
     public void lancerTortueAuto(){
         ControleurFeuilleAuto ctrl = new ControleurFeuilleAuto();
-        ViewFeuilleAuto app = new ViewFeuilleAuto(ctrl);
+        VueFeuilleAuto app = new VueFeuilleAuto(ctrl);
 
         app.setVisible(true);
-        Tortue t = new Tortue(POSITION_INITIALE,POSITION_INITIALE);
-        ctrl.ajouterTortue(t);
     }
 
     public void lancerTortueFlockingSectaire() {
         ControleurFeuilleFlockingSectaire ctrl = new ControleurFeuilleFlockingSectaire();
-        ViewFeuilleFlocking app = new ViewFeuilleFlocking(ctrl);
+        VueFeuilleFlocking app = new VueFeuilleFlocking(ctrl);
 
         app.setVisible(true);
-
-
-
     }
 }

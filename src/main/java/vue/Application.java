@@ -1,11 +1,12 @@
-package view;
+package vue;
 
 /**
  * Created by Sachouw Dev on 07/05/2017.
  */
 
-import controleur.ControleurSelectionMode;
+import controleur.commun.ControleurSelectionMode;
 import javafx.stage.Stage;
+import vue.commun.VueSelectionMode;
 
 
 /***
@@ -21,6 +22,6 @@ public class Application extends javafx.application.Application {
     public void start(Stage primaryStage) {
 
         ControleurSelectionMode controleurSelectionMode = new ControleurSelectionMode();
-        new ViewSelectionMode(controleurSelectionMode);
+        new VueSelectionMode(controleurSelectionMode);
     }
 }

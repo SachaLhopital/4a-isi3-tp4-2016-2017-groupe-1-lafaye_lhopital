@@ -1,6 +1,6 @@
-package view;
+package vue.commun;
 
-import controleur.ControleurSelectionMode;
+import controleur.commun.ControleurSelectionMode;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by lafay on 15/05/2017.
  */
-public class ViewSelectionMode extends JFrame{
+public class VueSelectionMode extends JFrame{
     private JPanel panPrincipal;
     private JButton btnManuel;
     private JButton btnAutomatique;
@@ -19,7 +19,7 @@ public class ViewSelectionMode extends JFrame{
 
     ControleurSelectionMode controleur;
 
-    ViewSelectionMode(ControleurSelectionMode controleur){
+    public VueSelectionMode(ControleurSelectionMode controleur){
         this.controleur = controleur;
 
         this.setTitle("Selection du Mode");

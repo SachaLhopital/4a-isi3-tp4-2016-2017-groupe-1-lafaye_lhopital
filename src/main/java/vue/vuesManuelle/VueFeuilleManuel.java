@@ -1,7 +1,11 @@
-package view;
+package vue.vuesManuelle;
 
-import controleur.ControleurFeuilleManuel;
+
 import model.MaCouleur;
+import controleur.modeManuel.ControleurFeuilleManuel;
+import model.Tortue;
+import vue.commun.VueFeuille;
+
 
 
 import javax.swing.*;
@@ -12,13 +16,13 @@ import java.awt.event.ActionListener;
 /**
  * Created by lafay on 16/05/2017.
  */
-public class ViewFeuilleManuel extends ViewFeuille {
+public class VueFeuilleManuel extends VueFeuille {
 
     private JTextField txtPramettres;
 
     private JComboBox <MaCouleur.Couleur> choixCouleur;
 
-    public ViewFeuilleManuel(ControleurFeuilleManuel controleurFeuilleManuel) {
+    public VueFeuilleManuel(ControleurFeuilleManuel controleurFeuilleManuel) {
         super(controleurFeuilleManuel);
         this.setTitle("Manuel");
 
@@ -32,7 +36,6 @@ public class ViewFeuilleManuel extends ViewFeuille {
         JButton btnAjouter = new JButton("Ajouter");
         JButton btnDroite = new JButton("Droite");
         JButton btnGauche = new JButton("Gauche");
-        JButton btnEffacer = new JButton("Effacer");
 
         choixCouleur = new JComboBox<>();
         choixCouleur.addItem(MaCouleur.Couleur.NOIR);
@@ -48,7 +51,6 @@ public class ViewFeuilleManuel extends ViewFeuille {
         toolBar.add(btnDroite);
         toolBar.add(btnGauche);
         toolBar.add(btnAjouter);
-        toolBar.add(btnEffacer);
         toolBar.add(choixCouleur);
 
         panHaut.add(toolBar);
@@ -80,7 +82,7 @@ public class ViewFeuilleManuel extends ViewFeuille {
         btnAjouter.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controleurFeuilleManuel.ajouter();
+                controleurFeuilleManuel.ajouterTortue(new Tortue());
                 controleurFeuilleManuel.changerCouleur(MaCouleur.getColor((MaCouleur.Couleur)choixCouleur.getSelectedItem()));
             }
         });
@@ -101,7 +103,7 @@ public class ViewFeuilleManuel extends ViewFeuille {
             valeur = Integer.parseInt(txtPramettres.getText());
         }catch (Exception e){
             //print message log
-            System.out.println("Format du paramettre invalide, il faut un nombre en entrée");
+            System.out.println("Format du parametre invalide, merci de saisir un entier");
         }
 
         return valeur;

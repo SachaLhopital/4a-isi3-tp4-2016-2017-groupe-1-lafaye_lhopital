@@ -1,4 +1,4 @@
-package controleur;
+package controleur.commun;
 
 import model.Tortue;
 
@@ -13,7 +13,6 @@ public class ControleurTortue{
     public ControleurTortue(ControleurFeuilleDessin controleurFeuilleDessin, Tortue tortue){
         this.tortue = tortue;
         this.controleurFeuilleDessin = controleurFeuilleDessin;
-
     }
 
     public Tortue getTortue() {

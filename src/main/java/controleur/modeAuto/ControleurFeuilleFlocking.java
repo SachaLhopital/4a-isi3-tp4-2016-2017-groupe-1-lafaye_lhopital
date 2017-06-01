@@ -1,4 +1,4 @@
-package controleur;
+package controleur.modeAuto;
 
 import model.Tortue;
 
@@ -7,17 +7,18 @@ import java.awt.*;
 /**
  * Created by lafay on 17/05/2017.
  */
-public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
+public class ControleurFeuilleFlocking extends ControleurModeAuto {
 
     private static int DISTANCE_VUE = 30;
     public static final int NOMBRES_TORTUES_BASE = 13;
 
     private boolean enRoute = false;
 
-    ControleurFeuilleFlocking(){
+    public ControleurFeuilleFlocking(){
         super();
     }
 
+    @Override
     public void ajouterToutesLesTortues() {
         for(int i = 0; i < NOMBRES_TORTUES_BASE; i++) {
             ajouterTortue(new Tortue());
@@ -27,6 +28,7 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
     /***
      * Déplace les tortues selon le flocking
      */
+    @Override
     public void miseAJour(){
         if(!enRoute){
             return;
@@ -55,7 +57,7 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
 
         for(Tortue tortue : getTortues()) {
 
-            if(tortuesSontVoisines(tortueCourante, tortue)) {
+            if(tortuesPeuventSeSuivre(tortueCourante, tortue)) {
                 somme += tortue.getDir();
                 nombreVoisins++;
             }
@@ -78,7 +80,7 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
 
         for(Tortue tortue : getTortues()) {
 
-            if(tortuesSontVoisines(tortueCourante, tortue)) {
+            if(tortuesPeuventSeSuivre(tortueCourante, tortue)) {
 
                 double differencePosition = getDistanceEuclidienne(tortueCourante.getPosition(), tortue.getPosition());
                 if(differencePosition < DISTANCE_BASE) {
@@ -100,7 +102,7 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
         int vitesse = 0;
 
         for(Tortue tortue : getTortues()) {
-            if(tortuesSontVoisines(tortue, tortueCourante)) {
+            if(tortuesPeuventSeSuivre(tortue, tortueCourante)) {
                 vitesse += tortue.getVitesse();
                 nombreVoisins++;
             }
@@ -123,13 +125,13 @@ public class ControleurFeuilleFlocking extends ControleurFeuilleAuto {
     }
 
     /***
-     * Vérifie si deux tortues sont voisines
+     * Vérifie si deux tortues peuvent se suivre (si elles sont voisines)
      * (Attention, si la même tortue est passé en paramètre 2 fois, on retourne faux)
      * @param tortue1
      * @param tortue2
      * @return
      */
-    protected boolean tortuesSontVoisines(Tortue tortue1, Tortue tortue2) {
+    public boolean tortuesPeuventSeSuivre(Tortue tortue1, Tortue tortue2) {
         if(tortue1.equals(tortue2)) {
             return false;
         }

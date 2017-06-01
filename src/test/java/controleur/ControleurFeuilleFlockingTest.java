@@ -1,12 +1,13 @@
 package controleur;
 
+import controleur.modeAuto.ControleurFeuilleFlocking;
 import model.Tortue;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import view.ViewFeuille;
+import vue.commun.VueFeuille;
 
 import java.awt.*;
 import java.lang.reflect.Method;
@@ -31,7 +32,7 @@ public class ControleurFeuilleFlockingTest {
     private Point[] parametres;
     private Class[] typesDesParametres;
 
-    @Mock private ViewFeuille mockViewFeuille;
+    @Mock private VueFeuille mockVueFeuille;
     @Mock private Tortue tortuePositionneeEn1010;
     @Mock private Tortue tortuePositionneeEn2020;
     @Mock private Tortue tortuePositionneeEn4010;
@@ -44,7 +45,7 @@ public class ControleurFeuilleFlockingTest {
 
         /* Mocks */
         MockitoAnnotations.initMocks(this);
-        Mockito.doNothing().when(mockViewFeuille).ajouterVueTortue(any());
+        Mockito.doNothing().when(mockVueFeuille).ajouterVueTortue(any());
         Mockito.when(tortuePositionneeEn1010.getPosition()).thenReturn(new Point(10,10));
         Mockito.when(tortuePositionneeEn2020.getPosition()).thenReturn(new Point(20,20));
         Mockito.when(tortuePositionneeEn4010.getPosition()).thenReturn(new Point(40,10));
@@ -54,7 +55,7 @@ public class ControleurFeuilleFlockingTest {
 
         /* Variables diverses */
         controleur = new ControleurFeuilleFlocking();
-        controleur.setFeuilleDessin(mockViewFeuille);
+        controleur.setFeuilleDessin(mockVueFeuille);
 
         /* Setup pour tester les méthodes privées */
         parametres = new Point[2];
@@ -111,22 +112,22 @@ public class ControleurFeuilleFlockingTest {
 
     @Test
     public void tortuesSontVoisines_devrait_retourner_faux_pour_2tortues_identiques() throws Exception {
-        assertThat(controleur.tortuesSontVoisines(tortuePositionneeEn1010, tortuePositionneeEn1010)).isFalse();
+        assertThat(controleur.tortuesPeuventSeSuivre(tortuePositionneeEn1010, tortuePositionneeEn1010)).isFalse();
     }
 
     @Test
     public void tortuesSontVoisines_devrait_retourner_vrai_pour_distance_euclidienne_inferieure_distance_vue() throws Exception {
-        assertThat(controleur.tortuesSontVoisines(tortuePositionneeEn1010, tortuePositionneeEn2020)).isTrue();
+        assertThat(controleur.tortuesPeuventSeSuivre(tortuePositionneeEn1010, tortuePositionneeEn2020)).isTrue();
     }
 
     @Test
     public void tortuesSontVoisines_devrait_retourner_faux_pour_distance_euclidienne_superieur_distance_vue() throws Exception {
-        assertThat(controleur.tortuesSontVoisines(tortuePositionneeEn1010, tortuePositionneeEn100100)).isFalse();
+        assertThat(controleur.tortuesPeuventSeSuivre(tortuePositionneeEn1010, tortuePositionneeEn100100)).isFalse();
     }
 
     @Test
     public void tortuesSontVoisines_devrait_retourner_faux_pour_distance_euclidienne_egale_distance_vue() throws Exception {
-        assertThat(controleur.tortuesSontVoisines(tortuePositionneeEn1010, tortuePositionneeEn4010)).isFalse();
+        assertThat(controleur.tortuesPeuventSeSuivre(tortuePositionneeEn1010, tortuePositionneeEn4010)).isFalse();
     }
 
     //ajouterToutesLesTortues

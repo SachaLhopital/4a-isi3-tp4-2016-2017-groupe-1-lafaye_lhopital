@@ -1,4 +1,4 @@
-package controleur;
+package controleur.modeAuto;
 
 import model.Tortue;
 
@@ -11,12 +11,12 @@ public class ControleurFeuilleFlockingSectaire extends ControleurFeuilleFlocking
 
     private static int NB_TORTUESPARCOULEUR = 10;
 
-    ControleurFeuilleFlockingSectaire(){
+    public ControleurFeuilleFlockingSectaire(){
         super();
-        this.démarrer();
-
+        démarrer();
     }
 
+    @Override
     public void ajouterToutesLesTortues() {
         for(int i = 0 ; i < NB_TORTUESPARCOULEUR; i++){
             Tortue tNoire = new Tortue();
@@ -34,7 +34,8 @@ public class ControleurFeuilleFlockingSectaire extends ControleurFeuilleFlocking
         }
     }
 
-    protected boolean tortuesSontVoisines(Tortue tortue1, Tortue tortue2) {
-        return tortue1.getCouleur().equals(tortue2.getCouleur()) && super.tortuesSontVoisines(tortue1, tortue2);
+    @Override
+    public boolean tortuesPeuventSeSuivre(Tortue tortue1, Tortue tortue2) {
+        return tortue1.getCouleur().equals(tortue2.getCouleur()) && super.tortuesPeuventSeSuivre(tortue1, tortue2);
     }
 }
