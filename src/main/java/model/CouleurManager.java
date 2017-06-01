@@ -3,7 +3,7 @@ package model;
 /**
  * Created by lafay on 22/05/2017.
  */
-public class MaCouleur {
+public class CouleurManager {
 
     public enum Couleur {
         NOIR,
@@ -13,7 +13,7 @@ public class MaCouleur {
         ROSE;
     }
 
-    public static java.awt.Color getColor(Couleur couleur) {
+    public static java.awt.Color getCouleur(Couleur couleur) {
         switch (couleur){
             case NOIR:
                 return java.awt.Color.BLACK;

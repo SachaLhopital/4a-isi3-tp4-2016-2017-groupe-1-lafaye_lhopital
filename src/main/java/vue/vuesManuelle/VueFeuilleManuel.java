@@ -1,7 +1,7 @@
 package vue.vuesManuelle;
 
 import controleur.modeManuel.ControleurFeuilleManuel;
-import model.MaCouleur;
+import model.CouleurManager;
 import model.Tortue;
 import vue.commun.VueFeuille;
 
@@ -18,7 +18,7 @@ public class VueFeuilleManuel extends VueFeuille {
 
     private JTextField txtPramettres;
 
-    private JComboBox <MaCouleur.Couleur> choixCouleur;
+    private JComboBox <CouleurManager.Couleur> choixCouleur;
 
     public VueFeuilleManuel(ControleurFeuilleManuel controleurFeuilleManuel) {
         super(controleurFeuilleManuel);
@@ -36,11 +36,11 @@ public class VueFeuilleManuel extends VueFeuille {
         JButton btnGauche = new JButton("Gauche");
 
         choixCouleur = new JComboBox<>();
-        choixCouleur.addItem(MaCouleur.Couleur.NOIR);
-        choixCouleur.addItem(MaCouleur.Couleur.VERT);
-        choixCouleur.addItem(MaCouleur.Couleur.BLEU);
-        choixCouleur.addItem(MaCouleur.Couleur.ROUGE);
-        choixCouleur.addItem(MaCouleur.Couleur.ROSE);
+        choixCouleur.addItem(CouleurManager.Couleur.NOIR);
+        choixCouleur.addItem(CouleurManager.Couleur.VERT);
+        choixCouleur.addItem(CouleurManager.Couleur.BLEU);
+        choixCouleur.addItem(CouleurManager.Couleur.ROUGE);
+        choixCouleur.addItem(CouleurManager.Couleur.ROSE);
 
 
 
@@ -81,14 +81,14 @@ public class VueFeuilleManuel extends VueFeuille {
             @Override
             public void actionPerformed(ActionEvent e) {
                 controleurFeuilleManuel.ajouterTortue(new Tortue());
-                controleurFeuilleManuel.changerCouleur(MaCouleur.getColor((MaCouleur.Couleur)choixCouleur.getSelectedItem()));
+                controleurFeuilleManuel.changerCouleur(CouleurManager.getCouleur((CouleurManager.Couleur)choixCouleur.getSelectedItem()));
             }
         });
 
         choixCouleur.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controleurFeuilleManuel.changerCouleur(MaCouleur.getColor((MaCouleur.Couleur)choixCouleur.getSelectedItem()));
+                controleurFeuilleManuel.changerCouleur(CouleurManager.getCouleur((CouleurManager.Couleur)choixCouleur.getSelectedItem()));
             }
         });
 
