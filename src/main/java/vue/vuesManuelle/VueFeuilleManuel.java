@@ -5,8 +5,6 @@ import model.Tortue;
 import model.CouleurManager;
 import vue.commun.VueFeuille;
 
-
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
