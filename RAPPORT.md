@@ -98,27 +98,44 @@ Pour appliquer l’architecture MVC, nous avons réorganisé les éléments de l
 
 #### Modèle
 
-//TODO Yoan
+![Diagrame de Classe du modele](images/rapport/diagramModele.PNG)
 
 Pour gérer les différentes Formes, nous avions mis en place une interface IForme qui permettais au controleur de simplement faire IForme.tracer(), plutôt que de devoir gérer le type de forme avec des méthodes différentes. Finallement se code a été supprimé car inutilisé dans notre projet final.
 
 #### Controleur
 
-//TODO Yoan
+![Diagrame de Classe du modele](images/rapport/diagramControler.PNG)
 
 #### Vue
 
-//TODO Yoan
+![Diagrame de Classe du modele](images/rapport/diagramVue.PNG)
 
 ## Extension du projet
 
 #### Gestion de plusieurs tortues
 
-//Todo yoan expliquer + problèmes rencontrés
+Le but etait de pouvoir afficher lusieurs tortues et de pouvoir les selectionner de maniere independante.
+La technique utilisée est d'aficher des JComponent qui ne sont en charge que du dessin de la tortue (triangle et orientation) puis 
+de placer ces JComponent dans un JPannel de maniere fixée (avec la methode setBounds). En utilisant cette technique, nous avont acces aux diférents évenements sur chaque JComponent dont le Clic ... A la détecton d'un clic on peut donc selectionner une tortue de maniere simple.
 
 #### Tortues autonomes
 
 //Todo Yoan expliquer + problèmes rencontrés
+
+Les tortues autonomes sont des tortues qui se mettent à jour de maniere réguliere selon un algorythe précis (aléatoire, flocking ...). Afin d'automatiser les mises à jours, chaque controlleur execute à intervale reguliere la methode miseAJour qui est en charge de mettre à jour chque tortue presente sur l'afichage. Le mode auto fonctione sur une base aléatoire (avancer de x, tourner a droite de y, tourner a gauche de z, [x,y,z] etant selectionnés aléatoirement).
+
+````java
+ Timer timer = new Timer();
+        TimerTask myTask = new TimerTask() {
+            @Override
+            public void run() {
+                miseAJour();
+            }
+        };
+
+        timer.schedule(myTask, DELAI, PERIODE);
+````
+
 
 #### Comportement de flocking
 
