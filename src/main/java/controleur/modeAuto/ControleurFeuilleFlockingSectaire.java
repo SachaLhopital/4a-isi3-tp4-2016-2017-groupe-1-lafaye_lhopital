@@ -33,9 +33,4 @@ public class ControleurFeuilleFlockingSectaire extends ControleurFeuilleFlocking
             ajouterTortue(tBleue);
         }
     }
-
-    @Override
-    public boolean tortuesPeuventSeSuivre(Tortue tortue1, Tortue tortue2) {
-        return tortue1.getCouleur().equals(tortue2.getCouleur()) && super.tortuesPeuventSeSuivre(tortue1, tortue2);
-    }
 }
