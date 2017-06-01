@@ -89,12 +89,16 @@ public void poly(int n, int a){[...]}
 ## Implémentation du MVC
 
 Pour appliquer l’architecture MVC, nous avons réorganisé les éléments de l’application en trois package (modele, vue, controleur). 
+ 
+Afin de permettre une mise a jour dynamique de la vue, un utilise un pattern observeur/observé.
 
-//TODO Yoan : diagramme UML éventuellement ? 
-+ expliquer l'arborescence des controleurs/vues
-+ expliquer le lien vue/controleur/modèle
-+ expliquer observer observé 
-+ expliquer difficultés éventuelles
+La chaque Tortue déclarée est observé par une vue associée qui est notifiée à chaque changement de direction ou de position afin de la mettre à jour.
+
+Le controleur est en charge de la gestion des actions, un event sur la vue (clique sur un button, une tortue ...) appelle automatiquement une methode du controlleur associé. En cas de paramettres entré par l'utilisateur (distance et angle), la vue est également en charge de verifier si l'entrée est correcte.
+
+Le controleur modifie également le modele en appelant les methodes de changement de direction (gauche(), droite()) et de déplacement (avancer()).
+
+Certains problèmes sont remontés par l'utilisation du patern observeur/observé car nous avions une boucle infinie de notification. Cette boucle etait due à une mauvaise implementation du patern MVC.
 
 #### Modèle
 
