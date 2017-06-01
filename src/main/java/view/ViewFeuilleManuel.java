@@ -1,7 +1,7 @@
 package view;
 
 import controleur.ControleurFeuilleManuel;
-import model.MyColor;
+import model.MaCouleur;
 
 
 import javax.swing.*;
@@ -16,7 +16,7 @@ public class ViewFeuilleManuel extends ViewFeuille {
 
     private JTextField txtPramettres;
 
-    private JComboBox <MyColor.Color> choixCouleur;
+    private JComboBox <MaCouleur.Couleur> choixCouleur;
 
     public ViewFeuilleManuel(ControleurFeuilleManuel controleurFeuilleManuel) {
         super(controleurFeuilleManuel);
@@ -35,11 +35,11 @@ public class ViewFeuilleManuel extends ViewFeuille {
         JButton btnEffacer = new JButton("Effacer");
 
         choixCouleur = new JComboBox<>();
-        choixCouleur.addItem(MyColor.Color.NOIR);
-        choixCouleur.addItem(MyColor.Color.VERT);
-        choixCouleur.addItem(MyColor.Color.BLEU);
-        choixCouleur.addItem(MyColor.Color.ROUGE);
-        choixCouleur.addItem(MyColor.Color.ROSE);
+        choixCouleur.addItem(MaCouleur.Couleur.NOIR);
+        choixCouleur.addItem(MaCouleur.Couleur.VERT);
+        choixCouleur.addItem(MaCouleur.Couleur.BLEU);
+        choixCouleur.addItem(MaCouleur.Couleur.ROUGE);
+        choixCouleur.addItem(MaCouleur.Couleur.ROSE);
 
 
 
@@ -81,14 +81,14 @@ public class ViewFeuilleManuel extends ViewFeuille {
             @Override
             public void actionPerformed(ActionEvent e) {
                 controleurFeuilleManuel.ajouter();
-                controleurFeuilleManuel.changerCouleur(MyColor.getColor((MyColor.Color)choixCouleur.getSelectedItem()));
+                controleurFeuilleManuel.changerCouleur(MaCouleur.getColor((MaCouleur.Couleur)choixCouleur.getSelectedItem()));
             }
         });
 
         choixCouleur.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controleurFeuilleManuel.changerCouleur(MyColor.getColor((MyColor.Color)choixCouleur.getSelectedItem()));
+                controleurFeuilleManuel.changerCouleur(MaCouleur.getColor((MaCouleur.Couleur)choixCouleur.getSelectedItem()));
             }
         });
 
