@@ -90,12 +90,6 @@ public void poly(int n, int a){[...]}
 
 Pour appliquer l’architecture MVC, nous avons réorganisé les éléments de l’application en trois package (modele, vue, controleur). 
 
-//TODO Yoan : diagramme UML éventuellement ? 
-+ expliquer l'arborescence des controleurs/vues
-+ expliquer le lien vue/controleur/modèle
-+ expliquer observer observé 
-+ expliquer difficultés éventuelles
-
 #### Modèle
 
 ![Diagrame de Classe du modele](images/rapport/diagramModele.PNG)
@@ -120,8 +114,6 @@ de placer ces JComponent dans un JPannel de maniere fixée (avec la methode setB
 
 #### Tortues autonomes
 
-//Todo Yoan expliquer + problèmes rencontrés
-
 Les tortues autonomes sont des tortues qui se mettent à jour de maniere réguliere selon un algorythe précis (aléatoire, flocking ...). Afin d'automatiser les mises à jours, chaque controlleur execute à intervale reguliere la methode miseAJour qui est en charge de mettre à jour chque tortue presente sur l'afichage. Le mode auto fonctione sur une base aléatoire (avancer de x, tourner a droite de y, tourner a gauche de z, [x,y,z] etant selectionnés aléatoirement).
 
 ````java
@@ -145,26 +137,7 @@ Au départ nous pensions implémenter une nouvelle classe de tortues qui hérite
 
 Dans un second temps, nous avions pensé à implémenter le flocking sous forme d'un comportement (où une tortue possèderait un comportement disons normal et flocking), mais là encore nous nous sommes rendus compte que cela modifiait beaucoup de code existant pour au final ne pas vraiment nous faciliter le développement de ce nouveau comportement. 
 
-```java
-private static final int DELAI = 50;
-private static final int PERIODE = 50;
-
-public ControleurFeuilleAuto() {
-    super();
-
-    Timer timer = new Timer();
-    TimerTask myTask = new TimerTask() {
-        @Override
-        public void run() {
-            miseAJour();
-        }
-    };
-
-    timer.schedule(myTask, DELAI, PERIODE);
-}
-```
-
-Finallement, nous avons opté pour une implémentation plus classique. Disposant déjà d'un mode automatique pour gérer des tortues qui se déplacent aléatoirement (avec une méthode de mise à jour qui est appellée automatiquement par un timer : Cf. code ci-dessus), nous avons décidé de rajouter un controleur *ControleurFeuilleFlocking* qui implémenterais le même principe sauf qu'au lieu de se déplacer aléatoirement, les tortues suivent un comportement de flocking. Pour éviter la redondance de code avec *ControleurFeuilleAuto* nous avons créé une classe abstraite *ControleurModeAuto* comme suit : 
+Finallement, nous avons opté pour une implémentation plus classique. Disposant déjà d'un mode automatique pour gérer des tortues qui se déplacent aléatoirement (avec une méthode de mise à jour qui est appellée automatiquement par un timer : Cf. partie précédente), nous avons décidé de rajouter un controleur *ControleurFeuilleFlocking* qui implémenterais le même principe sauf qu'au lieu de se déplacer aléatoirement, les tortues suivent un comportement de flocking. Pour éviter la redondance de code avec *ControleurFeuilleAuto* nous avons créé une classe abstraite *ControleurModeAuto* comme suit : 
 
 ```java
 public abstract class ControleurModeAuto extends ControleurFeuilleDessin {
@@ -195,6 +168,7 @@ Les méthodes relatives au comportement du flocking sont définies dans le *Cont
 
 ```java
 /***
+ * Déplace les tortues selon le flocking
  * Déplace les tortues selon le flocking
  */
 @Override
