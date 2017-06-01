@@ -1,9 +1,10 @@
 package vue.vuesManuelle;
 
 import controleur.modeManuel.ControleurFeuilleManuel;
-import model.CouleurManager;
 import model.Tortue;
+import model.CouleurManager;
 import vue.commun.VueFeuille;
+
 
 
 import javax.swing.*;
