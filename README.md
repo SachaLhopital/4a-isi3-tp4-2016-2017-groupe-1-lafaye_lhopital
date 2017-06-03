@@ -1,7 +1,11 @@
-# ISI 3 TP N°4 : Refactoring de code & MVC
+# ISI 3 : Projet des Tortues
 
-Le rapport est à saisir dans le ficher [RAPPORT.md](RAPPORT.md) en utilisant 
-le [formalisme MarkDown](https://guides.github.com/features/mastering-markdown/)
+*Ce projet a été réalisé dans le cadre du module ISI3 de Polytech Lyon
+Un rapport détaillé est disponible dans le ficher [RAPPORT.md](RAPPORT.md)*
+
+*J'ai réalisé ce projet avec l'aide de Yoan LAFAYE DE MICHEAUX en 4e année.*
+
+# Sujet Initial
 
 L’objectif du TP est de réaliser un refactoring de code, d’appliquer le patron d’architecture MVC 
 et différents patrons de conception, et de réviser la programmation d’interfaces graphiques en Java avec Swing.
